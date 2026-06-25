@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Shreeji Infotech | Premium CRM Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --bg: #f5f5f7;
+            --sidebar: #ffffff;
+            --surface: #ffffff;
+            --border: rgba(0,0,0,0.08);
+            --text-main: #1d1d1f;
+            --text-sub: #86868b;
+            --accent: #0071e3;
+            --accent-light: #e8f1fb;
+            --success: #34c759;
+            --radius-lg: 20px;
+            --radius-md: 12px;
+            --shadow: 0 4px 24px rgba(0,0,0,0.04);
+            --font: 'Inter', -apple-system, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text-main);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Login Overlay ── */
+        .login-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            transition: opacity 0.5s ease;
+        }
+        .login-card {
+            background: var(--surface);
+            padding: 48px;
+            border-radius: 32px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        .login-card h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.02em; }
+        .login-card p { color: var(--text-sub); margin-bottom: 32px; font-size: 0.95rem; }
+        .login-card input {
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-family: inherit;
+            font-size: 1rem;
+            background: var(--bg);
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+        .login-card input:focus { outline: none; border-color: var(--accent); }
+        .login-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 16px;
+            width: 100%;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .login-btn:hover { background: #0077ed; transform: translateY(-1px); }
+
+        /* ── Sidebar ── */
+        .sidebar {
+            width: 280px;
+            background: var(--sidebar);
+            border-right: 1px solid var(--border);
+            padding: 32px 20px;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 48px;
+            padding-left: 12px;
+        }
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        .brand span { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.03em; }
+
+        .nav-group { margin-bottom: 32px; }
+        .nav-label { font-size: 0.75rem; font-weight: 700; color: var(--text-sub); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; padding-left: 12px; }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 4px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .nav-item:hover { background: var(--bg); }
+        .nav-item.active { background: var(--accent-light); color: var(--accent); font-weight: 600; }
+        .nav-item i { font-size: 1.2rem; }
+
+        /* Notification Toggle */
+        .notif-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: var(--bg);
+            border-radius: var(--radius-md);
+            margin-top: 12px;
+        }
+        .notif-toggle span { font-size: 0.85rem; font-weight: 600; }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 38px;
+            height: 22px;
+        }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ccc;
+            transition: .3s;
+            border-radius: 22px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px; width: 16px;
+            left: 3px; bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+        input:checked + .slider { background-color: var(--success); }
+        input:checked + .slider:before { transform: translateX(16px); }
+
+        /* ── Main Content ── */
+        .main-content {
+            flex: 1;
+            padding: 40px 60px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .header h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 4px; }
+        .header p { color: var(--text-sub); font-size: 1.1rem; }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .btn-refresh {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 12px 20px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        .btn-refresh:hover { background: var(--bg); }
+
+        /* ── Stats ── */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .stat-card {
+            background: var(--surface);
+            padding: 32px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; width: 80px; height: 80px;
+            background: linear-gradient(135deg, transparent 50%, rgba(0, 113, 227, 0.03) 100%);
+        }
+        .stat-label { font-size: 0.9rem; font-weight: 600; color: var(--text-sub); }
+        .stat-value { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; }
+        .stat-icon { color: var(--accent); margin-bottom: 8px; font-size: 1.5rem; }
+
+        /* ── Filters & Search ── */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        .tabs {
+            background: rgba(0,0,0,0.03);
+            padding: 4px;
+            border-radius: 12px;
+            display: flex;
+        }
+        .tab {
+            padding: 8px 20px;
+            border-radius: 9px;
+            border: none;
+            background: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            color: var(--text-sub);
+            transition: all 0.2s;
+        }
+        .tab.active { background: white; color: var(--text-main); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            max-width: 400px;
+        }
+        .search-box i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-sub); }
+        .search-box input {
+            width: 100%;
+            padding: 12px 16px 12px 44px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            background: var(--surface);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+        .search-box input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-light); }
+
+        /* ── Table ── */
+        .table-container {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th { padding: 20px 24px; font-size: 0.8rem; font-weight: 700; color: var(--text-sub); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); background: #fafafa; }
+        td { padding: 24px; border-bottom: 1px solid var(--border); vertical-align: top; }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: #fafafa; }
+
+        .client-name { font-weight: 700; font-size: 1.05rem; display: block; margin-bottom: 4px; }
+        .client-sub { color: var(--text-sub); font-size: 0.85rem; display: flex; align-items: center; gap: 4px; }
+        
+        .badge { display: inline-flex; padding: 4px 12px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.02em; }
+        .badge.b2b { background: #e0f2fe; color: #0369a1; }
+        .badge.retail { background: #f0fdf4; color: #15803d; }
+
+        .requirement { display: block; font-weight: 600; margin-bottom: 6px; }
+        .message-preview { color: var(--text-sub); font-size: 0.9rem; line-height: 1.5; max-width: 300px; }
+
+        /* ── Follow-up Toggle ── */
+        .followup-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .followup-switch {
+            position: relative;
+            display: inline-block;
+            width: 42px;
+            height: 24px;
+            cursor: pointer;
+        }
+        .followup-switch input { opacity: 0; width: 0; height: 0; }
+        .followup-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #e0e0e0;
+            transition: .3s;
+            border-radius: 24px;
+        }
+        .followup-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px; width: 18px;
+            left: 3px; bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+        }
+        .followup-switch input:checked + .followup-slider { background-color: var(--success); }
+        .followup-switch input:checked + .followup-slider:before { transform: translateX(18px); }
+        .followup-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-sub);
+            transition: color 0.2s;
+        }
+        .followup-label.done { color: var(--success); }
+        .followup-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+        .followup-badge.pending { background: #fff3cd; color: #856404; }
+        .followup-badge.completed { background: #d4edda; color: #155724; }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            background: var(--bg);
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 8px;
+            transition: all 0.2s;
+        }
+        .contact-btn:hover { background: var(--accent-light); color: var(--accent); }
+        .whatsapp-link { color: #25D366; }
+
+        /* ── Toasts ── */
+        .toast-container {
+            position: fixed;
+            top: 32px;
+            right: 32px;
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .toast {
+            background: #1d1d1f;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 16px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: slideIn .4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            min-width: 300px;
+        }
+        .toast i { font-size: 1.4rem; color: #34c759; }
+        .toast.sync i { color: #0071e3; }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .hidden { display: none !important; }
+        .loading-state { padding: 100px; text-align: center; color: var(--text-sub); }
+        .spinner { font-size: 2.5rem; margin-bottom: 16px; display: inline-block; animation: spin 1s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        @media (max-width: 1024px) {
+            .sidebar { width: 80px; padding: 32px 12px; }
+            .brand span, .nav-label, .nav-item span, .notif-toggle span { display: none; }
+            .nav-item { justify-content: center; padding: 16px; }
+            .main-content { padding: 30px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .notif-toggle { justify-content: center; }
+        }
+
+        /* ── Mobile: Fully Responsive ── */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+                height: auto;
+                overflow: auto;
+            }
+            .sidebar {
+                width: 100%;
+                flex-direction: row;
+                padding: 12px 16px;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                overflow-x: auto;
+                gap: 8px;
+                align-items: center;
+            }
+            .brand { margin-bottom: 0; padding-left: 0; }
+            .brand span { display: none; }
+            .nav-group { margin-bottom: 0; display: flex; gap: 4px; align-items: center; }
+            .nav-label { display: none; }
+            .nav-item span { display: none; }
+            .nav-item { padding: 10px 12px; margin-bottom: 0; }
+            .notif-toggle { margin-top: 0; padding: 8px; }
+            .notif-toggle span { display: none; }
+            .main-content {
+                padding: 20px 16px;
+                overflow-y: auto;
+                height: auto;
+                gap: 24px;
+            }
+            .header { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .header h1 { font-size: 1.6rem; }
+            .header p { font-size: 0.9rem; }
+            .stats-grid { grid-template-columns: 1fr; gap: 12px; }
+            .stat-card { padding: 20px; }
+            .stat-value { font-size: 1.6rem; }
+            .controls { flex-direction: column; align-items: stretch; gap: 12px; }
+            .tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .tab { white-space: nowrap; font-size: 0.82rem; padding: 6px 14px; }
+            .search-box { max-width: 100%; }
+            .table-container { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            table { min-width: 700px; }
+            th { padding: 12px 14px; font-size: 0.72rem; }
+            td { padding: 14px; font-size: 0.85rem; }
+            .client-name { font-size: 0.95rem; }
+            .message-preview { max-width: 200px; font-size: 0.82rem; }
+            .contact-btn { font-size: 0.78rem; padding: 6px 10px; }
+            .login-card { padding: 32px 24px; margin: 0 16px; }
+            .login-card h2 { font-size: 1.4rem; }
+            .toast { min-width: 240px; font-size: 0.85rem; padding: 12px 18px; }
+            .toast-container { top: 16px; right: 16px; }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 { font-size: 1.35rem; }
+            .stat-card { padding: 16px; gap: 4px; }
+            .stat-value { font-size: 1.4rem; }
+            .stat-label { font-size: 0.78rem; }
+            .login-card { padding: 28px 20px; border-radius: 24px; }
+        }
+    </style>
+    <!-- ══════════════════════════════════════════════
+         GOOGLE ANALYTICS (GA4)
+         Measurement ID: G-M3H3X5HZ4B
+         ══════════════════════════════════════════════ -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M3H3X5HZ4B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-M3H3X5HZ4B');
+    </script>
+</head>
+<body>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Login Overlay -->
+    <div class="login-overlay" id="loginScreen">
+        <div class="login-card">
+            <div class="brand-icon" style="margin: 0 auto 24px; width: 64px; height: 64px; font-size: 2rem;">
+                <i class="ph-fill ph-shield-check"></i>
+            </div>
+            <h2>CRM Gateway</h2>
+            <p>Accessing the lead management matrix.</p>
+            <input type="password" id="adminPin" placeholder="Security PIN" autofocus>
+            <button class="login-btn" id="loginBtn">Start Session</button>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="brand">
+            <div class="brand-icon"><i class="ph-fill ph-database"></i></div>
+            <span>CRM Hub</span>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-label">Management</div>
+            <a href="#" class="nav-item active">
+                <i class="ph-fill ph-users-three"></i>
+                <span>All Leads</span>
+            </a>
+            <div class="notif-toggle">
+                <span><i class="ph-fill ph-bell-simple" style="margin-right:8px"></i> Alerts</span>
+                <label class="switch">
+                    <input type="checkbox" id="notifSwitch" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="nav-group" style="margin-top: auto;">
+            <a href="index.html" class="nav-item">
+                <i class="ph-fill ph-arrow-left"></i>
+                <span>Back to Store</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <div>
+                <h1>Inbound Leads</h1>
+                <p id="lastUpdate">Real-time Cloud Synchronization Active</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn-refresh" id="refreshBtn">
+                    <i class="ph-bold ph-arrows-clockwise"></i> Force Sync
+                </button>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="ph-fill ph-chart-bar-horizontal stat-icon"></i>
+                <span class="stat-label">Total Submissions</span>
+                <span class="stat-value" id="statTotal">0</span>
+            </div>
+            <div class="stat-card">
+                <i class="ph-fill ph-buildings stat-icon" style="color: #0369a1"></i>
+                <span class="stat-label">Enterprise B2B</span>
+                <span class="stat-value" id="statB2B" style="color: #0369a1">0</span>
+            </div>
+            <div class="stat-card">
+                <i class="ph-fill ph-user-circle stat-icon" style="color: #15803d"></i>
+                <span class="stat-label">Retail Customers</span>
+                <span class="stat-value" id="statRetail" style="color: #15803d">0</span>
+            </div>
+            <div class="stat-card">
+                <i class="ph-fill ph-check-circle stat-icon" style="color: #34c759"></i>
+                <span class="stat-label">Follow-ups Done</span>
+                <span class="stat-value" id="statFollowup" style="color: #34c759">0</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="tabs">
+                <button class="tab active" data-filter="all">All Channels</button>
+                <button class="tab" data-filter="B2B/Corporate">Corporate</button>
+                <button class="tab" data-filter="Retail">Retail</button>
+            </div>
+            <div class="search-box">
+                <i class="ph ph-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Universal lead search...">
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="loading-state" id="loadingState">
+                <div class="spinner"><i class="ph ph-spinner"></i></div>
+                <p>Establishing encrypted database session...</p>
+            </div>
+            <table id="leadsTable" class="hidden">
+                <thead>
+                    <tr>
+                        <th style="width: 140px;">Timestamp</th>
+                        <th style="width: 120px;">Category</th>
+                        <th>Identity & Contact</th>
+                        <th>Project / Request</th>
+                        <th style="width: 130px;">Follow Up</th>
+                        <th style="width: 200px;">Control Panel</th>
+                    </tr>
+                </thead>
+                <tbody id="leadsBody">
+                    <!-- Synced by Firestore -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="notifSound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Firebase SDK Setup -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, query, orderBy, limit, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // Secret Admin PIN
+        const ADMIN_PIN = "Shreeji@2024";
+
+        // Initialization Logic
+        const loginScreen     = document.getElementById('loginScreen');
+        const pinInput        = document.getElementById('adminPin');
+        const loginBtn        = document.getElementById('loginBtn');
+        const notifSwitch     = document.getElementById('notifSwitch');
+        const toastContainer = document.getElementById('toastContainer');
+        const notifSound     = document.getElementById('notifSound');
+
+        loginBtn.addEventListener('click', () => {
+            if (pinInput.value === ADMIN_PIN) {
+                loginScreen.classList.add('hidden');
+                requestNotifPermission();
+                startLeadStream();
+            } else {
+                alert("Security alert: Unauthorized access attempt.");
+                pinInput.value = "";
+            }
+        });
+
+        pinInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') loginBtn.click(); });
+
+        // Firebase Config
+        const firebaseConfig = {
+            apiKey: "AIzaSyCwYhjnjRkQWEM187WaZKgdDaBxSI9s38o",
+            authDomain: "si-web-c452c.firebaseapp.com",
+            projectId: "si-web-c452c",
+            storageBucket: "si-web-c452c.firebasestorage.app",
+            messagingSenderId: "258518005782",
+            appId: "1:258518005782:web:be6ece2b0950730fba1d37",
+            measurementId: "G-M3H3X5HZ4B"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // UI Helpers
+        const leadsBody    = document.getElementById('leadsBody');
+        const loadingState = document.getElementById('loadingState');
+        const leadsTable   = document.getElementById('leadsTable');
+        const searchInput  = document.getElementById('searchInput');
+        const filterTabs   = document.querySelectorAll('.tab');
+
+        let allLeadsData = [];
+        let currentFilter = 'all';
+        let initialLoadDone = false;
+
+        function requestNotifPermission() {
+            if ('Notification' in window) {
+                Notification.requestPermission();
+            }
+        }
+
+        function showToast(title, message, isSync = false) {
+            const toast = document.createElement('div');
+            toast.className = `toast ${isSync ? 'sync' : ''}`;
+            toast.innerHTML = `
+                <i class="ph-fill ph-${isSync ? 'arrows-clockwise' : 'bell-ringing'}"></i>
+                <div style="display:flex; flex-direction:column">
+                    <strong style="font-size:0.8rem; text-transform:uppercase; opacity:0.6">${title}</strong>
+                    <span>${message}</span>
+                </div>
+            `;
+            toastContainer.appendChild(toast);
+            setTimeout(() => {
+                toast.style.animation = 'slideIn .4s cubic-bezier(0.16, 1, 0.3, 1) reverse forwards';
+                setTimeout(() => toast.remove(), 400);
+            }, 5000);
+        }
+
+        function playNotifSound() {
+            if (notifSwitch.checked) {
+                notifSound.currentTime = 0;
+                notifSound.play().catch(e => console.log("Audio play blocked by browser."));
+            }
+        }
+
+        function triggerNativeNotif(name, req) {
+            if (notifSwitch.checked && 'Notification' in window && Notification.permission === 'granted') {
+                new Notification('🚀 New Lead: ' + name, {
+                    body: req,
+                    icon: 'assets/images/logo.png'
+                });
+            }
+        }
+
+        function startLeadStream() {
+            const q = query(collection(db, "leads"), orderBy("timestamp", "desc"));
+            
+            onSnapshot(q, (snapshot) => {
+                const changes = snapshot.docChanges();
+                
+                allLeadsData = [];
+                snapshot.forEach(docSnap => {
+                    allLeadsData.push({ id: docSnap.id, ...docSnap.data() });
+                });
+
+                // Detect new additions after first meaningful load
+                if (initialLoadDone) {
+                    changes.forEach(change => {
+                        if (change.type === "added") {
+                            const newLead = change.doc.data();
+                            playNotifSound();
+                            showToast("New Inquiry Incoming", `${newLead.name}: ${newLead.requirement}`);
+                            triggerNativeNotif(newLead.name, newLead.requirement);
+                        }
+                    });
+                }
+
+                if (!initialLoadDone) {
+                    initialLoadDone = true;
+                    showToast("System Online", "CRM synchronized with 256-bit Firestore Cloud.", true);
+                }
+
+                updateStats();
+                renderLeads();
+                document.getElementById('lastUpdate').innerText = `Live Cloud Sync: ${new Date().toLocaleTimeString()}`;
+            });
+        }
+
+        function updateStats() {
+            const total = allLeadsData.length;
+            const b2b = allLeadsData.filter(l => l.type === "B2B/Corporate").length;
+            const retail = allLeadsData.filter(l => l.type === "Retail").length;
+            const followedUp = allLeadsData.filter(l => l.followedUp === true).length;
+
+            document.getElementById('statTotal').innerText = total;
+            document.getElementById('statB2B').innerText = b2b.toString().padStart(2, '0');
+            document.getElementById('statRetail').innerText = retail.toString().padStart(2, '0');
+            document.getElementById('statFollowup').innerText = followedUp.toString().padStart(2, '0');
+        }
+
+        async function toggleFollowUp(leadId, isChecked) {
+            try {
+                const leadRef = doc(db, "leads", leadId);
+                await updateDoc(leadRef, { followedUp: isChecked });
+                showToast("Status Updated", isChecked ? "Follow-up marked as done." : "Follow-up reverted to pending.", true);
+            } catch (e) {
+                console.error("Error updating follow-up:", e);
+                showToast("Error", "Failed to update follow-up status.");
+            }
+        }
+
+        function renderLeads() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filtered = allLeadsData.filter(lead => {
+                const matchesFilter = currentFilter === 'all' || lead.type === currentFilter;
+                const matchesSearch = (lead.name?.toLowerCase() || '').includes(searchTerm) || 
+                                    (lead.company?.toLowerCase() || '').includes(searchTerm) ||
+                                    (lead.requirement?.toLowerCase() || '').includes(searchTerm);
+                return matchesFilter && matchesSearch;
+            });
+
+            leadsBody.innerHTML = '';
+            
+            if (filtered.length === 0) {
+                leadsBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 60px; color:var(--text-sub);">No active leads matching criteria.</td></tr>`;
+            } else {
+                filtered.forEach(data => {
+                    let dateString = "Recent";
+                    if (data.timestamp) {
+                        const date = data.timestamp.toDate();
+                        dateString = date.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' }) + '<br><small style="opacity:0.6">' + date.toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit' }) + '</small>';
+                    }
+
+                    const isB2B = data.type === "B2B/Corporate";
+                    const badgeClass = isB2B ? "b2b" : "retail";
+                    const labelText = isB2B ? "B2B Enterprise" : "Consumer Retail";
+
+                    const isFollowedUp = data.followedUp === true;
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td style="color:var(--text-sub); font-weight:600; font-size:0.85rem">${dateString}</td>
+                        <td><span class="badge ${badgeClass}">${labelText}</span></td>
+                        <td>
+                            <span class="client-name">${data.name}</span>
+                            ${data.company && data.company !== "N/A" ? `<span class="client-sub"><i class="ph-bold ph-buildings"></i> ${data.company}</span>` : ''}
+                            <span class="client-sub"><i class="ph-bold ph-phone"></i> ${data.phone}</span>
+                            <span class="client-sub" style="font-size:0.75rem; letter-spacing:0.02em">${data.email || 'NO EMAIL SAVED'}</span>
+                        </td>
+                        <td>
+                            <strong class="requirement">${data.requirement}</strong>
+                            <div class="message-preview">${data.message || 'No additional message context.'}</div>
+                        </td>
+                        <td>
+                            <div class="followup-toggle">
+                                <label class="followup-switch">
+                                    <input type="checkbox" data-lead-id="${data.id}" class="followup-checkbox" ${isFollowedUp ? 'checked' : ''}>
+                                    <span class="followup-slider"></span>
+                                </label>
+                                <span class="followup-label ${isFollowedUp ? 'done' : ''}">${isFollowedUp ? 'Done' : 'Pending'}</span>
+                            </div>
+                            <span class="followup-badge ${isFollowedUp ? 'completed' : 'pending'}" style="margin-top:6px">
+                                <i class="ph-fill ph-${isFollowedUp ? 'check-circle' : 'clock'}"></i>
+                                ${isFollowedUp ? 'Completed' : 'Awaiting'}
+                            </span>
+                        </td>
+                        <td>
+                            <div style="display:flex; flex-direction:column; gap:6px">
+                                <a href="tel:${data.phone}" class="contact-btn">
+                                    <i class="ph-fill ph-phone-call"></i> Immediate Call
+                                </a>
+                                <a href="https://wa.me/${data.phone.replace(/[^\d+]/g, '')}" target="_blank" class="contact-btn">
+                                    <i class="ph-fill ph-whatsapp-logo whatsapp-link"></i> WhatsApp Chat
+                                </a>
+                            </div>
+                        </td>
+                    `;
+                    leadsBody.appendChild(tr);
+                });
+            }
+
+            loadingState.classList.add('hidden');
+            leadsTable.classList.remove('hidden');
+        }
+
+        // Event Bindings
+        searchInput.addEventListener('input', renderLeads);
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                filterTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentFilter = tab.dataset.filter;
+                renderLeads();
+            });
+        });
+        document.getElementById('refreshBtn').addEventListener('click', () => {
+            showToast("System Alert", "Real-time sync is already active. Manual force not required.", true);
+        });
+
+        // Follow-up toggle event delegation
+        document.getElementById('leadsBody').addEventListener('change', (e) => {
+            if (e.target.classList.contains('followup-checkbox')) {
+                const leadId = e.target.dataset.leadId;
+                const isChecked = e.target.checked;
+                toggleFollowUp(leadId, isChecked);
+
+                // Update adjacent label and badge immediately
+                const row = e.target.closest('td');
+                const label = row.querySelector('.followup-label');
+                const badge = row.querySelector('.followup-badge');
+                if (label) {
+                    label.textContent = isChecked ? 'Done' : 'Pending';
+                    label.classList.toggle('done', isChecked);
+                }
+                if (badge) {
+                    badge.className = `followup-badge ${isChecked ? 'completed' : 'pending'}`;
+                    badge.style.marginTop = '6px';
+                    badge.innerHTML = `<i class="ph-fill ph-${isChecked ? 'check-circle' : 'clock'}"></i> ${isChecked ? 'Completed' : 'Awaiting'}`;
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

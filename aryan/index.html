@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aryan Parikh | Business Development — Shreeji Infotech</title>
+    <meta name="description"
+        content="Digital business card for Aryan Parikh, Business Development at Shreeji Infotech. IT infrastructure, networking, cloud solutions & technology consulting.">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#0a0a0f">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Aryan Parikh | Shreeji Infotech">
+    <meta property="og:description" content="Business Development — IT Solutions, Networking & Cloud Services">
+    <meta property="og:type" content="profile">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        /* ═══════════════════════════════════════════
+           RESET & BASE
+           ═══════════════════════════════════════════ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --bg-card-hover: rgba(255, 255, 255, 0.07);
+            --bg-glass: rgba(255, 255, 255, 0.06);
+            --bg-glass-strong: rgba(255, 255, 255, 0.10);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.15);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.6);
+            --text-tertiary: rgba(255, 255, 255, 0.4);
+            --accent: #6c8cff;
+            --accent-glow: rgba(108, 140, 255, 0.15);
+            --accent-green: #34d399;
+            --accent-green-glow: rgba(52, 211, 153, 0.15);
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 28px;
+            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
+            --shadow-elevated: 0 8px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ═══════════════════════════════════════════
+           BACKGROUND AMBIENT GLOW
+           ═══════════════════════════════════════════ */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .ambient-bg::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(108, 140, 255, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .ambient-bg::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(52, 211, 153, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        /* ═══════════════════════════════════════════
+           MAIN CONTAINER
+           ═══════════════════════════════════════════ */
+        .card-container {
+            position: relative;
+            z-index: 1;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 16px 16px 40px;
+        }
+
+        /* ═══════════════════════════════════════════
+           PROFILE HEADER
+           ═══════════════════════════════════════════ */
+        .profile-header {
+            text-align: center;
+            padding: 48px 24px 32px;
+        }
+
+        .profile-photo-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+
+        .profile-photo {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #a78bfa);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+            box-shadow: 0 0 0 3px rgba(108, 140, 255, 0.2), 0 8px 32px rgba(108, 140, 255, 0.15);
+            overflow: hidden;
+        }
+
+        .profile-photo img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 2;
+        }
+
+        .profile-photo span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-status {
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+            width: 18px;
+            height: 18px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            border: 3px solid var(--bg-primary);
+            z-index: 3;
+        }
+
+        .profile-name {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+
+        .profile-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .profile-company {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .profile-intro {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            line-height: 1.7;
+            margin-top: 16px;
+            padding: 0 8px;
+            max-width: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ═══════════════════════════════════════════
+           ACTION BUTTONS
+           ═══════════════════════════════════════════ */
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            padding: 0 8px;
+            margin-bottom: 24px;
+        }
+
+        .action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 18px 8px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .action-btn:hover {
+            background: var(--bg-glass-strong);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .action-btn i {
+            font-size: 24px;
+        }
+
+        .action-btn span {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            letter-spacing: 0.3px;
+        }
+
+        .action-btn.call-btn i {
+            color: var(--accent-green);
+        }
+
+        .action-btn.wa-btn i {
+            color: #25D366;
+        }
+
+        .action-btn.email-btn i {
+            color: var(--accent);
+        }
+
+        .action-btn.save-btn i {
+            color: #f59e0b;
+        }
+
+        /* ═══════════════════════════════════════════
+           GLASS CARD
+           ═══════════════════════════════════════════ */
+        .glass-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-bottom: 16px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .card-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+
+        .card-label i {
+            font-size: 14px;
+            color: var(--accent);
+        }
+
+        /* ═══════════════════════════════════════════
+           CONTACT INFO
+           ═══════════════════════════════════════════ */
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 16px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: background 0.2s ease;
+        }
+
+        .contact-item:hover {
+            background: var(--bg-glass);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .contact-icon.phone {
+            background: var(--accent-green-glow);
+            color: var(--accent-green);
+        }
+
+        .contact-icon.office {
+            background: rgba(168, 85, 247, 0.12);
+            color: #a855f7;
+        }
+
+        .contact-icon.email {
+            background: var(--accent-glow);
+            color: var(--accent);
+        }
+
+        .contact-icon.web {
+            background: rgba(251, 146, 60, 0.12);
+            color: #fb923c;
+        }
+
+        .contact-info-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-info-label {
+            font-size: 11px;
+            color: var(--text-tertiary);
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .contact-info-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-top: 2px;
+        }
+
+        /* ═══════════════════════════════════════════
+           ABOUT SECTION
+           ═══════════════════════════════════════════ */
+        .about-text {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .about-company {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .about-company h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        /* ═══════════════════════════════════════════
+           SERVICES
+           ═══════════════════════════════════════════ */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .service-chip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 16px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 12.5px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+        }
+
+        .service-chip:hover {
+            background: var(--bg-glass-strong);
+            border-color: var(--border-hover);
+            color: var(--text-primary);
+        }
+
+        .service-chip i {
+            font-size: 18px;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .service-chip.full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* ═══════════════════════════════════════════
+           ADDRESS
+           ═══════════════════════════════════════════ */
+        .address-content {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .address-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: rgba(239, 68, 68, 0.12);
+            color: #ef4444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .address-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .address-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .address-link:hover {
+            opacity: 0.8;
+        }
+
+        /* ═══════════════════════════════════════════
+           SOCIAL ICONS
+           ═══════════════════════════════════════════ */
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 8px 0;
+        }
+
+        .social-link {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: var(--text-secondary);
+            background: var(--bg-glass);
+            border: 1px solid var(--border);
+            text-decoration: none;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .social-link:hover {
+            background: var(--bg-glass-strong);
+            border-color: var(--border-hover);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .social-link.linkedin:hover {
+            color: #0A66C2;
+        }
+
+        .social-link.instagram:hover {
+            color: #E4405F;
+        }
+
+        .social-link.website:hover {
+            color: var(--accent);
+        }
+
+        .social-link.google:hover {
+            color: #FBBC04;
+        }
+
+        /* ═══════════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════════ */
+        .card-footer {
+            text-align: center;
+            padding: 32px 24px 16px;
+        }
+
+        .footer-logo-text {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.3px;
+        }
+
+        .footer-tagline {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            margin-top: 4px;
+            font-weight: 400;
+        }
+
+        .footer-divider {
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 16px auto;
+            border-radius: 2px;
+        }
+
+        .footer-powered {
+            font-size: 11px;
+            color: var(--text-tertiary);
+            opacity: 0.5;
+        }
+
+        /* ═══════════════════════════════════════════
+           SHARE / NFC INDICATOR
+           ═══════════════════════════════════════════ */
+        .nfc-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 20px 0 8px;
+        }
+
+        .nfc-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0.4;
+        }
+
+        .nfc-text {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* ═══════════════════════════════════════════
+           ENTRY ANIMATION (subtle)
+           ═══════════════════════════════════════════ */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(12px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .fade-in:nth-child(2) {
+            animation-delay: 0.05s;
+        }
+
+        .fade-in:nth-child(3) {
+            animation-delay: 0.1s;
+        }
+
+        .fade-in:nth-child(4) {
+            animation-delay: 0.15s;
+        }
+
+        .fade-in:nth-child(5) {
+            animation-delay: 0.2s;
+        }
+
+        .fade-in:nth-child(6) {
+            animation-delay: 0.25s;
+        }
+
+        .fade-in:nth-child(7) {
+            animation-delay: 0.3s;
+        }
+
+        .fade-in:nth-child(8) {
+            animation-delay: 0.35s;
+        }
+
+        .fade-in:nth-child(9) {
+            animation-delay: 0.4s;
+        }
+
+        /* ═══════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════ */
+        @media (min-width: 520px) {
+            .card-container {
+                padding: 32px 24px 48px;
+            }
+
+            body {
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                padding-top: 24px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .profile-name {
+                font-size: 24px;
+            }
+
+            .action-buttons {
+                gap: 8px;
+            }
+
+            .action-btn {
+                padding: 14px 6px;
+            }
+
+            .action-btn i {
+                font-size: 20px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ═══════════════════════════════════════════
+           SAVE CONTACT TOAST
+           ═══════════════════════════════════════════ */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--bg-glass-strong);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 14px 24px;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            z-index: 1000;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast i {
+            color: var(--accent-green);
+            font-size: 18px;
+        }
+
+        /* Share button in top right */
+        .share-btn {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 100;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-glass);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 18px;
+            transition: all 0.25s ease;
+        }
+
+        .share-btn:hover {
+            background: var(--bg-glass-strong);
+            color: var(--text-primary);
+        }
+
+        @media (min-width: 520px) {
+            .share-btn {
+                position: absolute;
+                top: 40px;
+                right: 8px;
+            }
+
+            .card-container {
+                position: relative;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Ambient background glow -->
+    <div class="ambient-bg"></div>
+
+    <!-- Share button -->
+    <button class="share-btn" id="shareBtn" aria-label="Share this card" title="Share">
+        <i class="ph ph-share-network"></i>
+    </button>
+
+    <div class="card-container">
+
+        <!-- ─── PROFILE HEADER ─── -->
+        <div class="profile-header fade-in">
+            <div class="profile-photo-wrapper">
+                <div class="profile-photo" id="profilePhoto">
+                    <img src="profile.jpeg" alt="Aryan Parikh" onerror="this.style.display='none';">
+                    <span>AP</span>
+                </div>
+                <div class="profile-status" title="Available"></div>
+            </div>
+            <h1 class="profile-name">Aryan Parikh</h1>
+            <p class="profile-title">Business Development</p>
+            <p class="profile-company">Shreeji Infotech</p>
+            <p class="profile-intro">
+                Helping businesses with IT infrastructure, computers, networking, cloud solutions, security systems, and
+                technology consulting.
+            </p>
+        </div>
+
+        <!-- ─── ACTION BUTTONS ─── -->
+        <div class="action-buttons fade-in">
+            <a href="tel:+918866359141" class="action-btn call-btn" id="callBtn">
+                <i class="ph-fill ph-phone"></i>
+                <span>Call</span>
+            </a>
+            <a href="https://wa.me/918866359141?text=Hi%20Aryan!%20I%20got%20your%20contact%20from%20your%20digital%20card.%20I%27d%20like%20to%20connect."
+                target="_blank" rel="noopener" class="action-btn wa-btn" id="waBtn">
+                <i class="ph-fill ph-whatsapp-logo"></i>
+                <span>WhatsApp</span>
+            </a>
+            <a href="mailto:aryanparikh2904@gmail.com" class="action-btn email-btn" id="emailBtn">
+                <i class="ph-fill ph-envelope"></i>
+                <span>Email</span>
+            </a>
+            <button class="action-btn save-btn" id="saveContactBtn">
+                <i class="ph-fill ph-user-plus"></i>
+                <span>Save</span>
+            </button>
+        </div>
+
+        <!-- ─── CONTACT INFO ─── -->
+        <div class="glass-card fade-in">
+            <div class="card-label">
+                <i class="ph-fill ph-address-book"></i>
+                Contact Information
+            </div>
+            <div class="contact-list">
+                <a href="tel:+918866359141" class="contact-item">
+                    <div class="contact-icon phone">
+                        <i class="ph-fill ph-phone"></i>
+                    </div>
+                    <div class="contact-info-text">
+                        <span class="contact-info-label">Mobile</span>
+                        <span class="contact-info-value">+91 88663 59141</span>
+                    </div>
+                </a>
+                <a href="tel:+919377704344" class="contact-item">
+                    <div class="contact-icon office">
+                        <i class="ph-fill ph-buildings"></i>
+                    </div>
+                    <div class="contact-info-text">
+                        <span class="contact-info-label">Office</span>
+                        <span class="contact-info-value">+91 93777 04344</span>
+                    </div>
+                </a>
+                <a href="mailto:aryanparikh2904@gmail.com" class="contact-item">
+                    <div class="contact-icon email">
+                        <i class="ph-fill ph-envelope"></i>
+                    </div>
+                    <div class="contact-info-text">
+                        <span class="contact-info-label">Personal Email</span>
+                        <span class="contact-info-value">aryanparikh2904@gmail.com</span>
+                    </div>
+                </a>
+                <a href="mailto:sales@shreejiinfo.in" class="contact-item">
+                    <div class="contact-icon email">
+                        <i class="ph-fill ph-envelope"></i>
+                    </div>
+                    <div class="contact-info-text">
+                        <span class="contact-info-label">Work Email</span>
+                        <span class="contact-info-value">sales@shreejiinfo.in</span>
+                    </div>
+                </a>
+                <a href="https://shreejiinfo.in" target="_blank" rel="noopener" class="contact-item">
+                    <div class="contact-icon web">
+                        <i class="ph-fill ph-globe"></i>
+                    </div>
+                    <div class="contact-info-text">
+                        <span class="contact-info-label">Website</span>
+                        <span class="contact-info-value">shreejiinfo.in</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ─── ABOUT ─── -->
+        <div class="glass-card fade-in">
+            <div class="card-label">
+                <i class="ph-fill ph-user-circle"></i>
+                About
+            </div>
+            <p class="about-text">
+                I work with businesses, professionals, educational institutions, and organizations to help them choose,
+                implement, and maintain the right technology solutions. From hardware procurement and networking to
+                cloud services and IT support, my focus is on delivering practical and reliable solutions that help
+                businesses operate efficiently.
+            </p>
+            <div class="about-company">
+                <h3>About Shreeji Infotech</h3>
+                <p class="about-text">
+                    Shreeji Infotech is a trusted IT solutions provider based in Ahmedabad, helping customers with
+                    computers, laptops, printers, networking, CCTV, cloud services, AMC support, and business technology
+                    solutions.
+                </p>
+            </div>
+        </div>
+
+        <!-- ─── SERVICES ─── -->
+        <div class="glass-card fade-in">
+            <div class="card-label">
+                <i class="ph-fill ph-briefcase"></i>
+                Services
+            </div>
+            <div class="services-grid">
+                <div class="service-chip">
+                    <i class="ph-duotone ph-hard-drives"></i>
+                    IT Infrastructure
+                </div>
+                <div class="service-chip">
+                    <i class="ph-duotone ph-laptop"></i>
+                    Computers & Laptops
+                </div>
+                <div class="service-chip">
+                    <i class="ph-duotone ph-wifi-high"></i>
+                    Networking & Wi-Fi
+                </div>
+                <div class="service-chip">
+                    <i class="ph-duotone ph-video-camera"></i>
+                    CCTV & Security
+                </div>
+                <div class="service-chip">
+                    <i class="ph-duotone ph-cloud"></i>
+                    Cloud & Email
+                </div>
+                <div class="service-chip">
+                    <i class="ph-duotone ph-wrench"></i>
+                    AMC Support
+                </div>
+                <div class="service-chip full-width">
+                    <i class="ph-duotone ph-lightbulb"></i>
+                    Business Technology Consulting
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── ADDRESS ─── -->
+        <div class="glass-card fade-in">
+            <div class="card-label">
+                <i class="ph-fill ph-map-pin"></i>
+                Business Address
+            </div>
+            <div class="address-content">
+                <div class="address-icon">
+                    <i class="ph-fill ph-map-trifold"></i>
+                </div>
+                <div>
+                    <p class="address-text">
+                        Sakar Complex, 5, Jawahar Chowk,<br>
+                        Opp. La Quench Cafe,<br>
+                        Maninagar,<br>
+                        Ahmedabad — 380008
+                    </p>
+                    <a href="https://maps.app.goo.gl/G1LPUQzEkrxnqCUZ6" target="_blank" rel="noopener"
+                        class="address-link">
+                        <i class="ph-fill ph-navigation-arrow"></i>
+                        Get Directions
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── SOCIAL LINKS ─── -->
+        <div class="glass-card fade-in" style="padding: 20px;">
+            <div class="social-grid">
+                <a href="https://www.linkedin.com/in/aryanparikh2914" target="_blank" rel="noopener"
+                    class="social-link linkedin" aria-label="LinkedIn" title="LinkedIn">
+                    <i class="ph-fill ph-linkedin-logo"></i>
+                </a>
+                <a href="https://www.instagram.com/shreeji_info" target="_blank" rel="noopener"
+                    class="social-link instagram" aria-label="Instagram" title="Instagram">
+                    <i class="ph-fill ph-instagram-logo"></i>
+                </a>
+                <a href="https://shreejiinfo.in" target="_blank" rel="noopener" class="social-link website"
+                    aria-label="Website" title="Website">
+                    <i class="ph-fill ph-globe"></i>
+                </a>
+                <a href="https://share.google/o3jxoQkaLkC7Bod4b" target="_blank" rel="noopener"
+                    class="social-link google" aria-label="Google Reviews" title="Google Reviews">
+                    <i class="ph-fill ph-google-logo"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- ─── FOOTER ─── -->
+        <div class="card-footer fade-in">
+            <div class="footer-divider"></div>
+            <p class="footer-logo-text">Shreeji Infotech</p>
+            <p class="footer-tagline">Your Trusted Technology Partner</p>
+            <div class="nfc-indicator">
+                <div class="nfc-dot"></div>
+                <span class="nfc-text">Digital Business Card</span>
+                <div class="nfc-dot"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="ph-fill ph-check-circle"></i>
+        <span id="toastMessage">Contact saved!</span>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════
+        // SAVE CONTACT (vCard download)
+        // ═══════════════════════════════════════════
+        document.getElementById('saveContactBtn').addEventListener('click', function () {
+            const vCardData = [
+                'BEGIN:VCARD',
+                'VERSION:3.0',
+                'FN:Aryan Parikh',
+                'N:Parikh;Aryan;;;',
+                'ORG:Shreeji Infotech',
+                'TITLE:Business Development',
+                'TEL;TYPE=CELL:+918866359141',
+                'TEL;TYPE=WORK:+919377704344',
+                'EMAIL;TYPE=HOME:aryanparikh2904@gmail.com',
+                'EMAIL;TYPE=WORK:sales@shreejiinfo.in',
+                'URL:https://shreejiinfo.in',
+                'ADR;TYPE=WORK:;;Sakar Complex, 5, Jawahar Chowk, Opp. La Quench Cafe, Maninagar;Ahmedabad;Gujarat;380008;India',
+                'NOTE:Business Development at Shreeji Infotech — IT Infrastructure, Networking, Cloud, CCTV & Technology Consulting.',
+                'END:VCARD'
+            ].join('\n');
+
+            const blob = new Blob([vCardData], { type: 'text/vcard;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Aryan_Parikh_Shreeji_Infotech.vcf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            showToast('Contact saved to your phone!');
+        });
+
+        // ═══════════════════════════════════════════
+        // SHARE BUTTON
+        // ═══════════════════════════════════════════
+        document.getElementById('shareBtn').addEventListener('click', async function () {
+            const shareData = {
+                title: 'Aryan Parikh — Shreeji Infotech',
+                text: 'Connect with Aryan Parikh, Business Development at Shreeji Infotech.',
+                url: window.location.href
+            };
+
+            try {
+                if (navigator.share) {
+                    await navigator.share(shareData);
+                } else {
+                    await navigator.clipboard.writeText(window.location.href);
+                    showToast('Link copied to clipboard!');
+                }
+            } catch (err) {
+                // User cancelled share dialog
+                if (err.name !== 'AbortError') {
+                    await navigator.clipboard.writeText(window.location.href);
+                    showToast('Link copied to clipboard!');
+                }
+            }
+        });
+
+        // ═══════════════════════════════════════════
+        // TOAST NOTIFICATION
+        // ═══════════════════════════════════════════
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2800);
+        }
+    </script>
+</body>
+
+</html>

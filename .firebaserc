@@ -1,1 +1,7 @@
-{}
+{
+  "projects": {
+    "default": "si-web-c452c"
+  },
+  "targets": {},
+  "etags": {}
+}

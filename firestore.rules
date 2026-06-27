@@ -1,0 +1,16 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Leads collection rules
+    match /leads/{leadId} {
+      // Allow any public user to create a new lead
+      allow create: if request.resource.data.name != null 
+                    && request.resource.data.phone != null;
+      
+      // Allow read and update only. (Since the client uses client-side client JS without Firebase Auth,
+      // we'll keep read allowed for dashboard functionality, but block deletions entirely).
+      allow read, update: if true;
+      allow delete: if false; 
+    }
+  }
+}

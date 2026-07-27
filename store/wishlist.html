@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist — Shreeji Infotech</title>
+    <meta name="description" content="Your saved wishlist at Shreeji Infotech. Add to cart and buy your favourite IT products.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="store.css">
+</head>
+<body>
+<nav id="navbar" class="navbar" style="position:sticky;top:0;">
+    <div class="nav-inner">
+        <a href="/" class="nav-logo"><img src="../assets/images/logo.png" alt="Shreeji Infotech" class="logo-img"></a>
+        <ul class="nav-menu"><li><a href="/store/" class="nav-link">← Back to Shop</a></li></ul>
+        <div class="store-nav-actions">
+            <a href="/store/cart.html" class="nav-icon-btn"><i class="ph ph-shopping-cart"></i><span class="badge cart-badge" style="display:none;">0</span></a>
+            <button class="nav-icon-btn" id="authBtn" onclick="openAuthModal()"><i class="ph ph-user"></i></button>
+            <div class="nav-icon-btn" id="userMenuBtn" style="display:none;gap:6px;width:auto;padding:0 10px;border-radius:980px;background:var(--off-white);"><i class="ph-fill ph-user-circle" style="font-size:1.2rem;color:var(--accent);"></i><span id="userName" style="font-size:0.82rem;font-weight:600;"></span></div>
+        </div>
+    </div>
+</nav>
+<div class="breadcrumb"><div class="breadcrumb-inner"><a href="/">Home</a><i class="ph ph-caret-right"></i><a href="/store/">Shop</a><i class="ph ph-caret-right"></i><span style="color:var(--dark-gray);">Wishlist</span></div></div>
+
+<div class="wishlist-layout">
+    <!-- Header -->
+    <div class="wishlist-header">
+        <div>
+            <div class="wishlist-title">My Wishlist <span id="wishCount" style="font-size:1rem;font-weight:500;color:var(--mid-gray);">(0 items)</span></div>
+            <div style="font-size:0.85rem;color:var(--mid-gray);margin-top:4px;">Save items and come back to buy them later.</div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button onclick="addAllToCart()" class="btn btn-primary"><i class="ph ph-shopping-cart"></i> Add All to Cart</button>
+            <button onclick="shareWishlist()" class="btn btn-ghost"><i class="ph ph-share-network"></i> Share List</button>
+        </div>
+    </div>
+
+    <!-- Auth Gate -->
+    <div id="authGate" style="display:none;text-align:center;padding:80px 24px;">
+        <i class="ph ph-heart" style="font-size:4rem;color:var(--light-gray);display:block;margin-bottom:16px;"></i>
+        <div style="font-size:1.3rem;font-weight:700;margin-bottom:8px;">Sign In to View Wishlist</div>
+        <div style="font-size:0.9rem;color:var(--mid-gray);margin-bottom:24px;">Your wishlist is saved to your account. Sign in to see your saved items.</div>
+        <button class="btn btn-primary" onclick="signInWithGoogle()"><svg width="16" height="16" viewBox="0 0 48 48" style="margin-right:4px;"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.35-8.16 2.35-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg> Sign In with Google</button>
+    </div>
+
+    <!-- Empty -->
+    <div class="empty-state" id="emptyWish" style="display:none;">
+        <div class="empty-icon"><i class="ph ph-heart"></i></div>
+        <div class="empty-title">Your Wishlist is Empty</div>
+        <div class="empty-sub">Browse our store and click the heart icon to save products for later.</div>
+        <a href="/store/" class="btn btn-primary"><i class="ph ph-storefront"></i> Browse Products</a>
+    </div>
+
+    <!-- Grid -->
+    <div class="wishlist-grid" id="wishlistGrid"></div>
+</div>
+
+<div class="auth-modal-overlay" id="authModal" onclick="if(event.target===this)closeAuthModal()">
+    <div class="auth-modal">
+        <button onclick="closeAuthModal()" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:1.3rem;cursor:pointer;"><i class="ph ph-x"></i></button>
+        <img src="../assets/images/logo.png" alt="Shreeji Infotech" style="height:40px;margin-bottom:16px;">
+        <h2>Sign In</h2><p>Sign in to access your wishlist.</p>
+        <a href="#" class="btn-google" onclick="signInWithGoogle();return false;"><svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.35-8.16 2.35-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg> Continue with Google</a>
+        <div id="recaptcha-container"></div>
+    </div>
+</div>
+<div class="toast-container" id="toastContainer"></div>
+
+<script type="module">
+import { auth, db, showToast, addToCart, openAuthModal, closeAuthModal, signInWithGoogle } from './store.js';
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+import { doc, getDoc, updateDoc, arrayRemove } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+window.openAuthModal = openAuthModal;
+window.closeAuthModal = closeAuthModal;
+window.signInWithGoogle = signInWithGoogle;
+
+let wishItems = [];
+
+onAuthStateChanged(auth, async (user) => {
+    if (!user) { document.getElementById('authGate').style.display = 'block'; return; }
+    document.getElementById('authGate').style.display = 'none';
+    const snap = await getDoc(doc(db, 'wishlists', user.uid));
+    wishItems = snap.exists() ? (snap.data().items || []) : [];
+    renderWishlist(wishItems, user.uid);
+});
+
+function renderWishlist(items, uid) {
+    document.getElementById('wishCount').textContent = `(${items.length} item${items.length !== 1 ? 's' : ''})`;
+    const grid = document.getElementById('wishlistGrid');
+    if (!items.length) { grid.style.display = 'none'; document.getElementById('emptyWish').style.display = 'block'; return; }
+    grid.style.display = 'grid';
+    document.getElementById('emptyWish').style.display = 'none';
+    grid.innerHTML = items.map(item => `
+        <div class="product-card" id="wcard-${item.productId}">
+            <div class="product-card-img">
+                <a href="/store/product.html?id=${item.productId}">
+                    <img src="${item.image || ''}" alt="${item.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/f5f5f7/86868b?text=?'">
+                </a>
+                <div class="card-actions" style="opacity:1;transform:none;">
+                    <button class="card-action-btn active-wish" title="Remove from Wishlist" onclick="removeFromWish('${item.productId}','${uid}')">
+                        <i class="ph-fill ph-heart" style="color:var(--wishlist-active);"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="product-card-body">
+                <div class="product-name" style="display:block;"><a href="/store/product.html?id=${item.productId}" style="text-decoration:none;color:inherit;">${item.name}</a></div>
+                <div class="product-pricing" style="margin-top:auto;">
+                    <span class="product-price">₹${item.price?.toLocaleString('en-IN') || 'See Price'}</span>
+                </div>
+                <div style="font-size:0.75rem;color:var(--mid-gray);margin-top:4px;">Saved ${new Date(item.addedAt).toLocaleDateString('en-IN', {month:'short',day:'numeric'})}</div>
+            </div>
+            <div class="card-btns">
+                <button class="btn-cart" onclick="addWishToCart('${item.productId}',this)"><i class="ph ph-shopping-cart"></i> Add to Cart</button>
+                <a href="/store/product.html?id=${item.productId}" class="btn-buy">View</a>
+            </div>
+        </div>
+    `).join('');
+}
+
+window.removeFromWish = async (productId, uid) => {
+    const snap = await getDoc(doc(db, 'wishlists', uid));
+    if (!snap.exists()) return;
+    const item = (snap.data().items || []).find(i => i.productId === productId);
+    if (!item) return;
+    await updateDoc(doc(db, 'wishlists', uid), { items: arrayRemove(item) });
+    wishItems = wishItems.filter(i => i.productId !== productId);
+    document.getElementById('wcard-' + productId)?.remove();
+    document.getElementById('wishCount').textContent = `(${wishItems.length} items)`;
+    if (!wishItems.length) { document.getElementById('wishlistGrid').style.display = 'none'; document.getElementById('emptyWish').style.display = 'block'; }
+    showToast('Removed from wishlist', 'info');
+};
+
+window.addWishToCart = async (productId, btn) => {
+    const item = wishItems.find(i => i.productId === productId);
+    if (!item) return;
+    await addToCart({ id: productId, name: item.name, price: item.price || 0, image: item.image || '' });
+    btn.innerHTML = '<i class="ph-fill ph-check"></i> Added!';
+    btn.classList.add('added');
+    setTimeout(() => { btn.innerHTML = '<i class="ph ph-shopping-cart"></i> Add to Cart'; btn.classList.remove('added'); }, 2000);
+};
+
+window.addAllToCart = async () => {
+    for (const item of wishItems) {
+        await addToCart({ id: item.productId, name: item.name, price: item.price || 0, image: item.image || '' });
+    }
+    showToast('All items added to cart!', 'success');
+    setTimeout(() => window.location.href = '/store/cart.html', 1500);
+};
+
+window.shareWishlist = () => {
+    navigator.clipboard.writeText(window.location.href);
+    showToast('Wishlist link copied!', 'success');
+};
+
+window.addEventListener('scroll', () => document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20));
+</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Products — Shreeji Infotech</title>
+    <meta name="description" content="Compare laptops, CCTV, printers and networking gear side by side at Shreeji Infotech, Ahmedabad.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="store.css">
+</head>
+<body>
+<nav id="navbar" class="navbar" style="position:sticky;top:0;">
+    <div class="nav-inner">
+        <a href="/" class="nav-logo"><img src="../assets/images/logo.png" alt="Shreeji Infotech" class="logo-img"></a>
+        <ul class="nav-menu"><li><a href="/store/" class="nav-link">← Back to Shop</a></li></ul>
+        <div class="store-nav-actions">
+            <a href="/store/cart.html" class="nav-icon-btn"><i class="ph ph-shopping-cart"></i><span class="badge cart-badge" style="display:none;">0</span></a>
+        </div>
+    </div>
+</nav>
+<div class="breadcrumb"><div class="breadcrumb-inner"><a href="/">Home</a><i class="ph ph-caret-right"></i><a href="/store/">Shop</a><i class="ph ph-caret-right"></i><span style="color:var(--dark-gray);">Compare Products</span></div></div>
+
+<!-- Empty compare state -->
+<div class="empty-state" id="emptyCompare" style="display:none;">
+    <div class="empty-icon"><i class="ph ph-arrows-left-right"></i></div>
+    <div class="empty-title">No Products to Compare</div>
+    <div class="empty-sub">Go to the store, open any product and click "Compare" to add it here. You can compare up to 4 products side by side.</div>
+    <a href="/store/" class="btn btn-primary"><i class="ph ph-storefront"></i> Browse Products</a>
+</div>
+
+<!-- Compare Table -->
+<div class="compare-layout" id="compareLayout" style="display:none;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+        <div>
+            <h1 style="font-size:1.8rem;font-weight:800;letter-spacing:-0.03em;">Compare Products</h1>
+            <div style="font-size:0.85rem;color:var(--mid-gray);">Compare up to 4 products side by side</div>
+        </div>
+        <button onclick="clearAllCompare()" class="btn btn-ghost"><i class="ph ph-trash"></i> Clear All</button>
+    </div>
+
+    <div style="overflow-x:auto;">
+        <table class="compare-table" id="compareTable">
+            <thead id="compareHead"></thead>
+            <tbody id="compareBody"></tbody>
+        </table>
+    </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script type="module">
+import { showToast, addToCart, toggleWishlist, getCompareList, formatPrice } from './store.js';
+
+// Demo product data (same as store pages)
+const DEMO_PRODUCTS = {
+    'hp-15s-ey4007au': { id: 'hp-15s-ey4007au', name: 'HP 15s AMD Ryzen 5 7520U 15.6"', brand: 'HP', price: 42990, originalPrice: 55000, image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=300&q=80', rating: 4.5, reviews: 128, specs: { 'Processor': 'AMD Ryzen 5 7520U', 'RAM': '8 GB DDR5', 'Storage': '512 GB SSD', 'Display': '15.6" FHD IPS', 'Graphics': 'AMD Radeon 610M', 'Battery': 'Up to 7 hrs', 'Weight': '1.69 kg', 'OS': 'Windows 11', 'Ports': 'USB-A, USB-C, HDMI', 'Wi-Fi': 'Wi-Fi 6', 'Bluetooth': '5.3', 'Webcam': '720p HD', 'Warranty': '1 Year Onsite', 'Price': '₹42,990' } },
+    'dell-inspiron-15-3520': { id: 'dell-inspiron-15-3520', name: 'Dell Inspiron 15 Intel i5-12th', brand: 'Dell', price: 56490, originalPrice: 70000, image: 'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=300&q=80', rating: 4.3, reviews: 95, specs: { 'Processor': 'Intel i5-1235U (12th Gen)', 'RAM': '16 GB DDR4', 'Storage': '512 GB SSD', 'Display': '15.6" FHD WVA', 'Graphics': 'Intel Iris Xe', 'Battery': '54 Wh', 'Weight': '1.71 kg', 'OS': 'Windows 11', 'Ports': 'USB-A x3, USB-C, HDMI', 'Wi-Fi': 'Wi-Fi 6', 'Bluetooth': '5.1', 'Webcam': '720p HD', 'Warranty': '1 Year ProSupport', 'Price': '₹56,490' } },
+    'lenovo-ideapad-slim5': { id: 'lenovo-ideapad-slim5', name: 'Lenovo IdeaPad Slim 5 Core Ultra 5', brand: 'Lenovo', price: 72990, originalPrice: 89000, image: 'https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=300&q=80', rating: 4.6, reviews: 214, specs: { 'Processor': 'Intel Core Ultra 5 125H', 'RAM': '16 GB LPDDR5X', 'Storage': '1 TB SSD', 'Display': '14" 2.8K OLED 90Hz', 'Graphics': 'Intel Arc Graphics', 'Battery': '70 Wh', 'Weight': '1.46 kg', 'OS': 'Windows 11', 'Ports': 'USB-A, USB-C x2, HDMI', 'Wi-Fi': 'Wi-Fi 6E', 'Bluetooth': '5.3', 'Webcam': '1080p FHD', 'Warranty': '1 Year Premium Care', 'Price': '₹72,990' } },
+    'apple-macbook-air-m3': { id: 'apple-macbook-air-m3', name: 'Apple MacBook Air M3 13"', brand: 'Apple', price: 114900, originalPrice: 120000, image: 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=300&q=80', rating: 4.9, reviews: 408, specs: { 'Processor': 'Apple M3 (8-core CPU)', 'RAM': '8 GB Unified Memory', 'Storage': '256 GB SSD', 'Display': '13.6" Liquid Retina', 'Graphics': '10-core GPU', 'Battery': 'Up to 18 hrs', 'Weight': '1.24 kg', 'OS': 'macOS Sonoma', 'Ports': 'USB-C x2, MagSafe', 'Wi-Fi': 'Wi-Fi 6E', 'Bluetooth': '5.3', 'Webcam': '1080p FHD', 'Warranty': '1 Year AppleCare', 'Price': '₹1,14,900' } }
+};
+
+let compareIds = getCompareList().map(p => p.id);
+
+function renderCompare() {
+    if (!compareIds.length) {
+        document.getElementById('emptyCompare').style.display = 'block';
+        document.getElementById('compareLayout').style.display = 'none';
+        return;
+    }
+    document.getElementById('emptyCompare').style.display = 'none';
+    document.getElementById('compareLayout').style.display = 'block';
+
+    const products = compareIds.map(id => DEMO_PRODUCTS[id]).filter(Boolean);
+    const MAX_SLOTS = 4;
+    const emptySlots = MAX_SLOTS - products.length;
+
+    // All unique spec keys
+    const allSpecs = new Set();
+    products.forEach(p => Object.keys(p.specs || {}).forEach(k => allSpecs.add(k)));
+
+    // Header
+    let thead = '<tr><th></th>';
+    products.forEach(p => {
+        thead += `<th>
+            <div style="text-align:center;">
+                <img class="compare-product-img" src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/120x120/f5f5f7/86868b?text=?'">
+                <div class="compare-product-name">${p.name}</div>
+                <div class="compare-price">₹${p.price.toLocaleString('en-IN')}</div>
+                <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:8px;">
+                    <button onclick="addCompareToCart('${p.id}')" style="padding:7px 14px;background:var(--accent);color:#fff;border:none;border-radius:980px;font-size:0.78rem;font-weight:700;cursor:pointer;font-family:var(--font);">Add to Cart</button>
+                    <a href="/store/product.html?id=${p.id}" style="padding:7px 14px;background:var(--off-white);color:var(--dark-gray);border:none;border-radius:980px;font-size:0.78rem;font-weight:700;cursor:pointer;text-decoration:none;">View</a>
+                </div>
+                <button class="remove-compare" onclick="removeProduct('${p.id}')"><i class="ph ph-x"></i> Remove</button>
+            </div>
+        </th>`;
+    });
+    for (let i = 0; i < emptySlots; i++) {
+        thead += `<th><div class="compare-add-slot" onclick="window.location.href='/store/'"><i class="ph ph-plus-circle"></i><span>Add a Product</span></div></th>`;
+    }
+    thead += '</tr>';
+    document.getElementById('compareHead').innerHTML = thead;
+
+    // Body
+    let tbody = '';
+    // Rating row
+    tbody += '<tr><td>Rating</td>';
+    products.forEach(p => { tbody += `<td style="text-align:center;"><span style="color:var(--star-color);font-size:1rem;">${'★'.repeat(Math.floor(p.rating))}</span> ${p.rating} <span style="color:var(--mid-gray);font-size:0.78rem;">(${p.reviews})</span></td>`; });
+    for (let i = 0; i < emptySlots; i++) tbody += '<td>—</td>';
+    tbody += '</tr>';
+    // Discount
+    tbody += '<tr><td>Discount</td>';
+    products.forEach(p => {
+        const d = p.originalPrice > p.price ? Math.round((1 - p.price / p.originalPrice) * 100) : 0;
+        tbody += `<td style="text-align:center;">${d ? `<span style="color:var(--badge-sale);font-weight:700;">${d}% off</span>` : '—'}</td>`;
+    });
+    for (let i = 0; i < emptySlots; i++) tbody += '<td>—</td>';
+    tbody += '</tr>';
+    // Spec rows
+    allSpecs.forEach(spec => {
+        if (spec === 'Price') return; // already shown
+        tbody += `<tr><td>${spec}</td>`;
+        products.forEach(p => {
+            const val = p.specs?.[spec] || '—';
+            tbody += `<td style="text-align:center;">${val}</td>`;
+        });
+        for (let i = 0; i < emptySlots; i++) tbody += '<td>—</td>';
+        tbody += '</tr>';
+    });
+    // Add to Cart row
+    tbody += '<tr><td>Action</td>';
+    products.forEach(p => {
+        tbody += `<td style="text-align:center;"><button onclick="addCompareToCart('${p.id}')" style="padding:10px 20px;background:var(--accent);color:#fff;border:none;border-radius:980px;font-size:0.85rem;font-weight:700;cursor:pointer;font-family:var(--font);">Add to Cart</button></td>`;
+    });
+    for (let i = 0; i < emptySlots; i++) tbody += '<td>—</td>';
+    tbody += '</tr>';
+
+    document.getElementById('compareBody').innerHTML = tbody;
+}
+
+window.removeProduct = (id) => {
+    compareIds = compareIds.filter(i => i !== id);
+    const list = compareIds.map(i => ({ id: i, name: DEMO_PRODUCTS[i]?.name || i, price: DEMO_PRODUCTS[i]?.price || 0, image: DEMO_PRODUCTS[i]?.image || '' }));
+    localStorage.setItem('si_compare', JSON.stringify(list));
+    renderCompare();
+};
+
+window.clearAllCompare = () => {
+    compareIds = [];
+    localStorage.removeItem('si_compare');
+    renderCompare();
+};
+
+window.addCompareToCart = async (id) => {
+    const p = DEMO_PRODUCTS[id];
+    if (!p) return;
+    await addToCart({ id: p.id, name: p.name, price: p.price, image: p.image, brand: p.brand });
+};
+
+window.addEventListener('scroll', () => document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20));
+renderCompare();
+</script>
+</body>
+</html>

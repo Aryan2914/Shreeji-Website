@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Product — Shreeji Infotech</title>
+    <meta name="description" id="pageDesc" content="Buy the latest IT products at Shreeji Infotech, Ahmedabad. EMI available, GST invoice, free shipping.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="store.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M3H3X5HZ4B"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-M3H3X5HZ4B');</script>
+    <!-- Razorpay SDK -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+
+<!-- ── Navigation (same as store/index) ── -->
+<nav id="navbar" class="navbar" style="position:sticky;top:0;">
+    <div class="nav-inner">
+        <a href="/" class="nav-logo">
+            <img src="../assets/images/logo.png" alt="Shreeji Infotech" class="logo-img">
+        </a>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li><a href="/store/" class="nav-link active">Shop</a></li>
+            <li><a href="/#services" class="nav-link">Services</a></li>
+            <li><a href="/enterprise/portal.html" class="nav-link">Enterprise</a></li>
+            <li><a href="/pc-builder/" class="nav-link">PC Builder</a></li>
+        </ul>
+        <div class="store-nav-actions">
+            <a href="/store/wishlist.html" class="nav-icon-btn" title="Wishlist">
+                <i class="ph ph-heart"></i>
+                <span class="badge wishlist-badge" style="display:none;">0</span>
+            </a>
+            <a href="/store/cart.html" class="nav-icon-btn" title="Cart">
+                <i class="ph ph-shopping-cart"></i>
+                <span class="badge cart-badge" style="display:none;">0</span>
+            </a>
+            <button class="nav-icon-btn" id="authBtn" onclick="openAuthModal()" title="Sign In">
+                <i class="ph ph-user"></i>
+            </button>
+            <div class="nav-icon-btn" id="userMenuBtn" style="display:none;gap:6px;width:auto;padding:0 10px;border-radius:980px;background:var(--off-white);">
+                <i class="ph-fill ph-user-circle" style="font-size:1.2rem;color:var(--accent);"></i>
+                <span id="userName" style="font-size:0.82rem;font-weight:600;color:var(--dark-gray);"></span>
+            </div>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- ── Breadcrumb ── -->
+<div class="breadcrumb">
+    <div class="breadcrumb-inner">
+        <a href="/">Home</a>
+        <i class="ph ph-caret-right"></i>
+        <a href="/store/">Shop</a>
+        <i class="ph ph-caret-right"></i>
+        <a href="#" id="breadCategory">Category</a>
+        <i class="ph ph-caret-right"></i>
+        <span id="breadProduct" style="color:var(--dark-gray);">Product</span>
+    </div>
+</div>
+
+<!-- ── Product Detail Layout ── -->
+<div class="product-detail-layout" id="productLayout">
+    <!-- Gallery -->
+    <div class="product-gallery" id="productGallery">
+        <div class="gallery-main">
+            <img id="mainImg" src="" alt="Product" onerror="this.src='https://via.placeholder.com/600x600/f5f5f7/86868b?text=Image'">
+        </div>
+        <div class="gallery-thumbs" id="galleryThumbs"></div>
+    </div>
+
+    <!-- Product Info -->
+    <div class="product-info" id="productInfo">
+        <div class="product-brand" id="prodBrand"></div>
+        <h1 id="prodName"></h1>
+        <div class="product-meta">
+            <span class="stars" id="prodStars"></span>
+            <span class="rating-count" id="prodRatingCount"></span>
+            <div class="meta-divider"></div>
+            <span class="stock-badge stock-in" id="stockBadge"><i class="ph-fill ph-check-circle"></i> In Stock</span>
+            <div class="meta-divider"></div>
+            <span style="font-size:0.78rem;color:var(--mid-gray);">SKU: <span id="prodSku"></span></span>
+        </div>
+
+        <!-- Price Block -->
+        <div class="product-price-block">
+            <div class="price-row">
+                <div class="price-main" id="prodPrice"></div>
+                <div class="discount-badge-big" id="prodDiscBadge"></div>
+            </div>
+            <div class="price-row">
+                <span class="price-original-big" id="prodOrigPrice"></span>
+                <span class="price-gst" id="prodGstNote"></span>
+            </div>
+            <div class="emi-line" id="emiLine"></div>
+        </div>
+
+        <!-- Variants -->
+        <div class="variant-section" id="variantSection" style="display:none;">
+            <div class="variant-label" id="variantLabel">Select Variant</div>
+            <div class="variant-pills" id="variantPills"></div>
+        </div>
+
+        <!-- Bulk Pricing -->
+        <div class="bulk-pricing-section" id="bulkSection" style="display:none;">
+            <div class="bulk-pricing-title"><i class="ph-fill ph-buildings"></i> Business / Bulk Pricing</div>
+            <table class="bulk-table">
+                <thead><tr><th>Qty</th><th>Unit Price</th><th>Total Savings</th></tr></thead>
+                <tbody id="bulkTbody"></tbody>
+            </table>
+        </div>
+
+        <!-- Quantity -->
+        <div style="margin-bottom:16px;">
+            <div class="variant-label">Quantity</div>
+            <div class="qty-selector" style="margin-top:8px;">
+                <button class="qty-btn" onclick="changeQty(-1)"><i class="ph ph-minus"></i></button>
+                <input type="number" class="qty-value" id="qtyInput" value="1" min="1" max="99">
+                <button class="qty-btn" onclick="changeQty(1)"><i class="ph ph-plus"></i></button>
+            </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="product-cta">
+            <button class="btn-add-to-cart-big" id="addCartBtn" onclick="handleAddToCart()">
+                <i class="ph ph-shopping-cart"></i> Add to Cart
+            </button>
+            <button class="btn-buy-now-big" id="buyNowBtn" onclick="handleBuyNow()">
+                <i class="ph-fill ph-lightning"></i> Buy Now
+            </button>
+            <button class="btn-wishlist-big" id="wishBtn" onclick="handleWishlistToggle()">
+                <i class="ph ph-heart"></i> <span id="wishBtnLabel">Save to Wishlist</span>
+            </button>
+        </div>
+
+        <!-- Delivery Info -->
+        <div class="delivery-info">
+            <div class="delivery-row">
+                <i class="ph-fill ph-truck"></i>
+                <div><strong>Free Delivery</strong> <span>on orders above ₹5,000</span></div>
+            </div>
+            <div class="delivery-row">
+                <i class="ph-fill ph-map-pin"></i>
+                <div>
+                    Check delivery:
+                    <input type="text" id="pincodeInput" placeholder="Enter PIN code" maxlength="6"
+                        style="border:1px solid var(--light-gray);border-radius:6px;padding:4px 8px;font-size:0.82rem;outline:none;width:100px;margin:0 6px;"
+                        oninput="if(this.value.length===6)checkDelivery(this.value)">
+                    <span id="deliveryResult" style="font-size:0.8rem;color:var(--mid-gray);"></span>
+                </div>
+            </div>
+            <div class="delivery-row">
+                <i class="ph-fill ph-arrow-counter-clockwise"></i>
+                <div><strong>7-Day Returns</strong> <span>Easy hassle-free returns</span></div>
+            </div>
+            <div class="delivery-row">
+                <i class="ph-fill ph-seal-check"></i>
+                <div><strong>Official Warranty</strong> <span>Brand warranty included</span></div>
+            </div>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="trust-badges">
+            <span class="trust-badge"><i class="ph-fill ph-shield-check"></i> Genuine Product</span>
+            <span class="trust-badge"><i class="ph-fill ph-receipt"></i> GST Invoice</span>
+            <span class="trust-badge"><i class="ph-fill ph-credit-card"></i> EMI Available</span>
+            <span class="trust-badge"><i class="ph-fill ph-headset"></i> Expert Support</span>
+        </div>
+
+        <!-- Share + Compare Row -->
+        <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
+            <button onclick="shareProduct()" style="background:none;border:1.5px solid var(--light-gray);border-radius:980px;padding:8px 16px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:var(--font);display:flex;align-items:center;gap:6px;color:var(--dark-gray);"><i class="ph ph-share-network"></i> Share</button>
+            <button onclick="addToCompareThis()" style="background:none;border:1.5px solid var(--light-gray);border-radius:980px;padding:8px 16px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:var(--font);display:flex;align-items:center;gap:6px;color:var(--dark-gray);"><i class="ph ph-arrows-left-right"></i> Compare</button>
+            <button onclick="openWhatsApp()" style="background:rgba(37,211,102,0.1);border:none;border-radius:980px;padding:8px 16px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:var(--font);display:flex;align-items:center;gap:6px;color:#1db860;"><i class="ph-fill ph-whatsapp-logo"></i> Ask on WhatsApp</button>
+        </div>
+    </div>
+</div>
+
+<!-- ── Product Tabs ── -->
+<div class="product-tabs-section">
+    <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchTab('specs',this)">Specifications</button>
+        <button class="tab-btn" onclick="switchTab('desc',this)">Description</button>
+        <button class="tab-btn" onclick="switchTab('reviews',this)">Reviews (<span id="reviewTabCount">0</span>)</button>
+        <button class="tab-btn" onclick="switchTab('warranty',this)">Warranty & Returns</button>
+        <button class="tab-btn" onclick="switchTab('bulk',this)">Bulk / Business Pricing</button>
+    </div>
+
+    <!-- Specs Tab -->
+    <div class="tab-panel active" id="tab-specs">
+        <table class="spec-table" id="specTable"></table>
+    </div>
+
+    <!-- Description Tab -->
+    <div class="tab-panel" id="tab-desc">
+        <div id="prodDesc" style="font-size:0.92rem;color:var(--mid-gray);line-height:1.8;max-width:720px;"></div>
+    </div>
+
+    <!-- Reviews Tab -->
+    <div class="tab-panel" id="tab-reviews">
+        <!-- Rating Summary -->
+        <div class="reviews-summary">
+            <div class="rating-big">
+                <div class="number" id="avgRating">4.5</div>
+                <div class="stars" style="color:var(--star-color);" id="avgStars">★★★★★</div>
+                <div class="count" id="totalReviews">0 reviews</div>
+            </div>
+            <div class="rating-bars">
+                <div class="rating-bar-row"><span>5 ★</span><div class="rating-bar"><div class="rating-bar-fill" id="bar5" style="width:70%"></div></div><span id="cnt5">0</span></div>
+                <div class="rating-bar-row"><span>4 ★</span><div class="rating-bar"><div class="rating-bar-fill" id="bar4" style="width:20%"></div></div><span id="cnt4">0</span></div>
+                <div class="rating-bar-row"><span>3 ★</span><div class="rating-bar"><div class="rating-bar-fill" id="bar3" style="width:6%"></div></div><span id="cnt3">0</span></div>
+                <div class="rating-bar-row"><span>2 ★</span><div class="rating-bar"><div class="rating-bar-fill" id="bar2" style="width:3%"></div></div><span id="cnt2">0</span></div>
+                <div class="rating-bar-row"><span>1 ★</span><div class="rating-bar"><div class="rating-bar-fill" id="bar1" style="width:1%"></div></div><span id="cnt1">0</span></div>
+            </div>
+        </div>
+
+        <!-- Write Review -->
+        <div style="background:var(--off-white);border-radius:var(--r-lg);padding:20px;margin-bottom:24px;">
+            <div style="font-size:1rem;font-weight:700;margin-bottom:14px;">Write a Review</div>
+            <div style="display:flex;gap:4px;margin-bottom:12px;" id="reviewStarPicker">
+                <span style="font-size:1.6rem;cursor:pointer;color:var(--light-gray);" onclick="setReviewRating(1)" onmouseover="hoverStars(1)" onmouseout="hoverStars(0)">★</span>
+                <span style="font-size:1.6rem;cursor:pointer;color:var(--light-gray);" onclick="setReviewRating(2)" onmouseover="hoverStars(2)" onmouseout="hoverStars(0)">★</span>
+                <span style="font-size:1.6rem;cursor:pointer;color:var(--light-gray);" onclick="setReviewRating(3)" onmouseover="hoverStars(3)" onmouseout="hoverStars(0)">★</span>
+                <span style="font-size:1.6rem;cursor:pointer;color:var(--light-gray);" onclick="setReviewRating(4)" onmouseover="hoverStars(4)" onmouseout="hoverStars(0)">★</span>
+                <span style="font-size:1.6rem;cursor:pointer;color:var(--light-gray);" onclick="setReviewRating(5)" onmouseover="hoverStars(5)" onmouseout="hoverStars(0)">★</span>
+            </div>
+            <input type="text" id="reviewTitle" class="form-input" placeholder="Review title" style="margin-bottom:10px;">
+            <textarea id="reviewBody" class="form-input" rows="3" placeholder="Share your experience with this product…" style="resize:vertical;"></textarea>
+            <button class="btn btn-primary" style="margin-top:12px;" onclick="handleReviewSubmit()">Submit Review</button>
+        </div>
+
+        <!-- Review List -->
+        <div id="reviewList"></div>
+    </div>
+
+    <!-- Warranty Tab -->
+    <div class="tab-panel" id="tab-warranty">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:800px;">
+            <div style="background:var(--off-white);border-radius:var(--r-lg);padding:24px;">
+                <i class="ph-fill ph-seal-check" style="font-size:2rem;color:var(--accent);margin-bottom:12px;display:block;"></i>
+                <div style="font-size:1rem;font-weight:800;margin-bottom:8px;">Official Brand Warranty</div>
+                <div style="font-size:0.88rem;color:var(--mid-gray);line-height:1.7;">All products come with the official manufacturer warranty. Register your product on the brand's portal after purchase for full coverage.</div>
+            </div>
+            <div style="background:var(--off-white);border-radius:var(--r-lg);padding:24px;">
+                <i class="ph-fill ph-arrow-counter-clockwise" style="font-size:2rem;color:#34c759;margin-bottom:12px;display:block;"></i>
+                <div style="font-size:1rem;font-weight:800;margin-bottom:8px;">7-Day Easy Return</div>
+                <div style="font-size:0.88rem;color:var(--mid-gray);line-height:1.7;">Not satisfied? Return within 7 days for a full refund or exchange. Product must be unused and in original packaging.</div>
+            </div>
+            <div style="background:var(--off-white);border-radius:var(--r-lg);padding:24px;">
+                <i class="ph-fill ph-wrench" style="font-size:2rem;color:#ff9f0a;margin-bottom:12px;display:block;"></i>
+                <div style="font-size:1rem;font-weight:800;margin-bottom:8px;">Repair Service Warranty</div>
+                <div style="font-size:0.88rem;color:var(--mid-gray);line-height:1.7;">All repair work at Shreeji Infotech comes with a 90-day service warranty. Book AMC for extended coverage.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bulk Pricing Tab -->
+    <div class="tab-panel" id="tab-bulk">
+        <div style="max-width:600px;">
+            <p style="font-size:0.9rem;color:var(--mid-gray);margin-bottom:20px;line-height:1.7;">We offer special pricing for bulk orders and business customers. Contact our sales team or submit a quotation request for the best rates.</p>
+            <div id="bulkTabTable"></div>
+            <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;">
+                <a href="/enterprise/rfq.html" class="btn btn-primary"><i class="ph ph-file-text"></i> Request Quotation</a>
+                <a href="tel:+919377704344" class="btn btn-ghost"><i class="ph-fill ph-phone"></i> Call Sales Team</a>
+                <a href="https://wa.me/919377704344" class="btn btn-whatsapp" target="_blank"><i class="ph-fill ph-whatsapp-logo"></i> WhatsApp Quote</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── Related Products ── -->
+<div class="related-section">
+    <div class="section-header">
+        <div class="section-title">Related Products</div>
+        <a href="/store/" class="section-link">View All <i class="ph ph-arrow-right"></i></a>
+    </div>
+    <div class="products-grid" id="relatedGrid" style="grid-template-columns:repeat(4,1fr);">
+        <!-- Loaded by JS -->
+    </div>
+</div>
+
+<!-- ── Compare Bar ── -->
+<div class="compare-bar" id="compareBar">
+    <div style="font-size:0.85rem;font-weight:700;white-space:nowrap;"><i class="ph ph-arrows-left-right" style="color:var(--accent);"></i> Compare (<span id="compareCount">0</span>)</div>
+    <div class="compare-bar-items" id="compareBarItems"></div>
+    <a href="/store/compare.html" class="btn-compare-now">Compare Now</a>
+    <button class="compare-bar-clear" onclick="clearCompare()">Clear All</button>
+</div>
+
+<!-- ── Auth Modal ── -->
+<div class="auth-modal-overlay" id="authModal" onclick="if(event.target===this)closeAuthModal()">
+    <div class="auth-modal">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+            <img src="../assets/images/logo.png" alt="Shreeji Infotech" style="height:40px;">
+            <button onclick="closeAuthModal()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--mid-gray);"><i class="ph ph-x"></i></button>
+        </div>
+        <h2>Sign In to Continue</h2>
+        <p>Sign in to save wishlist, track orders and access exclusive deals.</p>
+        <a href="#" class="btn-google" onclick="signInWithGoogle();return false;">
+            <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.35-8.16 2.35-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+            Continue with Google
+        </a>
+        <div id="recaptcha-container"></div>
+    </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script type="module">
+import { auth, db, showToast, addToCart, toggleWishlist, isInWishlist, toggleCompare, updateCompareBar, formatPrice, openAuthModal, closeAuthModal, signInWithGoogle, signOutUser, getProductById, getReviews, submitReview } from './store.js';
+import { collection, query, where, limit, getDocs, orderBy } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+window.openAuthModal = openAuthModal;
+window.closeAuthModal = closeAuthModal;
+window.signInWithGoogle = signInWithGoogle;
+window.signOutUser = signOutUser;
+
+// ── Demo products (same as store/index.html) ──────────────
+const DEMO_PRODUCTS = [
+    { id: 'hp-15s-ey4007au', name: 'HP 15s AMD Ryzen 5 7520U 15.6" Laptop', brand: 'HP', category: 'laptops', price: 42990, originalPrice: 55000, images: ['https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80','https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600&q=80','https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=600&q=80'], rating: 4.5, reviews: 128, sku: 'HP-15S-RY5-8G-512', specs: { 'Processor': 'AMD Ryzen 5 7520U', 'RAM': '8 GB DDR5 (Expandable to 24 GB)', 'Storage': '512 GB SSD PCIe NVMe', 'Display': '15.6" FHD Anti-glare IPS', 'Graphics': 'AMD Radeon 610M', 'OS': 'Windows 11 Home', 'Battery': '41 Wh, Up to 7 hrs', 'Weight': '1.69 kg', 'Connectivity': 'Wi-Fi 6, Bluetooth 5.3', 'Ports': 'USB-A x2, USB-C, HDMI, SD Card', 'Camera': '720p HD Webcam' }, description: 'The HP 15s brings the power of AMD Ryzen 5 7520U in a sleek, lightweight form. Perfect for students, professionals and everyday use. Features a vibrant FHD display, fast SSD storage and all-day battery life.', badge: 'sale', emi: '₹1,433/mo', emiMonths: 12, inStock: true, featured: true, gstRate: 18, warranty: '1 Year Onsite Warranty', bulkPricing: [{qty:'5+',price:41490,save:'₹7,500'},{qty:'10+',price:39990,save:'₹30,000'},{qty:'25+',price:37490,save:'₹1,37,500'}], variants: ['8GB/512GB SSD','16GB/512GB SSD','16GB/1TB SSD'], tags: ['laptop','hp','ryzen','student'] },
+    { id: 'dell-inspiron-15-3520', name: 'Dell Inspiron 15 Intel i5-12th Gen Laptop', brand: 'Dell', category: 'laptops', price: 56490, originalPrice: 70000, images: ['https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600&q=80','https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80'], rating: 4.3, reviews: 95, sku: 'DELL-INS15-I5-16G', specs: { 'Processor': 'Intel Core i5-1235U (12th Gen)', 'RAM': '16 GB DDR4', 'Storage': '512 GB SSD', 'Display': '15.6" FHD WVA Anti-glare', 'Graphics': 'Intel Iris Xe', 'OS': 'Windows 11 Home', 'Battery': '54 Wh', 'Weight': '1.71 kg' }, description: 'Dell Inspiron 15 with Intel 12th Gen delivers reliable performance for business and everyday tasks. Features ComfortView display technology to reduce blue light emission.', badge: 'hot', emi: '₹1,883/mo', inStock: true, featured: true, gstRate: 18, warranty: '1 Year ProSupport', bulkPricing: [{qty:'5+',price:54990,save:'₹7,500'},{qty:'10+',price:52490,save:'₹40,000'}], variants: ['8GB/512GB','16GB/512GB','16GB/1TB'], tags: ['laptop','dell','intel'] },
+    { id: 'hikvision-4ch-dvr-kit', name: 'Hikvision 4 Channel HD CCTV Kit with 1TB HDD', brand: 'Hikvision', category: 'cctv', price: 14999, originalPrice: 20000, images: ['https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80'], rating: 4.4, reviews: 67, sku: 'HKV-4CH-2MP-1TB', specs: {'Channels':'4','Camera Resolution':'2MP 1080P','DVR Type':'Turbo HD 4.0','HDD':'1TB Seagate','Night Vision':'30 Metres IR','IP Rating':'IP67 Weatherproof','Compression':'H.265+'}, description: 'Complete 4-channel Hikvision CCTV kit for homes and small offices. Includes 4 dome cameras, DVR, 1TB HDD, all cables and power supplies.', badge: 'sale', inStock: true, gstRate: 18, warranty: '2 Year Hikvision Warranty', bulkPricing: [{qty:'3+',price:13999,save:'₹3,000'},{qty:'5+',price:12999,save:'₹10,000'}], tags: ['cctv','hikvision','security'] },
+    { id: 'hp-laser-mfp-135a', name: 'HP LaserJet MFP 135a Printer', brand: 'HP', category: 'printers', price: 11499, originalPrice: 15000, images: ['https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=600&q=80'], rating: 4.2, reviews: 156, sku: 'HP-LJ-MFP135A', specs: {'Type':'Laser MFP','Functions':'Print, Scan, Copy','Print Speed':'20 ppm','Resolution':'600 x 600 dpi','Connectivity':'USB 2.0','First Page Out':'7.8 seconds'}, description: 'The HP LaserJet MFP 135a delivers reliable mono printing with easy setup. Ideal for small offices. Low cost-per-page with HP toner cartridges.', badge: 'featured', inStock: true, gstRate: 18, warranty: '1 Year HP Onsite', tags: ['printer','hp','laser'] },
+    { id: 'tp-link-archer-ax73', name: 'TP-Link Archer AX73 AX5400 Wi-Fi 6 Router', brand: 'TP-Link', category: 'networking', price: 8999, originalPrice: 12000, images: ['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'], rating: 4.7, reviews: 312, sku: 'TP-AX73-WIFI6', specs: {'Standard':'IEEE 802.11 ax/ac/n/a/g/b','Speed':'AX5400 (574+4804 Mbps)','Frequency':'Dual Band 2.4GHz + 5GHz','Ports':'1x WAN, 4x Gigabit LAN','Antennas':'6x High-Gain','USB':'USB 3.0'}, description: 'Experience blazing-fast Wi-Fi 6 speeds with TP-Link Archer AX73. 6 high-gain antennas cover large homes and offices. Supports OFDMA, MU-MIMO and 1024-QAM.', badge: 'hot', inStock: true, gstRate: 18, warranty: '3 Year TP-Link', tags: ['networking','router','wifi6'] }
+];
+
+let currentProduct = null;
+let selectedVariant = null;
+let reviewRating = 0;
+
+// ── Load Product ──────────────────────────────────────────
+async function loadProduct() {
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get('id');
+    if (!productId) { window.location.href = '/store/'; return; }
+
+    // Try Firestore first, fallback to demo
+    let product = await getProductById(productId).catch(() => null);
+    if (!product) product = DEMO_PRODUCTS.find(p => p.id === productId);
+    if (!product) { window.location.href = '/store/'; return; }
+
+    currentProduct = product;
+    renderProduct(product);
+    loadRelated(product.category, product.id);
+}
+
+function renderProduct(p) {
+    document.title = p.name + ' — Shreeji Infotech';
+    document.getElementById('pageDesc')?.setAttribute('content', p.description?.substring(0, 160) || '');
+    document.getElementById('breadCategory').textContent = p.category.charAt(0).toUpperCase() + p.category.slice(1);
+    document.getElementById('breadCategory').href = `/store/?cat=${p.category}`;
+    document.getElementById('breadProduct').textContent = p.name.substring(0, 60);
+    document.getElementById('prodBrand').textContent = p.brand;
+    document.getElementById('prodName').textContent = p.name;
+    document.getElementById('prodSku').textContent = p.sku || p.id;
+
+    // Gallery
+    const imgs = p.images || [p.image];
+    document.getElementById('mainImg').src = imgs[0];
+    document.getElementById('mainImg').alt = p.name;
+    const thumbs = document.getElementById('galleryThumbs');
+    thumbs.innerHTML = imgs.map((img, i) => `<div class="gallery-thumb ${i===0?'active':''}" onclick="switchImg('${img}',this)"><img src="${img}" alt="Product ${i+1}" loading="lazy"></div>`).join('');
+
+    // Stars
+    const full = Math.floor(p.rating);
+    const half = p.rating % 1 >= 0.5;
+    let stars = '★'.repeat(full) + (half ? '⯨' : '') + '☆'.repeat(5 - Math.ceil(p.rating));
+    document.getElementById('prodStars').textContent = stars;
+    document.getElementById('prodStars').style.color = 'var(--star-color)';
+    document.getElementById('prodRatingCount').textContent = `${p.rating} (${p.reviews} reviews)`;
+    document.getElementById('reviewTabCount').textContent = p.reviews;
+
+    // Price
+    const discount = p.originalPrice > p.price ? Math.round((1 - p.price / p.originalPrice) * 100) : 0;
+    document.getElementById('prodPrice').textContent = '₹' + p.price.toLocaleString('en-IN');
+    document.getElementById('prodGstNote').textContent = `Inclusive of ${p.gstRate}% GST`;
+    if (discount) {
+        document.getElementById('prodOrigPrice').textContent = '₹' + p.originalPrice.toLocaleString('en-IN');
+        document.getElementById('prodDiscBadge').textContent = `${discount}% off`;
+        document.getElementById('prodDiscBadge').style.display = 'block';
+    }
+    if (p.emi) document.getElementById('emiLine').innerHTML = `No Cost EMI available from <strong>${p.emi}</strong> for ${p.emiMonths || 12} months. <a href="#tab-reviews" onclick="switchTab('bulk',document.querySelector('.tab-btn:nth-child(5)'))">See EMI Plans</a>`;
+
+    // Stock
+    if (!p.inStock) {
+        const sb = document.getElementById('stockBadge');
+        sb.className = 'stock-badge stock-out';
+        sb.innerHTML = '<i class="ph-fill ph-x-circle"></i> Out of Stock';
+        document.getElementById('addCartBtn').disabled = true;
+        document.getElementById('buyNowBtn').disabled = true;
+    }
+
+    // Variants
+    if (p.variants?.length) {
+        document.getElementById('variantSection').style.display = 'block';
+        document.getElementById('variantPills').innerHTML = p.variants.map((v, i) => `<button class="variant-pill ${i===0?'active':''}" onclick="selectVariant('${v}',this)">${v}</button>`).join('');
+        selectedVariant = p.variants[0];
+    }
+
+    // Specs Table
+    const specsHtml = Object.entries(p.specs || {}).map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
+    document.getElementById('specTable').innerHTML = specsHtml;
+
+    // Description
+    document.getElementById('prodDesc').textContent = p.description || '';
+
+    // Bulk Pricing
+    if (p.bulkPricing?.length) {
+        document.getElementById('bulkSection').style.display = 'block';
+        const rows = p.bulkPricing.map((b, i) => `<tr ${i===0?'class="highlight-row"':''}><td>${b.qty}</td><td>₹${b.price.toLocaleString('en-IN')}</td><td>${b.save}</td></tr>`).join('');
+        document.getElementById('bulkTbody').innerHTML = rows;
+        document.getElementById('bulkTabTable').innerHTML = `<table class="bulk-table"><thead><tr><th>Qty</th><th>Unit Price</th><th>Total Savings</th></tr></thead><tbody>${rows}</tbody></table>`;
+    }
+
+    // Schema for Product
+    const schema = {
+        "@context":"https://schema.org","@type":"Product",
+        "name":p.name,"brand":{"@type":"Brand","name":p.brand},
+        "description":p.description,"sku":p.sku || p.id,
+        "offers":{"@type":"Offer","price":p.price,"priceCurrency":"INR","availability":p.inStock?"https://schema.org/InStock":"https://schema.org/OutOfStock","seller":{"@type":"Organization","name":"Shreeji Infotech"}},
+        "aggregateRating":{"@type":"AggregateRating","ratingValue":p.rating,"reviewCount":p.reviews,"bestRating":"5"}
+    };
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+
+    // Check wishlist
+    isInWishlist(p.id).then(inWish => {
+        if (inWish) {
+            document.getElementById('wishBtn').classList.add('active');
+            document.getElementById('wishBtnLabel').textContent = 'Saved to Wishlist';
+            document.getElementById('wishBtn').querySelector('i').className = 'ph-fill ph-heart';
+        }
+    });
+
+    // Load demo reviews
+    renderDemoReviews(p);
+}
+
+function renderDemoReviews(p) {
+    const demoReviews = [
+        { userName: 'Rajan M.', rating: 5, title: 'Excellent laptop for the price!', body: 'Battery life is amazing and performance is smooth. Highly recommend for students.', verified: true, date: '2 weeks ago' },
+        { userName: 'Priya S.', rating: 4, title: 'Good product, fast delivery', body: 'Works great out of the box. Setup was easy. Lost one star because the charger cable feels a bit thin.', verified: true, date: '1 month ago' },
+        { userName: 'Amit K.', rating: 5, title: 'Best IT store in Ahmedabad', body: 'Got it from Shreeji Infotech showroom. They helped me choose the right variant. Great service!', verified: true, date: '1 month ago' }
+    ];
+    document.getElementById('totalReviews').textContent = p.reviews + ' reviews';
+    document.getElementById('avgRating').textContent = p.rating.toFixed(1);
+    document.getElementById('avgStars').textContent = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '⯨' : '') + '☆'.repeat(5 - Math.ceil(p.rating));
+    document.getElementById('reviewList').innerHTML = demoReviews.map(r => `
+        <div class="review-card">
+            <div class="reviewer-row">
+                <div class="reviewer-avatar">${r.userName[0]}</div>
+                <div><div class="reviewer-name">${r.userName}</div><div class="reviewer-date">${r.date}</div></div>
+                <div style="color:var(--star-color);margin-left:8px;">${'★'.repeat(r.rating)}</div>
+                ${r.verified ? '<span class="verified-badge"><i class="ph-fill ph-check-circle"></i> Verified</span>' : ''}
+            </div>
+            <div style="font-weight:700;margin-bottom:4px;font-size:0.9rem;">${r.title}</div>
+            <div class="review-text">${r.body}</div>
+        </div>`).join('');
+}
+
+async function loadRelated(category, excludeId) {
+    const related = DEMO_PRODUCTS.filter(p => p.category === category && p.id !== excludeId).slice(0, 4);
+    const grid = document.getElementById('relatedGrid');
+    grid.innerHTML = related.map(p => {
+        const discount = p.originalPrice > p.price ? Math.round((1 - p.price / p.originalPrice) * 100) : 0;
+        return `<div class="product-card">
+            <div class="product-card-img"><a href="/store/product.html?id=${p.id}"><img src="${p.images?p.images[0]:p.image}" alt="${p.name}" loading="lazy"></a></div>
+            <div class="product-card-body">
+                <div class="product-brand">${p.brand}</div>
+                <a href="/store/product.html?id=${p.id}" class="product-name">${p.name}</a>
+                <div class="product-pricing">
+                    <span class="product-price">₹${p.price.toLocaleString('en-IN')}</span>
+                    ${discount ? `<span class="product-price-original">₹${p.originalPrice.toLocaleString('en-IN')}</span>` : ''}
+                </div>
+            </div>
+            <div class="card-btns"><button class="btn-cart" onclick="addToCartRelated('${p.id}',this)"><i class="ph ph-shopping-cart"></i> Add</button><a href="/store/product.html?id=${p.id}" class="btn-buy">View</a></div>
+        </div>`;
+    }).join('');
+}
+
+// ── Actions ───────────────────────────────────────────────
+window.switchImg = (src, el) => {
+    document.getElementById('mainImg').src = src;
+    document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+};
+
+window.switchTab = (tab, el) => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    if (el) el.classList.add('active');
+    document.getElementById('tab-' + tab)?.classList.add('active');
+};
+
+window.selectVariant = (v, el) => {
+    selectedVariant = v;
+    document.querySelectorAll('.variant-pill').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+};
+
+window.changeQty = (delta) => {
+    const input = document.getElementById('qtyInput');
+    const newVal = Math.max(1, Math.min(99, parseInt(input.value || 1) + delta));
+    input.value = newVal;
+};
+
+window.handleAddToCart = async () => {
+    if (!currentProduct) return;
+    const qty = parseInt(document.getElementById('qtyInput').value) || 1;
+    const btn = document.getElementById('addCartBtn');
+    btn.innerHTML = '<i class="ph-fill ph-check"></i> Added to Cart!';
+    btn.style.background = 'var(--badge-new)';
+    await addToCart({ ...currentProduct, image: currentProduct.images?.[0] || currentProduct.image }, qty, selectedVariant);
+    setTimeout(() => { btn.innerHTML = '<i class="ph ph-shopping-cart"></i> Add to Cart'; btn.style.background = ''; }, 2000);
+};
+
+window.handleBuyNow = async () => {
+    await handleAddToCart();
+    window.location.href = '/store/checkout.html';
+};
+
+window.handleWishlistToggle = async () => {
+    const product = { ...currentProduct, image: currentProduct.images?.[0] || currentProduct.image };
+    const added = await toggleWishlist(product);
+    const btn = document.getElementById('wishBtn');
+    const label = document.getElementById('wishBtnLabel');
+    btn.classList.toggle('active', added);
+    btn.querySelector('i').className = added ? 'ph-fill ph-heart' : 'ph ph-heart';
+    label.textContent = added ? 'Saved to Wishlist' : 'Save to Wishlist';
+};
+
+window.addToCartRelated = async (id, btn) => {
+    const product = DEMO_PRODUCTS.find(p => p.id === id);
+    if (!product) return;
+    await addToCart({ ...product, image: product.images?.[0] || product.image });
+    btn.innerHTML = '<i class="ph-fill ph-check"></i> Added!';
+    btn.classList.add('added');
+    setTimeout(() => { btn.innerHTML = '<i class="ph ph-shopping-cart"></i> Add'; btn.classList.remove('added'); }, 2000);
+};
+
+window.addToCompareThis = () => {
+    if (!currentProduct) return;
+    toggleCompare({ ...currentProduct, image: currentProduct.images?.[0] });
+    updateCompareBar();
+};
+
+window.clearCompare = () => { localStorage.removeItem('si_compare'); updateCompareBar(); };
+
+window.shareProduct = () => {
+    if (navigator.share) {
+        navigator.share({ title: currentProduct?.name, url: window.location.href });
+    } else {
+        navigator.clipboard.writeText(window.location.href);
+        showToast('Link copied to clipboard!', 'success');
+    }
+};
+
+window.openWhatsApp = () => {
+    const msg = encodeURIComponent(`Hi! I'm interested in: ${currentProduct?.name}\nLink: ${window.location.href}\nPrice: ₹${currentProduct?.price?.toLocaleString('en-IN')}`);
+    window.open(`https://wa.me/919377704344?text=${msg}`, '_blank');
+};
+
+window.checkDelivery = (pin) => {
+    const el = document.getElementById('deliveryResult');
+    if (!/^\d{6}$/.test(pin)) { el.textContent = 'Invalid PIN'; el.style.color = 'var(--badge-sale)'; return; }
+    el.textContent = 'Checking…';
+    setTimeout(() => {
+        el.textContent = '✓ Delivery in 3-5 days';
+        el.style.color = 'var(--badge-new)';
+    }, 800);
+};
+
+// Review Stars
+window.setReviewRating = (n) => { reviewRating = n; hoverStars(n); };
+window.hoverStars = (n) => {
+    document.querySelectorAll('#reviewStarPicker span').forEach((s, i) => {
+        s.style.color = i < (n || reviewRating) ? 'var(--star-color)' : 'var(--light-gray)';
+    });
+};
+
+window.handleReviewSubmit = async () => {
+    if (!reviewRating) { showToast('Please select a rating', 'error'); return; }
+    const title = document.getElementById('reviewTitle').value.trim();
+    const body = document.getElementById('reviewBody').value.trim();
+    if (!body) { showToast('Please write your review', 'error'); return; }
+    if (!currentProduct) return;
+    await submitReview(currentProduct.id, { rating: reviewRating, title, body });
+    document.getElementById('reviewTitle').value = '';
+    document.getElementById('reviewBody').value = '';
+    reviewRating = 0;
+    hoverStars(0);
+};
+
+// Navbar scroll
+window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Hamburger
+document.getElementById('hamburger')?.addEventListener('click', () => {
+    document.getElementById('mobileDrawer')?.classList.toggle('open');
+    document.getElementById('drawerOverlay')?.classList.toggle('open');
+});
+
+updateCompareBar();
+loadProduct();
+</script>
+</body>
+</html>

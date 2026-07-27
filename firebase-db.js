@@ -25,10 +25,14 @@ async function saveLead(data) {
             status: "New"
         });
         console.log("Secure lead backup completed successfully to CRM.");
+        return true;
     } catch (e) {
         console.error("Error backing up lead: ", e);
+        return false;
     }
 }
+window.saveLead = saveLead;
+
 
 // ── Intercept Retail Home Form ── //
 const retailForm = document.getElementById('enquiryForm');

@@ -679,8 +679,56 @@
         <span class="whatsapp-tooltip">Chat with us</span>
     </a>
 
+    <!-- ─── AI Assistant Floating Button & Chatbox ─── -->
+    <div class="ai-assistant-container" id="aiAssistantContainer">
+        <!-- Floating Button -->
+        <button class="ai-float" id="aiFloat" aria-label="Open AI Assistant">
+            <i class="ph-fill ph-sparkle"></i>
+            <span class="ai-tooltip">Ask Shreeji AI</span>
+        </button>
+
+        <!-- Chat Window -->
+        <div class="ai-chat-window" id="aiChatWindow">
+            <div class="ai-chat-header">
+                <div class="ai-header-info">
+                    <div class="ai-avatar">
+                        <i class="ph-fill ph-sparkle"></i>
+                    </div>
+                    <div>
+                        <h3>Shreeji AI</h3>
+                        <span class="ai-status">Online • IT Expert</span>
+                    </div>
+                </div>
+                <button class="ai-close-btn" id="aiCloseBtn" aria-label="Close Chat">
+                    <i class="ph-bold ph-x"></i>
+                </button>
+            </div>
+            
+            <div class="ai-chat-messages" id="aiChatMessages">
+                <div class="ai-message ai-bot-message">
+                    <p>Hello! I am your Shreeji Infotech Assistant. How can I help you today? I can recommend laptops, estimate repair costs, or help you configure CCTV installations.</p>
+                </div>
+            </div>
+
+            <!-- Quick Suggestions -->
+            <div class="ai-suggestions" id="aiSuggestions">
+                <button class="ai-suggest-btn" data-query="Recommend a laptop for gaming/work under budget">💻 Laptop Recommendation</button>
+                <button class="ai-suggest-btn" data-query="How much does laptop repair cost?">🔧 Repair Estimate</button>
+                <button class="ai-suggest-btn" data-query="I want to install CCTV cameras at my place">📹 CCTV Setup</button>
+            </div>
+
+            <div class="ai-chat-input-area">
+                <input type="text" id="aiChatInput" placeholder="Ask about laptops, CCTV, repairs..." autocomplete="off">
+                <button id="aiSendBtn" aria-label="Send Message">
+                    <i class="ph-fill ph-paper-plane-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     <script type="module" src="firebase-db.js"></script>
+    <script src="ai-agent.js"></script>
 </body>
 
 </html>

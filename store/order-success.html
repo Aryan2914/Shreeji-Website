@@ -1,150 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Confirmed — Shreeji Infotech</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+    <link rel="apple-touch-icon" href="../assets/images/logo.png">
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="store.css">
 </head>
+
 <body style="background:var(--off-white);min-height:100vh;">
 
-<nav id="navbar" class="navbar" style="position:sticky;top:0;">
-    <div class="nav-inner">
-        <a href="../index.html" class="nav-logo"><img src="../assets/images/logo.png" alt="Shreeji Infotech" class="logo-img"></a>
-        <div style="flex:1;"></div>
-        <a href="index.html" style="font-size:0.85rem;color:var(--accent);font-weight:600;text-decoration:none;">Continue Shopping →</a>
+    <nav id="navbar" class="navbar" style="position:sticky;top:0;">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo"><img src="../assets/images/logo.png" alt="Shreeji Infotech"
+                    class="logo-img"></a>
+            <div style="flex:1;"></div>
+            <a href="./" style="font-size:0.85rem;color:var(--accent);font-weight:600;text-decoration:none;">Continue
+                Shopping →</a>
+        </div>
+    </nav>
+
+    <div class="order-success-page">
+        <div class="order-success-card">
+            <div class="success-icon success-icon-anim">
+                <i class="ph-fill ph-check-circle"></i>
+            </div>
+            <h1>Order Placed!</h1>
+            <p style="color:var(--mid-gray);font-size:0.92rem;margin-bottom:8px;">Thank you! Your order has been
+                confirmed.</p>
+            <div class="order-id-pill" id="orderIdPill">Order #...</div>
+
+            <div class="order-success-details" id="orderDetails">
+                <div class="order-success-detail-row">
+                    <span class="label">Invoice No.</span>
+                    <span class="value" id="detailInvoice">-</span>
+                </div>
+                <div class="order-success-detail-row">
+                    <span class="label">Amount Paid</span>
+                    <span class="value" id="detailTotal">-</span>
+                </div>
+                <div class="order-success-detail-row">
+                    <span class="label">Payment</span>
+                    <span class="value" id="detailPayment">-</span>
+                </div>
+                <div class="order-success-detail-row">
+                    <span class="label">Expected Delivery</span>
+                    <span class="value" id="detailDelivery">3–5 business days</span>
+                </div>
+            </div>
+
+            <!-- WhatsApp Confirmation -->
+            <div
+                style="background:rgba(37,211,102,0.08);border-radius:var(--r-md);padding:14px;margin-bottom:16px;display:flex;align-items:center;gap:10px;text-align:left;">
+                <i class="ph-fill ph-whatsapp-logo" style="font-size:1.6rem;color:#25D366;flex-shrink:0;"></i>
+                <div>
+                    <div style="font-size:0.85rem;font-weight:700;color:var(--dark-gray);">WhatsApp Confirmation Sent
+                    </div>
+                    <div style="font-size:0.78rem;color:var(--mid-gray);">Order updates will be sent to your WhatsApp
+                        number.</div>
+                </div>
+            </div>
+
+            <!-- GST Invoice -->
+            <div
+                style="background:var(--accent-light);border-radius:var(--r-md);padding:14px;margin-bottom:20px;display:flex;align-items:center;gap:10px;text-align:left;">
+                <i class="ph-fill ph-file-pdf" style="font-size:1.6rem;color:var(--accent);flex-shrink:0;"></i>
+                <div style="flex:1;">
+                    <div style="font-size:0.85rem;font-weight:700;color:var(--dark-gray);">GST Invoice</div>
+                    <div style="font-size:0.78rem;color:var(--mid-gray);">Available in your account dashboard</div>
+                </div>
+                <a href="../"
+                    style="font-size:0.8rem;font-weight:700;color:var(--accent);text-decoration:none;white-space:nowrap;">Home
+                    →</a>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div style="display:flex;flex-direction:column;gap:10px;">
+                <a href="./" class="btn btn-primary" style="justify-content:center;width:100%;">
+                    <i class="ph ph-storefront"></i> Continue Shopping
+                </a>
+                <a href="https://wa.me/919377704344" class="btn btn-whatsapp" style="justify-content:center;width:100%;"
+                    target="_blank">
+                    <i class="ph-fill ph-whatsapp-logo"></i> Message Us on WhatsApp
+                </a>
+            </div>
+
+            <div style="margin-top:20px;font-size:0.75rem;color:var(--mid-gray);line-height:1.6;">
+                Questions about your order? Call us at <a href="tel:+919377704344" style="color:var(--accent);">+91
+                    93777 04344</a> or email <a href="mailto:sales@shreejiinfo.in"
+                    style="color:var(--accent);">sales@shreejiinfo.in</a>
+            </div>
+        </div>
     </div>
-</nav>
 
-<div class="order-success-page">
-    <div class="order-success-card">
-        <div class="success-icon success-icon-anim">
-            <i class="ph-fill ph-check-circle"></i>
-        </div>
-        <h1>Order Placed!</h1>
-        <p style="color:var(--mid-gray);font-size:0.92rem;margin-bottom:8px;">Thank you! Your order has been confirmed.</p>
-        <div class="order-id-pill" id="orderIdPill">Order #...</div>
+    <!-- Confetti Effect -->
+    <canvas id="confetti"
+        style="position:fixed;top:0;left:0;pointer-events:none;z-index:9999;width:100%;height:100%;"></canvas>
 
-        <div class="order-success-details" id="orderDetails">
-            <div class="order-success-detail-row">
-                <span class="label">Invoice No.</span>
-                <span class="value" id="detailInvoice">-</span>
-            </div>
-            <div class="order-success-detail-row">
-                <span class="label">Amount Paid</span>
-                <span class="value" id="detailTotal">-</span>
-            </div>
-            <div class="order-success-detail-row">
-                <span class="label">Payment</span>
-                <span class="value" id="detailPayment">-</span>
-            </div>
-            <div class="order-success-detail-row">
-                <span class="label">Expected Delivery</span>
-                <span class="value" id="detailDelivery">3–5 business days</span>
-            </div>
-        </div>
+    <script type="module">
+        import { showToast } from './store.js';
 
-        <!-- WhatsApp Confirmation -->
-        <div style="background:rgba(37,211,102,0.08);border-radius:var(--r-md);padding:14px;margin-bottom:16px;display:flex;align-items:center;gap:10px;text-align:left;">
-            <i class="ph-fill ph-whatsapp-logo" style="font-size:1.6rem;color:#25D366;flex-shrink:0;"></i>
-            <div>
-                <div style="font-size:0.85rem;font-weight:700;color:var(--dark-gray);">WhatsApp Confirmation Sent</div>
-                <div style="font-size:0.78rem;color:var(--mid-gray);">Order updates will be sent to your WhatsApp number.</div>
-            </div>
-        </div>
+        const params = new URLSearchParams(window.location.search);
+        const orderId = params.get('orderId');
+        const invoiceNo = params.get('invoiceNo');
+        const total = params.get('total');
+        const paid = params.get('paid');
 
-        <!-- GST Invoice -->
-        <div style="background:var(--accent-light);border-radius:var(--r-md);padding:14px;margin-bottom:20px;display:flex;align-items:center;gap:10px;text-align:left;">
-            <i class="ph-fill ph-file-pdf" style="font-size:1.6rem;color:var(--accent);flex-shrink:0;"></i>
-            <div style="flex:1;">
-                <div style="font-size:0.85rem;font-weight:700;color:var(--dark-gray);">GST Invoice</div>
-                <div style="font-size:0.78rem;color:var(--mid-gray);">Available in your account dashboard</div>
-            </div>
-            <a href="../index.html" style="font-size:0.8rem;font-weight:700;color:var(--accent);text-decoration:none;white-space:nowrap;">Home →</a>
-        </div>
+        if (orderId) {
+            document.getElementById('orderIdPill').textContent = 'Order #' + orderId.substring(0, 12).toUpperCase();
+            document.getElementById('detailInvoice').textContent = invoiceNo || '-';
+            document.getElementById('detailTotal').textContent = total ? '₹' + parseInt(total).toLocaleString('en-IN') : '-';
+            document.getElementById('detailPayment').textContent = paid === '1' ? '✓ Paid via Razorpay' : 'Cash on Delivery';
 
-        <!-- CTA Buttons -->
-        <div style="display:flex;flex-direction:column;gap:10px;">
-            <a href="index.html" class="btn btn-primary" style="justify-content:center;width:100%;">
-                <i class="ph ph-storefront"></i> Continue Shopping
-            </a>
-            <a href="https://wa.me/919377704344" class="btn btn-whatsapp" style="justify-content:center;width:100%;" target="_blank">
-                <i class="ph-fill ph-whatsapp-logo"></i> Message Us on WhatsApp
-            </a>
-        </div>
+            const delivery = new Date();
+            delivery.setDate(delivery.getDate() + 5);
+            document.getElementById('detailDelivery').textContent = delivery.toLocaleDateString('en-IN', { weekday: 'long', month: 'short', day: 'numeric' });
+        } else {
+            // No order params - redirect
+            window.location.href = '/store/';
+        }
 
-        <div style="margin-top:20px;font-size:0.75rem;color:var(--mid-gray);line-height:1.6;">
-            Questions about your order? Call us at <a href="tel:+919377704344" style="color:var(--accent);">+91 93777 04344</a> or email <a href="mailto:sales@shreejiinfo.in" style="color:var(--accent);">sales@shreejiinfo.in</a>
-        </div>
-    </div>
-</div>
-
-<!-- Confetti Effect -->
-<canvas id="confetti" style="position:fixed;top:0;left:0;pointer-events:none;z-index:9999;width:100%;height:100%;"></canvas>
-
-<script type="module">
-import { showToast } from './store.js';
-
-const params = new URLSearchParams(window.location.search);
-const orderId = params.get('orderId');
-const invoiceNo = params.get('invoiceNo');
-const total = params.get('total');
-const paid = params.get('paid');
-
-if (orderId) {
-    document.getElementById('orderIdPill').textContent = 'Order #' + orderId.substring(0, 12).toUpperCase();
-    document.getElementById('detailInvoice').textContent = invoiceNo || '-';
-    document.getElementById('detailTotal').textContent = total ? '₹' + parseInt(total).toLocaleString('en-IN') : '-';
-    document.getElementById('detailPayment').textContent = paid === '1' ? '✓ Paid via Razorpay' : 'Cash on Delivery';
-
-    const delivery = new Date();
-    delivery.setDate(delivery.getDate() + 5);
-    document.getElementById('detailDelivery').textContent = delivery.toLocaleDateString('en-IN', { weekday: 'long', month: 'short', day: 'numeric' });
-} else {
-    // No order params - redirect
-    window.location.href = '/store/';
-}
-
-// Confetti
-function launchConfetti() {
-    const canvas = document.getElementById('confetti');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    const particles = Array.from({ length: 120 }, () => ({
-        x: Math.random() * canvas.width,
-        y: -20,
-        r: Math.random() * 6 + 3,
-        dx: Math.random() * 4 - 2,
-        dy: Math.random() * 4 + 2,
-        color: ['#0071e3','#34c759','#ff9f0a','#ff3b30','#5e5ce6','#ff6b6b'][Math.floor(Math.random()*6)],
-        angle: Math.random() * 360,
-        spin: Math.random() * 10 - 5,
-        life: 1
-    }));
-    let frame = 0;
-    function animate() {
-        if (frame > 200) { canvas.style.display = 'none'; return; }
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
-            ctx.save();
-            ctx.globalAlpha = Math.max(0, 1 - frame / 200);
-            ctx.translate(p.x + frame * p.dx, p.y + frame * p.dy);
-            ctx.rotate((p.angle + frame * p.spin) * Math.PI / 180);
-            ctx.fillStyle = p.color;
-            ctx.fillRect(-p.r, -p.r/2, p.r*2, p.r);
-            ctx.restore();
-        });
-        frame++;
-        requestAnimationFrame(animate);
-    }
-    animate();
-}
-launchConfetti();
-</script>
+        // Confetti
+        function launchConfetti() {
+            const canvas = document.getElementById('confetti');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const particles = Array.from({ length: 120 }, () => ({
+                x: Math.random() * canvas.width,
+                y: -20,
+                r: Math.random() * 6 + 3,
+                dx: Math.random() * 4 - 2,
+                dy: Math.random() * 4 + 2,
+                color: ['#0071e3', '#34c759', '#ff9f0a', '#ff3b30', '#5e5ce6', '#ff6b6b'][Math.floor(Math.random() * 6)],
+                angle: Math.random() * 360,
+                spin: Math.random() * 10 - 5,
+                life: 1
+            }));
+            let frame = 0;
+            function animate() {
+                if (frame > 200) { canvas.style.display = 'none'; return; }
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    ctx.save();
+                    ctx.globalAlpha = Math.max(0, 1 - frame / 200);
+                    ctx.translate(p.x + frame * p.dx, p.y + frame * p.dy);
+                    ctx.rotate((p.angle + frame * p.spin) * Math.PI / 180);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.r, -p.r / 2, p.r * 2, p.r);
+                    ctx.restore();
+                });
+                frame++;
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+        launchConfetti();
+    </script>
 </body>
+
 </html>

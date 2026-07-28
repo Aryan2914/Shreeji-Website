@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+    <link rel="apple-touch-icon" href="../assets/images/logo.png">
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="store.css">
     <!-- Razorpay Checkout SDK -->
@@ -19,7 +21,7 @@
 
 <nav id="navbar" class="navbar" style="position:sticky;top:0;">
     <div class="nav-inner">
-        <a href="../index.html" class="nav-logo"><img src="../assets/images/logo.png" alt="Shreeji Infotech" class="logo-img"></a>
+        <a href="../" class="nav-logo"><img src="../assets/images/logo.png" alt="Shreeji Infotech" class="logo-img"></a>
         <div style="flex:1;display:flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--mid-gray);">
             <i class="ph-fill ph-lock" style="color:var(--badge-new);"></i>
             Secure Checkout — 256-bit SSL Encrypted
@@ -383,7 +385,6 @@ function validateAddress() {
 
 // ── Place Order ──────────────────────────────────────────
 window.placeOrder = async () => {
-    if (!auth.currentUser) { openAuthModal('/store/checkout.html'); return; }
     const btn = document.getElementById('placeOrderBtn');
     btn.innerHTML = '<i class="ph-fill ph-circle-notch" style="animation:spin 1s linear infinite;"></i> Processing…';
     btn.disabled = true;

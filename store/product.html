@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+    <link rel="apple-touch-icon" href="../assets/images/logo.png">
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="store.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-M3H3X5HZ4B"></script>
@@ -21,14 +23,14 @@
 <!-- ── Navigation (same as store/index) ── -->
 <nav id="navbar" class="navbar" style="position:sticky;top:0;">
     <div class="nav-inner">
-        <a href="../index.html" class="nav-logo">
+        <a href="../" class="nav-logo">
             <img src="../assets/images/logo.png" alt="Shreeji Infotech" class="logo-img">
         </a>
         <ul class="nav-menu" id="navMenu">
-            <li><a href="../index.html" class="nav-link">Home</a></li>
-            <li><a href="index.html" class="nav-link active">Shop</a></li>
-            <li><a href="../index.html#services" class="nav-link">Services</a></li>
-            <li><a href="../index.html#enterprise" class="nav-link">Enterprise</a></li>
+            <li><a href="../" class="nav-link">Home</a></li>
+            <li><a href="./" class="nav-link active">Shop</a></li>
+            <li><a href="../#services" class="nav-link">Services</a></li>
+            <li><a href="../#enterprise" class="nav-link">Enterprise</a></li>
         </ul>
         <div class="store-nav-actions">
             <a href="wishlist.html" class="nav-icon-btn" title="Wishlist">
@@ -56,9 +58,9 @@
 <!-- ── Breadcrumb ── -->
 <div class="breadcrumb">
     <div class="breadcrumb-inner">
-        <a href="../index.html">Home</a>
+        <a href="../">Home</a>
         <i class="ph ph-caret-right"></i>
-        <a href="index.html">Shop</a>
+        <a href="./">Shop</a>
         <i class="ph ph-caret-right"></i>
         <a href="#" id="breadCategory">Category</a>
         <i class="ph ph-caret-right"></i>
@@ -324,11 +326,11 @@ window.signOutUser = signOutUser;
 
 // ── Demo products (same as store/index.html) ──────────────
 const DEMO_PRODUCTS = [
-    { id: 'hp-15s-ey4007au', name: 'HP 15s AMD Ryzen 5 7520U 15.6" Laptop', brand: 'HP', category: 'laptops', price: 42990, originalPrice: 55000, images: ['https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80','https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600&q=80','https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=600&q=80'], rating: 4.5, reviews: 128, sku: 'HP-15S-RY5-8G-512', specs: { 'Processor': 'AMD Ryzen 5 7520U', 'RAM': '8 GB DDR5 (Expandable to 24 GB)', 'Storage': '512 GB SSD PCIe NVMe', 'Display': '15.6" FHD Anti-glare IPS', 'Graphics': 'AMD Radeon 610M', 'OS': 'Windows 11 Home', 'Battery': '41 Wh, Up to 7 hrs', 'Weight': '1.69 kg', 'Connectivity': 'Wi-Fi 6, Bluetooth 5.3', 'Ports': 'USB-A x2, USB-C, HDMI, SD Card', 'Camera': '720p HD Webcam' }, description: 'The HP 15s brings the power of AMD Ryzen 5 7520U in a sleek, lightweight form. Perfect for students, professionals and everyday use. Features a vibrant FHD display, fast SSD storage and all-day battery life.', badge: 'sale', emi: '₹1,433/mo', emiMonths: 12, inStock: true, featured: true, gstRate: 18, warranty: '1 Year Onsite Warranty', bulkPricing: [{qty:'5+',price:41490,save:'₹7,500'},{qty:'10+',price:39990,save:'₹30,000'},{qty:'25+',price:37490,save:'₹1,37,500'}], variants: ['8GB/512GB SSD','16GB/512GB SSD','16GB/1TB SSD'], tags: ['laptop','hp','ryzen','student'] },
-    { id: 'dell-inspiron-15-3520', name: 'Dell Inspiron 15 Intel i5-12th Gen Laptop', brand: 'Dell', category: 'laptops', price: 56490, originalPrice: 70000, images: ['https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600&q=80','https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80'], rating: 4.3, reviews: 95, sku: 'DELL-INS15-I5-16G', specs: { 'Processor': 'Intel Core i5-1235U (12th Gen)', 'RAM': '16 GB DDR4', 'Storage': '512 GB SSD', 'Display': '15.6" FHD WVA Anti-glare', 'Graphics': 'Intel Iris Xe', 'OS': 'Windows 11 Home', 'Battery': '54 Wh', 'Weight': '1.71 kg' }, description: 'Dell Inspiron 15 with Intel 12th Gen delivers reliable performance for business and everyday tasks. Features ComfortView display technology to reduce blue light emission.', badge: 'hot', emi: '₹1,883/mo', inStock: true, featured: true, gstRate: 18, warranty: '1 Year ProSupport', bulkPricing: [{qty:'5+',price:54990,save:'₹7,500'},{qty:'10+',price:52490,save:'₹40,000'}], variants: ['8GB/512GB','16GB/512GB','16GB/1TB'], tags: ['laptop','dell','intel'] },
-    { id: 'hikvision-4ch-dvr-kit', name: 'Hikvision 4 Channel HD CCTV Kit with 1TB HDD', brand: 'Hikvision', category: 'cctv', price: 14999, originalPrice: 20000, images: ['https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80'], rating: 4.4, reviews: 67, sku: 'HKV-4CH-2MP-1TB', specs: {'Channels':'4','Camera Resolution':'2MP 1080P','DVR Type':'Turbo HD 4.0','HDD':'1TB Seagate','Night Vision':'30 Metres IR','IP Rating':'IP67 Weatherproof','Compression':'H.265+'}, description: 'Complete 4-channel Hikvision CCTV kit for homes and small offices. Includes 4 dome cameras, DVR, 1TB HDD, all cables and power supplies.', badge: 'sale', inStock: true, gstRate: 18, warranty: '2 Year Hikvision Warranty', bulkPricing: [{qty:'3+',price:13999,save:'₹3,000'},{qty:'5+',price:12999,save:'₹10,000'}], tags: ['cctv','hikvision','security'] },
-    { id: 'hp-laser-mfp-135a', name: 'HP LaserJet MFP 135a Printer', brand: 'HP', category: 'printers', price: 11499, originalPrice: 15000, images: ['https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=600&q=80'], rating: 4.2, reviews: 156, sku: 'HP-LJ-MFP135A', specs: {'Type':'Laser MFP','Functions':'Print, Scan, Copy','Print Speed':'20 ppm','Resolution':'600 x 600 dpi','Connectivity':'USB 2.0','First Page Out':'7.8 seconds'}, description: 'The HP LaserJet MFP 135a delivers reliable mono printing with easy setup. Ideal for small offices. Low cost-per-page with HP toner cartridges.', badge: 'featured', inStock: true, gstRate: 18, warranty: '1 Year HP Onsite', tags: ['printer','hp','laser'] },
-    { id: 'tp-link-archer-ax73', name: 'TP-Link Archer AX73 AX5400 Wi-Fi 6 Router', brand: 'TP-Link', category: 'networking', price: 8999, originalPrice: 12000, images: ['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'], rating: 4.7, reviews: 312, sku: 'TP-AX73-WIFI6', specs: {'Standard':'IEEE 802.11 ax/ac/n/a/g/b','Speed':'AX5400 (574+4804 Mbps)','Frequency':'Dual Band 2.4GHz + 5GHz','Ports':'1x WAN, 4x Gigabit LAN','Antennas':'6x High-Gain','USB':'USB 3.0'}, description: 'Experience blazing-fast Wi-Fi 6 speeds with TP-Link Archer AX73. 6 high-gain antennas cover large homes and offices. Supports OFDMA, MU-MIMO and 1024-QAM.', badge: 'hot', inStock: true, gstRate: 18, warranty: '3 Year TP-Link', tags: ['networking','router','wifi6'] }
+    { id: 'ram-crucial-8gb-ddr4', name: 'Crucial 8GB DDR4 3200MHz Laptop RAM (SODIMM)', brand: 'Crucial', category: 'ram', price: 1699, originalPrice: 2400, images: ['https://images.unsplash.com/photo-1562976540-1502c2145186?w=600&q=80'], rating: 4.8, reviews: 142, sku: 'CRU-8G-D4-SO', specs: { Capacity: '8GB', Speed: '3200MHz', Type: 'DDR4 SODIMM', Form: 'Laptop' }, description: 'Boost your laptop performance with Crucial 8GB DDR4 3200MHz memory. Easy installation and maximum speed.', badge: 'hot', inStock: true, featured: true, gstRate: 18, warranty: '10 Years Limited Warranty', variants: ['8GB Single Stick', '16GB (2x8GB) Kit'] },
+    { id: 'ram-crucial-16gb-ddr5', name: 'Crucial 16GB DDR5 4800MHz Desktop RAM (UDIMM)', brand: 'Crucial', category: 'ram', price: 3999, originalPrice: 5500, images: ['https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=600&q=80'], rating: 4.9, reviews: 88, sku: 'CRU-16G-D5-UD', specs: { Capacity: '16GB', Speed: '4800MHz', Type: 'DDR5 UDIMM', Form: 'Desktop' }, description: 'Next-generation DDR5 technology delivers ultra-fast data speeds for gaming, multi-tasking and high-end workstation performance.', badge: 'sale', inStock: true, featured: true, gstRate: 18, warranty: '10 Years Limited Warranty' },
+    { id: 'ssd-samsung-980-pro-1tb', name: 'Samsung 980 PRO 1TB PCIe 4.0 NVMe M.2 SSD', brand: 'Samsung', category: 'ssd', price: 8999, originalPrice: 12000, images: ['https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=600&q=80'], rating: 4.9, reviews: 430, sku: 'SAM-980PRO-1TB', specs: { Capacity: '1TB', Interface: 'NVMe M.2', ReadSpeed: '7000 MB/s', WriteSpeed: '5000 MB/s' }, description: 'Blazing read speeds up to 7000 MB/s. Thermal control and high bandwidth for heavy workloads and gaming PCs.', badge: 'hot', inStock: true, featured: true, gstRate: 18, warranty: '5 Years Manufacturer Warranty' },
+    { id: 'hdd-seagate-barracuda-2tb', name: 'Seagate BarraCuda 2TB 3.5" Internal Desktop Hard Drive', brand: 'Seagate', category: 'hdd', price: 4899, originalPrice: 6500, images: ['https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=600&q=80'], rating: 4.5, reviews: 195, sku: 'ST-2000DM008', specs: { Capacity: '2TB', Interface: 'SATA 6Gb/s', Cache: '256MB', RPM: '7200 RPM' }, description: 'Proven reliability and high capacity storage for all your desktop PCs, media libraries and backups.', badge: 'sale', inStock: true, gstRate: 18, warranty: '2 Years Seagate Warranty' },
+    { id: 'periph-logitech-mx-master3s', name: 'Logitech MX Master 3S Wireless Performance Mouse', brand: 'Logitech', category: 'peripherals', price: 9995, originalPrice: 12000, images: ['https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&q=80'], rating: 4.9, reviews: 631, sku: 'LOG-MX-3S', specs: { Sensor: '8000 DPI Darkfield', Connectivity: 'Bluetooth/Logi Bolt', Battery: '70 Days', Switches: 'Quiet Clicks' }, description: 'An iconic ergonomic mouse designed for precision and comfort. Quiet clicks and 8K DPI tracking on any glass or desk surface.', badge: 'hot', inStock: true, featured: true, gstRate: 18, warranty: '1 Year Logitech Warranty' }
 ];
 
 let currentProduct = null;

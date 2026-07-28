@@ -8,27 +8,29 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+    <link rel="apple-touch-icon" href="../assets/images/logo.png">
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="store.css">
 </head>
 <body>
 <nav id="navbar" class="navbar" style="position:sticky;top:0;">
     <div class="nav-inner">
-        <a href="../index.html" class="nav-logo"><img src="../assets/images/logo.png" alt="Shreeji Infotech" class="logo-img"></a>
-        <ul class="nav-menu"><li><a href="index.html" class="nav-link">← Back to Shop</a></li></ul>
+        <a href="../" class="nav-logo"><img src="../assets/images/logo.png" alt="Shreeji Infotech" class="logo-img"></a>
+        <ul class="nav-menu"><li><a href="./" class="nav-link">← Back to Shop</a></li></ul>
         <div class="store-nav-actions">
             <a href="cart.html" class="nav-icon-btn"><i class="ph ph-shopping-cart"></i><span class="badge cart-badge" style="display:none;">0</span></a>
         </div>
     </div>
 </nav>
-<div class="breadcrumb"><div class="breadcrumb-inner"><a href="../index.html">Home</a><i class="ph ph-caret-right"></i><a href="index.html">Shop</a><i class="ph ph-caret-right"></i><span style="color:var(--dark-gray);">Compare Products</span></div></div>
+<div class="breadcrumb"><div class="breadcrumb-inner"><a href="../">Home</a><i class="ph ph-caret-right"></i><a href="./">Shop</a><i class="ph ph-caret-right"></i><span style="color:var(--dark-gray);">Compare Products</span></div></div>
 
 <!-- Empty compare state -->
 <div class="empty-state" id="emptyCompare" style="display:none;">
     <div class="empty-icon"><i class="ph ph-arrows-left-right"></i></div>
     <div class="empty-title">No Products to Compare</div>
     <div class="empty-sub">Go to the store, open any product and click "Compare" to add it here. You can compare up to 4 products side by side.</div>
-    <a href="index.html" class="btn btn-primary"><i class="ph ph-storefront"></i> Browse Products</a>
+    <a href="./" class="btn btn-primary"><i class="ph ph-storefront"></i> Browse Products</a>
 </div>
 
 <!-- Compare Table -->

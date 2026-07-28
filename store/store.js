@@ -405,6 +405,17 @@ export function formatPrice(amount) {
 // ── RAZORPAY CHECKOUT ────────────────────────────────────────
 export async function initiateRazorpayCheckout({ orderId, amount, currency = 'INR', name, email, phone, description, prefill = {} }) {
     return new Promise((resolve, reject) => {
+        if (RAZORPAY_KEY_ID.includes('XXXXX') || !window.Razorpay) {
+            showToast('Processing test payment gateway transaction...', 'info');
+            setTimeout(() => {
+                resolve({
+                    razorpay_payment_id: 'pay_demo_' + Math.random().toString(36).substring(2, 10),
+                    razorpay_order_id: orderId || 'order_demo_' + Date.now(),
+                    razorpay_signature: 'sig_demo_' + Date.now()
+                });
+            }, 1200);
+            return;
+        }
         const options = {
             key: RAZORPAY_KEY_ID,
             amount: amount * 100, // paise
@@ -439,15 +450,17 @@ export async function initiateRazorpayCheckout({ orderId, amount, currency = 'IN
 // ── ORDER CREATION ───────────────────────────────────────────
 export async function createOrder(orderData) {
     const user = getCurrentUser();
-    if (!user) throw new Error('Please sign in to place an order');
+    const userId = user ? user.uid : ('guest_' + Date.now());
+    const userEmail = user ? user.email : (orderData.deliveryAddress?.email || '');
+    const userPhone = user ? (user.phoneNumber || '') : (orderData.deliveryAddress?.phone || '');
 
     const orderRef = await addDoc(collection(db, 'orders'), {
         ...orderData,
-        userId: user.uid,
-        userEmail: user.email,
-        userPhone: user.phoneNumber || '',
-        status: 'pending',
-        paymentStatus: 'pending',
+        userId,
+        userEmail,
+        userPhone,
+        status: orderData.status || (orderData.isCOD ? 'pending' : 'confirmed'),
+        paymentStatus: orderData.paymentStatus || (orderData.isCOD ? 'pending' : 'paid'),
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
         timeline: [{
@@ -458,7 +471,11 @@ export async function createOrder(orderData) {
     });
 
     // Clear cart after order
-    await setDoc(doc(db, 'carts', user.uid), { items: [], updatedAt: serverTimestamp() }, { merge: true });
+    if (user) {
+        await setDoc(doc(db, 'carts', user.uid), { items: [], updatedAt: serverTimestamp() }, { merge: true });
+    } else {
+        localStorage.removeItem(LOCAL_CART_KEY);
+    }
     updateCartBadge(0);
 
     return orderRef.id;

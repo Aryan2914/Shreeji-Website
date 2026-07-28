@@ -1,419 +1,512 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop — Shreeji Infotech | Laptops, CCTV, Printers & More</title>
-    <meta name="description" content="Shop the best laptops, printers, CCTV cameras, networking gear and accessories at Shreeji Infotech, Ahmedabad. Easy EMI, GST invoices, free shipping above ₹5,000.">
+    <title>Hardware Store — Shreeji Infotech | RAM, SSD, HDD & Peripherals</title>
+    <meta name="description"
+        content="Shop genuine high-performance RAM, NVMe SSDs, internal & external HDDs, and premium PC peripherals at Shreeji Infotech, Ahmedabad. Fast local delivery & GST invoices.">
     <link rel="canonical" href="https://shreejiinfo.in/store/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+    <link rel="apple-touch-icon" href="../assets/images/logo.png">
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="store.css">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-M3H3X5HZ4B"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-M3H3X5HZ4B');</script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-M3H3X5HZ4B');</script>
     <!-- Product List Schema -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "ItemList",
-        "name": "Shreeji Infotech Product Store",
-        "description": "Shop laptops, printers, CCTV cameras, networking gear and accessories",
+        "name": "Shreeji Infotech Hardware Store",
+        "description": "Shop RAM, SSD, HDD storage and computer peripherals",
         "url": "https://shreejiinfo.in/store/"
     }
     </script>
 </head>
+
 <body>
 
-<!-- ── Top Announcement Bar ── -->
-<div class="store-topbar" id="topBar">
-    🚚 Free shipping on orders above ₹5,000 &nbsp;|&nbsp; 📞 <a href="tel:+919377704344">+91 93777 04344</a> &nbsp;|&nbsp; 🏷️ GST Invoices Available
-    <button onclick="document.getElementById('topBar').style.display='none'" style="background:none;border:none;color:rgba(255,255,255,0.5);cursor:pointer;margin-left:12px;font-size:0.85rem;">✕</button>
-</div>
+    <!-- ── Top Announcement Bar ── -->
+    <div class="store-topbar" id="topBar">
+        🚚 Free shipping on orders above ₹5,000 &nbsp;|&nbsp; 📞 <a href="tel:+919377704344">+91 93777 04344</a>
+        &nbsp;|&nbsp; 🏷️ GST Invoices Available
+        <button onclick="document.getElementById('topBar').style.display='none'"
+            style="background:none;border:none;color:rgba(255,255,255,0.5);cursor:pointer;margin-left:12px;font-size:0.85rem;">✕</button>
+    </div>
 
-<!-- ── Navigation ── -->
-<nav id="navbar" class="navbar">
-    <div class="nav-inner">
-        <a href="../index.html" class="nav-logo">
-            <img src="../assets/images/logo.png" alt="Shreeji Infotech" class="logo-img">
-        </a>
-        <ul class="nav-menu" id="navMenu">
-            <li><a href="../index.html" class="nav-link">Home</a></li>
-            <li><a href="index.html" class="nav-link active">Shop</a></li>
-            <li><a href="../index.html#services" class="nav-link">Services</a></li>
-            <li><a href="../index.html#enterprise" class="nav-link">Enterprise</a></li>
-            <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
-        </ul>
-        <!-- Store Icons -->
-        <div class="store-nav-actions">
-            <a href="wishlist.html" class="nav-icon-btn" title="Wishlist" id="wishlistNavBtn">
-                <i class="ph ph-heart"></i>
-                <span class="badge wishlist-badge" style="display:none;">0</span>
+    <!-- ── Navigation ── -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <img src="../assets/images/logo.png" alt="Shreeji Infotech" class="logo-img">
             </a>
-            <a href="cart.html" class="nav-icon-btn" title="Cart" id="cartNavBtn">
-                <i class="ph ph-shopping-cart"></i>
-                <span class="badge cart-badge" style="display:none;">0</span>
-            </a>
-            <button class="nav-icon-btn" id="authBtn" onclick="openAuthModal()" title="Sign In">
-                <i class="ph ph-user"></i>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../" class="nav-link">Home</a></li>
+                <li><a href="./" class="nav-link active">Shop</a></li>
+                <li><a href="../#services" class="nav-link">Services</a></li>
+                <li><a href="../#enterprise" class="nav-link">Enterprise</a></li>
+                <li><a href="../#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <!-- Store Icons -->
+            <div class="store-nav-actions">
+                <a href="wishlist.html" class="nav-icon-btn" title="Wishlist" id="wishlistNavBtn">
+                    <i class="ph ph-heart"></i>
+                    <span class="badge wishlist-badge" style="display:none;">0</span>
+                </a>
+                <a href="cart.html" class="nav-icon-btn" title="Cart" id="cartNavBtn">
+                    <i class="ph ph-shopping-cart"></i>
+                    <span class="badge cart-badge" style="display:none;">0</span>
+                </a>
+                <button class="nav-icon-btn" id="authBtn" onclick="openAuthModal()" title="Sign In">
+                    <i class="ph ph-user"></i>
+                </button>
+                <div class="nav-icon-btn" id="userMenuBtn"
+                    style="display:none;gap:6px;width:auto;padding:0 10px;border-radius:980px;background:var(--off-white);"
+                    onclick="toggleUserDropdown()">
+                    <i class="ph-fill ph-user-circle" style="font-size:1.2rem;color:var(--accent);"></i>
+                    <span id="userName" style="font-size:0.82rem;font-weight:600;color:var(--dark-gray);"></span>
+                    <i class="ph ph-caret-down" style="font-size:0.75rem;color:var(--mid-gray);"></i>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
             </button>
-            <div class="nav-icon-btn" id="userMenuBtn" style="display:none;gap:6px;width:auto;padding:0 10px;border-radius:980px;background:var(--off-white);" onclick="toggleUserDropdown()">
-                <i class="ph-fill ph-user-circle" style="font-size:1.2rem;color:var(--accent);"></i>
-                <span id="userName" style="font-size:0.82rem;font-weight:600;color:var(--dark-gray);"></span>
-                <i class="ph ph-caret-down" style="font-size:0.75rem;color:var(--mid-gray);"></i>
+        </div>
+        <!-- User Dropdown -->
+        <div id="userDropdown"
+            style="display:none;position:absolute;right:24px;top:64px;background:#fff;border:1px solid var(--light-gray);border-radius:var(--r-lg);padding:8px;box-shadow:var(--shadow-md);min-width:180px;z-index:999;">
+            <a href="../"
+                style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--r-sm);font-size:0.88rem;font-weight:600;color:var(--dark-gray);text-decoration:none;"
+                onmouseover="this.style.background='var(--off-white)'"
+                onmouseout="this.style.background='transparent'"><i class="ph ph-house"></i> Home Page</a>
+            <a href="wishlist.html"
+                style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--r-sm);font-size:0.88rem;font-weight:600;color:var(--dark-gray);text-decoration:none;"
+                onmouseover="this.style.background='var(--off-white)'"
+                onmouseout="this.style.background='transparent'"><i class="ph ph-heart"></i> Wishlist</a>
+            <a href="cart.html"
+                style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--r-sm);font-size:0.88rem;font-weight:600;color:var(--dark-gray);text-decoration:none;"
+                onmouseover="this.style.background='var(--off-white)'"
+                onmouseout="this.style.background='transparent'"><i class="ph ph-shopping-cart"></i> Cart</a>
+            <div style="height:1px;background:var(--light-gray);margin:4px 0;"></div>
+            <button onclick="signOutUser()"
+                style="width:100%;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--r-sm);font-size:0.88rem;font-weight:600;color:var(--badge-sale);background:none;border:none;cursor:pointer;font-family:var(--font);"><i
+                    class="ph ph-sign-out"></i> Sign Out</button>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+        <ul>
+            <li><a href="../" class="drawer-link">Home</a></li>
+            <li><a href="./" class="drawer-link">Shop</a></li>
+            <li><a href="../#services" class="drawer-link">Services</a></li>
+            <li><a href="../#enterprise" class="drawer-link">Enterprise</a></li>
+            <li><a href="../#contact" class="drawer-link">Contact</a></li>
+            <li><a href="tel:+919377704344" class="drawer-link drawer-cta">Call Now</a></li>
+        </ul>
+    </div>
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <!-- ── Hero Banner ── -->
+    <section class="store-hero" style="margin-top:56px;">
+        <div class="store-hero-content">
+            <div class="store-hero-eyebrow"><i class="ph-fill ph-cpu"></i> High Performance Hardware & Upgrades</div>
+            <h1>RAM, SSD, HDD & Peripherals</h1>
+            <p>Genuine Memory, Ultra-Fast NVMe SSDs, Internal/External Storage & Premium Accessories</p>
+            <!-- Search Bar -->
+            <div
+                style="display:flex;align-items:center;gap:0;margin-top:24px;max-width:500px;margin-left:auto;margin-right:auto;background:rgba(255,255,255,0.12);backdrop-filter:blur(10px);border:1.5px solid rgba(255,255,255,0.2);border-radius:980px;overflow:hidden;">
+                <input type="search" id="heroSearch" placeholder="Search RAM, SSD, HDD, keyboards, mice…"
+                    style="flex:1;padding:14px 20px;background:transparent;border:none;outline:none;color:#fff;font-size:0.95rem;font-family:var(--font);"
+                    oninput="handleSearch(this.value)">
+                <button
+                    style="padding:0 20px;background:var(--accent);border:none;height:48px;cursor:pointer;font-size:1.1rem;color:#fff;display:flex;align-items:center;gap:6px;"
+                    onclick="handleSearch(document.getElementById('heroSearch').value)"><i
+                        class="ph ph-magnifying-glass"></i></button>
             </div>
         </div>
-        <button class="hamburger" id="hamburger" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
-    </div>
-    <!-- User Dropdown -->
-    <div id="userDropdown" style="display:none;position:absolute;right:24px;top:64px;background:#fff;border:1px solid var(--light-gray);border-radius:var(--r-lg);padding:8px;box-shadow:var(--shadow-md);min-width:180px;z-index:999;">
-        <a href="/dashboard/" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--r-sm);font-size:0.88rem;font-weight:600;color:var(--dark-gray);text-decoration:none;" onmouseover="this.style.background='var(--off-white)'" onmouseout="this.style.background='transparent'"><i class="ph ph-user"></i> My Account</a>
-        <a href="/dashboard/orders.html" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--r-sm);font-size:0.88rem;font-weight:600;color:var(--dark-gray);text-decoration:none;" onmouseover="this.style.background='var(--off-white)'" onmouseout="this.style.background='transparent'"><i class="ph ph-package"></i> My Orders</a>
-        <a href="/store/wishlist.html" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--r-sm);font-size:0.88rem;font-weight:600;color:var(--dark-gray);text-decoration:none;" onmouseover="this.style.background='var(--off-white)'" onmouseout="this.style.background='transparent'"><i class="ph ph-heart"></i> Wishlist</a>
-        <div style="height:1px;background:var(--light-gray);margin:4px 0;"></div>
-        <button onclick="signOutUser()" style="width:100%;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--r-sm);font-size:0.88rem;font-weight:600;color:var(--badge-sale);background:none;border:none;cursor:pointer;font-family:var(--font);"><i class="ph ph-sign-out"></i> Sign Out</button>
-    </div>
-</nav>
+    </section>
 
-<!-- Mobile Drawer -->
-<div class="mobile-drawer" id="mobileDrawer">
-    <ul>
-        <li><a href="/" class="drawer-link">Home</a></li>
-        <li><a href="/store/" class="drawer-link">Shop</a></li>
-        <li><a href="/#services" class="drawer-link">Services</a></li>
-        <li><a href="/#enterprise" class="drawer-link">Enterprise</a></li>
-        <li><a href="/pc-builder/" class="drawer-link">PC Builder</a></li>
-        <li><a href="/dashboard/" class="drawer-link">My Account</a></li>
-        <li><a href="tel:+919377704344" class="drawer-link drawer-cta">Call Now</a></li>
-    </ul>
-</div>
-<div class="drawer-overlay" id="drawerOverlay"></div>
-
-<!-- ── Hero Banner ── -->
-<section class="store-hero" style="margin-top:56px;">
-    <div class="store-hero-content">
-        <div class="store-hero-eyebrow"><i class="ph-fill ph-storefront"></i> Official Dealer — All Brands</div>
-        <h1>Shop Everything IT</h1>
-        <p>Laptops, CCTV, Printers, Networking & More — with EMI, GST Invoice & Free Shipping</p>
-        <!-- Search Bar -->
-        <div style="display:flex;align-items:center;gap:0;margin-top:24px;max-width:500px;margin-left:auto;margin-right:auto;background:rgba(255,255,255,0.12);backdrop-filter:blur(10px);border:1.5px solid rgba(255,255,255,0.2);border-radius:980px;overflow:hidden;">
-            <input type="search" id="heroSearch" placeholder="Search laptops, CCTV, printers…" style="flex:1;padding:14px 20px;background:transparent;border:none;outline:none;color:#fff;font-size:0.95rem;font-family:var(--font);" oninput="handleSearch(this.value)">
-            <button style="padding:0 20px;background:var(--accent);border:none;height:48px;cursor:pointer;font-size:1.1rem;color:#fff;display:flex;align-items:center;gap:6px;" onclick="handleSearch(document.getElementById('heroSearch').value)"><i class="ph ph-magnifying-glass"></i></button>
+    <!-- ── Category Pills ── -->
+    <div class="category-strip">
+        <div class="category-strip-inner">
+            <a href="#" class="cat-pill active" data-cat="all" onclick="filterByCategory('all',this)"><i
+                    class="ph-fill ph-squares-four"></i> All Hardware</a>
+            <a href="#" class="cat-pill" data-cat="ram" onclick="filterByCategory('ram',this)"><i
+                    class="ph-fill ph-cpu"></i> RAM & Memory</a>
+            <a href="#" class="cat-pill" data-cat="ssd" onclick="filterByCategory('ssd',this)"><i
+                    class="ph-fill ph-lightning"></i> SSD Storage</a>
+            <a href="#" class="cat-pill" data-cat="hdd" onclick="filterByCategory('hdd',this)"><i
+                    class="ph-fill ph-hard-drive"></i> Hard Drives (HDD)</a>
+            <a href="#" class="cat-pill" data-cat="peripherals" onclick="filterByCategory('peripherals',this)"><i
+                    class="ph-fill ph-keyboard"></i> Peripherals & Accessories</a>
         </div>
     </div>
-</section>
 
-<!-- ── Category Pills ── -->
-<div class="category-strip">
-    <div class="category-strip-inner">
-        <a href="#" class="cat-pill active" data-cat="all" onclick="filterByCategory('all',this)"><i class="ph-fill ph-squares-four"></i> All Products</a>
-        <a href="#" class="cat-pill" data-cat="laptops" onclick="filterByCategory('laptops',this)"><i class="ph-fill ph-laptop"></i> Laptops</a>
-        <a href="#" class="cat-pill" data-cat="desktops" onclick="filterByCategory('desktops',this)"><i class="ph-fill ph-desktop"></i> Desktops</a>
-        <a href="#" class="cat-pill" data-cat="printers" onclick="filterByCategory('printers',this)"><i class="ph-fill ph-printer"></i> Printers</a>
-        <a href="#" class="cat-pill" data-cat="cctv" onclick="filterByCategory('cctv',this)"><i class="ph-fill ph-camera"></i> CCTV</a>
-        <a href="#" class="cat-pill" data-cat="networking" onclick="filterByCategory('networking',this)"><i class="ph-fill ph-wifi-high"></i> Networking</a>
-        <a href="#" class="cat-pill" data-cat="accessories" onclick="filterByCategory('accessories',this)"><i class="ph-fill ph-plug"></i> Accessories</a>
-        <a href="#" class="cat-pill" data-cat="storage" onclick="filterByCategory('storage',this)"><i class="ph-fill ph-hard-drive"></i> Storage</a>
-        <a href="#" class="cat-pill" data-cat="amc" onclick="filterByCategory('amc',this)"><i class="ph-fill ph-wrench"></i> AMC Packages</a>
-    </div>
-</div>
-
-<!-- ── Main Store Layout ── -->
-<div class="store-layout">
-    <!-- ── Sidebar Filters ── -->
-    <aside class="store-sidebar" id="storeSidebar">
-        <!-- Price Range -->
-        <div class="filter-card">
-            <div class="filter-title">
-                Price Range
-                <button onclick="resetPriceFilter()">Reset</button>
-            </div>
-            <div style="position:relative;padding:20px 0 0;">
-                <div class="price-range-track">
-                    <div class="price-range-fill" id="priceFill"></div>
-                    <input type="range" class="price-slider" id="priceMin" min="0" max="200000" value="0" step="1000" oninput="updatePriceRange()">
-                    <input type="range" class="price-slider" id="priceMax" min="0" max="200000" value="200000" step="1000" oninput="updatePriceRange()">
+    <!-- ── Main Store Layout ── -->
+    <div class="store-layout">
+        <!-- ── Sidebar Filters ── -->
+        <aside class="store-sidebar" id="storeSidebar">
+            <!-- Price Range -->
+            <div class="filter-card">
+                <div class="filter-title">
+                    Price Range
+                    <button onclick="resetPriceFilter()">Reset</button>
                 </div>
-                <div class="price-labels">
-                    <span id="priceMinLabel">₹0</span>
-                    <span id="priceMaxLabel">₹2,00,000</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Brand Filter -->
-        <div class="filter-card">
-            <div class="filter-title">Brand <button onclick="clearFilter('brand')">Clear</button></div>
-            <label class="filter-option"><input type="checkbox" name="brand" value="HP" onchange="applyFilters()"> HP <span class="filter-count">24</span></label>
-            <label class="filter-option"><input type="checkbox" name="brand" value="Dell" onchange="applyFilters()"> Dell <span class="filter-count">18</span></label>
-            <label class="filter-option"><input type="checkbox" name="brand" value="Lenovo" onchange="applyFilters()"> Lenovo <span class="filter-count">22</span></label>
-            <label class="filter-option"><input type="checkbox" name="brand" value="ASUS" onchange="applyFilters()"> ASUS <span class="filter-count">15</span></label>
-            <label class="filter-option"><input type="checkbox" name="brand" value="Acer" onchange="applyFilters()"> Acer <span class="filter-count">12</span></label>
-            <label class="filter-option"><input type="checkbox" name="brand" value="Apple" onchange="applyFilters()"> Apple <span class="filter-count">8</span></label>
-            <label class="filter-option"><input type="checkbox" name="brand" value="Hikvision" onchange="applyFilters()"> Hikvision <span class="filter-count">20</span></label>
-            <label class="filter-option"><input type="checkbox" name="brand" value="Dahua" onchange="applyFilters()"> Dahua <span class="filter-count">14</span></label>
-            <label class="filter-option"><input type="checkbox" name="brand" value="TP-Link" onchange="applyFilters()"> TP-Link <span class="filter-count">16</span></label>
-            <label class="filter-option"><input type="checkbox" name="brand" value="Canon" onchange="applyFilters()"> Canon <span class="filter-count">11</span></label>
-            <label class="filter-option"><input type="checkbox" name="brand" value="Epson" onchange="applyFilters()"> Epson <span class="filter-count">9</span></label>
-        </div>
-
-        <!-- Rating Filter -->
-        <div class="filter-card">
-            <div class="filter-title">Customer Rating</div>
-            <label class="filter-option"><input type="radio" name="rating" value="4" onchange="applyFilters()"> <span style="color:var(--star-color);">★★★★</span>★ 4+ <span class="filter-count">89</span></label>
-            <label class="filter-option"><input type="radio" name="rating" value="3" onchange="applyFilters()"> <span style="color:var(--star-color);">★★★</span>★★ 3+ <span class="filter-count">118</span></label>
-            <label class="filter-option"><input type="radio" name="rating" value="any" onchange="applyFilters()"> Any Rating</label>
-        </div>
-
-        <!-- Special Offers -->
-        <div class="filter-card">
-            <div class="filter-title">Offers & Deals</div>
-            <label class="filter-option"><input type="checkbox" name="offer" value="sale" onchange="applyFilters()"> On Sale <span class="filter-count">42</span></label>
-            <label class="filter-option"><input type="checkbox" name="offer" value="emi" onchange="applyFilters()"> EMI Available <span class="filter-count">67</span></label>
-            <label class="filter-option"><input type="checkbox" name="offer" value="new" onchange="applyFilters()"> New Arrivals <span class="filter-count">28</span></label>
-            <label class="filter-option"><input type="checkbox" name="offer" value="featured" onchange="applyFilters()"> Bestsellers <span class="filter-count">35</span></label>
-            <label class="filter-option"><input type="checkbox" name="offer" value="instock" onchange="applyFilters()"> In Stock Only</label>
-        </div>
-
-        <!-- Laptop Specific -->
-        <div class="filter-card" id="laptopFilters">
-            <div class="filter-title">Laptop Specs</div>
-            <div class="filter-title" style="margin-top:12px;margin-bottom:8px;">RAM</div>
-            <label class="filter-option"><input type="checkbox" name="ram" value="4GB" onchange="applyFilters()"> 4 GB</label>
-            <label class="filter-option"><input type="checkbox" name="ram" value="8GB" onchange="applyFilters()"> 8 GB</label>
-            <label class="filter-option"><input type="checkbox" name="ram" value="16GB" onchange="applyFilters()"> 16 GB</label>
-            <label class="filter-option"><input type="checkbox" name="ram" value="32GB" onchange="applyFilters()"> 32 GB</label>
-            <div class="filter-title" style="margin-top:16px;margin-bottom:8px;">Storage</div>
-            <label class="filter-option"><input type="checkbox" name="storage" value="256GB SSD" onchange="applyFilters()"> 256 GB SSD</label>
-            <label class="filter-option"><input type="checkbox" name="storage" value="512GB SSD" onchange="applyFilters()"> 512 GB SSD</label>
-            <label class="filter-option"><input type="checkbox" name="storage" value="1TB SSD" onchange="applyFilters()"> 1 TB SSD</label>
-            <label class="filter-option"><input type="checkbox" name="storage" value="1TB HDD" onchange="applyFilters()"> 1 TB HDD</label>
-        </div>
-    </aside>
-
-    <!-- ── Products Main ── -->
-    <main class="store-main" id="storeMain">
-        <div class="store-main-header">
-            <div class="results-count"><strong id="resultCount">156</strong> products found</div>
-            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-                <button class="btn-filter-mobile" onclick="openFilterDrawer()"><i class="ph ph-funnel"></i> Filters</button>
-                <select class="sort-select" id="sortSelect" onchange="applySorting()">
-                    <option value="createdAt">Newest First</option>
-                    <option value="price_asc">Price: Low to High</option>
-                    <option value="price_desc">Price: High to Low</option>
-                    <option value="rating">Best Rated</option>
-                    <option value="popular">Most Popular</option>
-                </select>
-                <div class="view-toggle">
-                    <button class="view-btn active" id="gridViewBtn" title="Grid View" onclick="setView('grid')"><i class="ph ph-grid-four"></i></button>
-                    <button class="view-btn" id="listViewBtn" title="List View" onclick="setView('list')"><i class="ph ph-list"></i></button>
+                <div style="position:relative;padding:20px 0 0;">
+                    <div class="price-range-track">
+                        <div class="price-range-fill" id="priceFill"></div>
+                        <input type="range" class="price-slider" id="priceMin" min="0" max="200000" value="0"
+                            step="1000" oninput="updatePriceRange()">
+                        <input type="range" class="price-slider" id="priceMax" min="0" max="200000" value="200000"
+                            step="1000" oninput="updatePriceRange()">
+                    </div>
+                    <div class="price-labels">
+                        <span id="priceMinLabel">₹0</span>
+                        <span id="priceMaxLabel">₹2,00,000</span>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Skeleton Loading -->
-        <div class="products-grid" id="productsGrid">
-            <!-- Filled by JS -->
-        </div>
+            <!-- Brand Filter -->
+            <div class="filter-card">
+                <div class="filter-title">Brand <button onclick="clearFilter('brand')">Clear</button></div>
+                <label class="filter-option"><input type="checkbox" name="brand" value="Crucial"
+                        onchange="applyFilters()"> Crucial <span class="filter-count">18</span></label>
+                <label class="filter-option"><input type="checkbox" name="brand" value="Samsung"
+                        onchange="applyFilters()"> Samsung <span class="filter-count">14</span></label>
+                <label class="filter-option"><input type="checkbox" name="brand" value="Kingston"
+                        onchange="applyFilters()"> Kingston <span class="filter-count">12</span></label>
+                <label class="filter-option"><input type="checkbox" name="brand" value="Corsair"
+                        onchange="applyFilters()"> Corsair <span class="filter-count">10</span></label>
+                <label class="filter-option"><input type="checkbox" name="brand" value="Seagate"
+                        onchange="applyFilters()"> Seagate <span class="filter-count">15</span></label>
+                <label class="filter-option"><input type="checkbox" name="brand" value="Western Digital"
+                        onchange="applyFilters()"> Western Digital <span class="filter-count">16</span></label>
+                <label class="filter-option"><input type="checkbox" name="brand" value="Logitech"
+                        onchange="applyFilters()"> Logitech <span class="filter-count">22</span></label>
+                <label class="filter-option"><input type="checkbox" name="brand" value="Keychron"
+                        onchange="applyFilters()"> Keychron <span class="filter-count">8</span></label>
+                <label class="filter-option"><input type="checkbox" name="brand" value="Dell" onchange="applyFilters()">
+                    Dell <span class="filter-count">9</span></label>
+                <label class="filter-option"><input type="checkbox" name="brand" value="TP-Link"
+                        onchange="applyFilters()"> TP-Link <span class="filter-count">11</span></label>
+            </div>
 
-        <!-- Pagination -->
-        <div class="pagination" id="pagination">
-            <button class="page-btn" id="prevPage" onclick="changePage(-1)" disabled><i class="ph ph-caret-left"></i></button>
-            <button class="page-btn active" onclick="goToPage(1)">1</button>
-            <button class="page-btn" onclick="goToPage(2)">2</button>
-            <button class="page-btn" onclick="goToPage(3)">3</button>
-            <span style="color:var(--mid-gray);padding:0 4px;">…</span>
-            <button class="page-btn" onclick="goToPage(13)">13</button>
-            <button class="page-btn" id="nextPage" onclick="changePage(1)"><i class="ph ph-caret-right"></i></button>
-        </div>
-    </main>
-</div>
+            <!-- Rating Filter -->
+            <div class="filter-card">
+                <div class="filter-title">Customer Rating</div>
+                <label class="filter-option"><input type="radio" name="rating" value="4" onchange="applyFilters()">
+                    <span style="color:var(--star-color);">★★★★</span>★ 4+ <span class="filter-count">89</span></label>
+                <label class="filter-option"><input type="radio" name="rating" value="3" onchange="applyFilters()">
+                    <span style="color:var(--star-color);">★★★</span>★★ 3+ <span class="filter-count">118</span></label>
+                <label class="filter-option"><input type="radio" name="rating" value="any" onchange="applyFilters()">
+                    Any Rating</label>
+            </div>
 
-<!-- ── Compare Bar ── -->
-<div class="compare-bar" id="compareBar">
-    <div style="font-size:0.85rem;font-weight:700;white-space:nowrap;">
-        <i class="ph ph-arrows-left-right" style="color:var(--accent);"></i>
-        Compare (<span id="compareCount">0</span>)
-    </div>
-    <div class="compare-bar-items" id="compareBarItems"></div>
-    <a href="/store/compare.html" class="btn-compare-now">Compare Now</a>
-    <button class="compare-bar-clear" onclick="clearCompare()">Clear All</button>
-</div>
+            <!-- Special Offers -->
+            <div class="filter-card">
+                <div class="filter-title">Offers & Deals</div>
+                <label class="filter-option"><input type="checkbox" name="offer" value="sale" onchange="applyFilters()">
+                    On Sale <span class="filter-count">42</span></label>
+                <label class="filter-option"><input type="checkbox" name="offer" value="emi" onchange="applyFilters()">
+                    EMI Available <span class="filter-count">67</span></label>
+                <label class="filter-option"><input type="checkbox" name="offer" value="new" onchange="applyFilters()">
+                    New Arrivals <span class="filter-count">28</span></label>
+                <label class="filter-option"><input type="checkbox" name="offer" value="featured"
+                        onchange="applyFilters()"> Bestsellers <span class="filter-count">35</span></label>
+                <label class="filter-option"><input type="checkbox" name="offer" value="instock"
+                        onchange="applyFilters()"> In Stock Only</label>
+            </div>
 
-<!-- ── Mobile Filter Drawer ── -->
-<div class="filter-drawer-overlay" id="filterDrawerOverlay" onclick="closeFilterDrawer()"></div>
-<div class="filter-drawer" id="filterDrawer">
-    <div class="filter-drawer-header">
-        <span class="filter-drawer-title">Filters</span>
-        <button class="filter-drawer-close" onclick="closeFilterDrawer()"><i class="ph ph-x"></i></button>
-    </div>
-    <div id="filterDrawerContent">
-        <!-- Mirror of sidebar filters, injected by JS -->
-    </div>
-</div>
+            <!-- Hardware Specs -->
+            <div class="filter-card" id="laptopFilters">
+                <div class="filter-title">Hardware Specs</div>
+                <div class="filter-title" style="margin-top:12px;margin-bottom:8px;">RAM Capacity</div>
+                <label class="filter-option"><input type="checkbox" name="ram" value="8GB" onchange="applyFilters()"> 8
+                    GB</label>
+                <label class="filter-option"><input type="checkbox" name="ram" value="16GB" onchange="applyFilters()">
+                    16 GB</label>
+                <label class="filter-option"><input type="checkbox" name="ram" value="32GB" onchange="applyFilters()">
+                    32 GB</label>
+                <div class="filter-title" style="margin-top:16px;margin-bottom:8px;">Storage Capacity</div>
+                <label class="filter-option"><input type="checkbox" name="storage" value="480GB"
+                        onchange="applyFilters()"> 480 / 512 GB SSD</label>
+                <label class="filter-option"><input type="checkbox" name="storage" value="1TB"
+                        onchange="applyFilters()"> 1 TB SSD / HDD</label>
+                <label class="filter-option"><input type="checkbox" name="storage" value="2TB"
+                        onchange="applyFilters()"> 2 TB HDD</label>
+            </div>
+        </aside>
 
-<!-- ── Auth Modal ── -->
-<div class="auth-modal-overlay" id="authModal" onclick="handleModalOutsideClick(event)">
-    <div class="auth-modal">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
-            <img src="../assets/images/logo.png" alt="Shreeji Infotech" style="height:40px;">
-            <button onclick="closeAuthModal()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--mid-gray);"><i class="ph ph-x"></i></button>
-        </div>
-        <h2 id="authTitle">Sign In</h2>
-        <p id="authSubtitle">Sign in to save your wishlist, track orders and get exclusive deals.</p>
-        <!-- Google Sign In -->
-        <a href="#" class="btn-google" onclick="signInWithGoogle();return false;">
-            <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.35-8.16 2.35-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-            Continue with Google
-        </a>
-        <div class="or-divider">or use OTP</div>
-        <div id="phoneStep">
-            <div class="form-group">
-                <label class="form-label">Mobile Number</label>
-                <div style="display:flex;gap:8px;">
-                    <span style="padding:11px 14px;border:1.5px solid var(--light-gray);border-radius:var(--r-sm);font-size:0.88rem;color:var(--mid-gray);background:var(--off-white);white-space:nowrap;">🇮🇳 +91</span>
-                    <input type="tel" id="phoneInput" class="form-input" placeholder="Enter 10-digit number" maxlength="10" pattern="[0-9]{10}">
+        <!-- ── Products Main ── -->
+        <main class="store-main" id="storeMain">
+            <div class="store-main-header">
+                <div class="results-count"><strong id="resultCount">156</strong> products found</div>
+                <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                    <button class="btn-filter-mobile" onclick="openFilterDrawer()"><i class="ph ph-funnel"></i>
+                        Filters</button>
+                    <select class="sort-select" id="sortSelect" onchange="applySorting()">
+                        <option value="createdAt">Newest First</option>
+                        <option value="price_asc">Price: Low to High</option>
+                        <option value="price_desc">Price: High to Low</option>
+                        <option value="rating">Best Rated</option>
+                        <option value="popular">Most Popular</option>
+                    </select>
+                    <div class="view-toggle">
+                        <button class="view-btn active" id="gridViewBtn" title="Grid View" onclick="setView('grid')"><i
+                                class="ph ph-grid-four"></i></button>
+                        <button class="view-btn" id="listViewBtn" title="List View" onclick="setView('list')"><i
+                                class="ph ph-list"></i></button>
+                    </div>
                 </div>
             </div>
-            <button class="btn btn-primary" style="width:100%;margin-top:14px;justify-content:center;" onclick="sendOTP()">Send OTP</button>
-        </div>
-        <div id="otpStep" style="display:none;">
-            <p style="font-size:0.85rem;color:var(--mid-gray);margin-bottom:12px;">OTP sent to <strong id="otpPhone"></strong></p>
-            <div class="otp-inputs">
-                <input type="text" class="otp-input" maxlength="1" id="otp0" oninput="moveToNext(this,0)">
-                <input type="text" class="otp-input" maxlength="1" id="otp1" oninput="moveToNext(this,1)">
-                <input type="text" class="otp-input" maxlength="1" id="otp2" oninput="moveToNext(this,2)">
-                <input type="text" class="otp-input" maxlength="1" id="otp3" oninput="moveToNext(this,3)">
-                <input type="text" class="otp-input" maxlength="1" id="otp4" oninput="moveToNext(this,4)">
-                <input type="text" class="otp-input" maxlength="1" id="otp5" oninput="moveToNext(this,5)">
+
+            <!-- Skeleton Loading -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Filled by JS -->
             </div>
-            <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="verifyOTP()">Verify OTP</button>
-            <button style="display:block;margin:12px auto 0;background:none;border:none;color:var(--accent);font-size:0.82rem;cursor:pointer;font-family:var(--font);" onclick="resendOTP()">Resend OTP</button>
-        </div>
-        <div id="recaptcha-container"></div>
-    </div>
-</div>
 
-<!-- Toast Container -->
-<div class="toast-container" id="toastContainer"></div>
-
-<!-- ── Footer ── -->
-<footer style="background:var(--dark-gray);color:rgba(255,255,255,0.7);padding:40px 24px;margin-top:40px;">
-    <div style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;">
-        <div>
-            <img src="../assets/images/logo.png" alt="Shreeji Infotech" style="height:44px;margin-bottom:12px;filter:brightness(0) invert(1);">
-            <p style="font-size:0.82rem;line-height:1.6;">Ahmedabad's most trusted IT partner for 15+ years. Maninagar Showroom.</p>
-        </div>
-        <div>
-            <div style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.4);margin-bottom:12px;">Quick Links</div>
-            <a href="/store/" style="display:block;font-size:0.85rem;margin-bottom:8px;color:rgba(255,255,255,0.7);">Shop</a>
-            <a href="/dashboard/" style="display:block;font-size:0.85rem;margin-bottom:8px;color:rgba(255,255,255,0.7);">My Account</a>
-            <a href="/service/book.html" style="display:block;font-size:0.85rem;margin-bottom:8px;color:rgba(255,255,255,0.7);">Book Repair</a>
-            <a href="/enterprise/portal.html" style="display:block;font-size:0.85rem;margin-bottom:8px;color:rgba(255,255,255,0.7);">Enterprise</a>
-        </div>
-        <div>
-            <div style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.4);margin-bottom:12px;">Contact</div>
-            <p style="font-size:0.85rem;margin-bottom:8px;">📞 +91 93777 04344</p>
-            <p style="font-size:0.85rem;margin-bottom:8px;">✉️ sales@shreejiinfo.in</p>
-            <p style="font-size:0.85rem;">📍 Maninagar, Ahmedabad</p>
-        </div>
-        <div>
-            <div style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.4);margin-bottom:12px;">We Accept</div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;">
-                <span class="payment-icon">UPI</span>
-                <span class="payment-icon">VISA</span>
-                <span class="payment-icon">MC</span>
-                <span class="payment-icon">RUPAY</span>
-                <span class="payment-icon">EMI</span>
-                <span class="payment-icon">COD</span>
+            <!-- Pagination -->
+            <div class="pagination" id="pagination">
+                <button class="page-btn" id="prevPage" onclick="changePage(-1)" disabled><i
+                        class="ph ph-caret-left"></i></button>
+                <button class="page-btn active" onclick="goToPage(1)">1</button>
+                <button class="page-btn" onclick="goToPage(2)">2</button>
+                <button class="page-btn" onclick="goToPage(3)">3</button>
+                <span style="color:var(--mid-gray);padding:0 4px;">…</span>
+                <button class="page-btn" onclick="goToPage(13)">13</button>
+                <button class="page-btn" id="nextPage" onclick="changePage(1)"><i
+                        class="ph ph-caret-right"></i></button>
             </div>
-            <p style="font-size:0.75rem;margin-top:12px;">Powered by Razorpay</p>
+        </main>
+    </div>
+
+    <!-- ── Compare Bar ── -->
+    <div class="compare-bar" id="compareBar">
+        <div style="font-size:0.85rem;font-weight:700;white-space:nowrap;">
+            <i class="ph ph-arrows-left-right" style="color:var(--accent);"></i>
+            Compare (<span id="compareCount">0</span>)
+        </div>
+        <div class="compare-bar-items" id="compareBarItems"></div>
+        <a href="/store/compare.html" class="btn-compare-now">Compare Now</a>
+        <button class="compare-bar-clear" onclick="clearCompare()">Clear All</button>
+    </div>
+
+    <!-- ── Mobile Filter Drawer ── -->
+    <div class="filter-drawer-overlay" id="filterDrawerOverlay" onclick="closeFilterDrawer()"></div>
+    <div class="filter-drawer" id="filterDrawer">
+        <div class="filter-drawer-header">
+            <span class="filter-drawer-title">Filters</span>
+            <button class="filter-drawer-close" onclick="closeFilterDrawer()"><i class="ph ph-x"></i></button>
+        </div>
+        <div id="filterDrawerContent">
+            <!-- Mirror of sidebar filters, injected by JS -->
         </div>
     </div>
-    <div style="max-width:1120px;margin:32px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:0.78rem;color:rgba(255,255,255,0.4);">
-        <span>© 2025 Shreeji Infotech. All rights reserved. GSTIN: 24XXXXXXXXXXXXX</span>
-        <span><a href="/privacy" style="color:rgba(255,255,255,0.4);">Privacy</a> · <a href="/terms" style="color:rgba(255,255,255,0.4);">Terms</a> · <a href="/refund-policy" style="color:rgba(255,255,255,0.4);">Refund Policy</a></span>
+
+    <!-- ── Auth Modal ── -->
+    <div class="auth-modal-overlay" id="authModal" onclick="handleModalOutsideClick(event)">
+        <div class="auth-modal">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+                <img src="../assets/images/logo.png" alt="Shreeji Infotech" style="height:40px;">
+                <button onclick="closeAuthModal()"
+                    style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--mid-gray);"><i
+                        class="ph ph-x"></i></button>
+            </div>
+            <h2 id="authTitle">Sign In</h2>
+            <p id="authSubtitle">Sign in to save your wishlist, track orders and get exclusive deals.</p>
+            <!-- Google Sign In -->
+            <a href="#" class="btn-google" onclick="signInWithGoogle();return false;">
+                <svg width="20" height="20" viewBox="0 0 48 48">
+                    <path fill="#EA4335"
+                        d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+                    <path fill="#4285F4"
+                        d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+                    <path fill="#FBBC05"
+                        d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+                    <path fill="#34A853"
+                        d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.35-8.16 2.35-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+                </svg>
+                Continue with Google
+            </a>
+            <div class="or-divider">or use OTP</div>
+            <div id="phoneStep">
+                <div class="form-group">
+                    <label class="form-label">Mobile Number</label>
+                    <div style="display:flex;gap:8px;">
+                        <span
+                            style="padding:11px 14px;border:1.5px solid var(--light-gray);border-radius:var(--r-sm);font-size:0.88rem;color:var(--mid-gray);background:var(--off-white);white-space:nowrap;">🇮🇳
+                            +91</span>
+                        <input type="tel" id="phoneInput" class="form-input" placeholder="Enter 10-digit number"
+                            maxlength="10" pattern="[0-9]{10}">
+                    </div>
+                </div>
+                <button class="btn btn-primary" style="width:100%;margin-top:14px;justify-content:center;"
+                    onclick="sendOTP()">Send OTP</button>
+            </div>
+            <div id="otpStep" style="display:none;">
+                <p style="font-size:0.85rem;color:var(--mid-gray);margin-bottom:12px;">OTP sent to <strong
+                        id="otpPhone"></strong></p>
+                <div class="otp-inputs">
+                    <input type="text" class="otp-input" maxlength="1" id="otp0" oninput="moveToNext(this,0)">
+                    <input type="text" class="otp-input" maxlength="1" id="otp1" oninput="moveToNext(this,1)">
+                    <input type="text" class="otp-input" maxlength="1" id="otp2" oninput="moveToNext(this,2)">
+                    <input type="text" class="otp-input" maxlength="1" id="otp3" oninput="moveToNext(this,3)">
+                    <input type="text" class="otp-input" maxlength="1" id="otp4" oninput="moveToNext(this,4)">
+                    <input type="text" class="otp-input" maxlength="1" id="otp5" oninput="moveToNext(this,5)">
+                </div>
+                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="verifyOTP()">Verify
+                    OTP</button>
+                <button
+                    style="display:block;margin:12px auto 0;background:none;border:none;color:var(--accent);font-size:0.82rem;cursor:pointer;font-family:var(--font);"
+                    onclick="resendOTP()">Resend OTP</button>
+            </div>
+            <div id="recaptcha-container"></div>
+        </div>
     </div>
-</footer>
 
-<script type="module">
-import { auth, db, showToast, addToCart, toggleWishlist, toggleCompare, updateCompareBar, formatPrice, renderStars, openAuthModal, closeAuthModal, signInWithGoogle, signOutUser, getProducts } from './store.js';
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
-import { collection, query, where, orderBy, limit, getDocs, startAfter } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
 
-// Make functions available globally
-window.openAuthModal = openAuthModal;
-window.closeAuthModal = closeAuthModal;
-window.signInWithGoogle = signInWithGoogle;
-window.signOutUser = signOutUser;
-window.showToast = showToast;
+    <!-- ── Footer ── -->
+    <footer style="background:var(--dark-gray);color:rgba(255,255,255,0.7);padding:40px 24px;margin-top:40px;">
+        <div
+            style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;">
+            <div>
+                <img src="../assets/images/logo.png" alt="Shreeji Infotech"
+                    style="height:44px;margin-bottom:12px;filter:brightness(0) invert(1);">
+                <p style="font-size:0.82rem;line-height:1.6;">Ahmedabad's most trusted IT partner for 15+ years.
+                    Maninagar Showroom.</p>
+            </div>
+            <div>
+                <div
+                    style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.4);margin-bottom:12px;">
+                    Quick Links</div>
+                <a href="/store/"
+                    style="display:block;font-size:0.85rem;margin-bottom:8px;color:rgba(255,255,255,0.7);">Shop</a>
+                <a href="/dashboard/"
+                    style="display:block;font-size:0.85rem;margin-bottom:8px;color:rgba(255,255,255,0.7);">My
+                    Account</a>
+                <a href="/service/book.html"
+                    style="display:block;font-size:0.85rem;margin-bottom:8px;color:rgba(255,255,255,0.7);">Book
+                    Repair</a>
+                <a href="/enterprise/portal.html"
+                    style="display:block;font-size:0.85rem;margin-bottom:8px;color:rgba(255,255,255,0.7);">Enterprise</a>
+            </div>
+            <div>
+                <div
+                    style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.4);margin-bottom:12px;">
+                    Contact</div>
+                <p style="font-size:0.85rem;margin-bottom:8px;">📞 +91 93777 04344</p>
+                <p style="font-size:0.85rem;margin-bottom:8px;">✉️ sales@shreejiinfo.in</p>
+                <p style="font-size:0.85rem;">📍 Maninagar, Ahmedabad</p>
+            </div>
+            <div>
+                <div
+                    style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.4);margin-bottom:12px;">
+                    We Accept</div>
+                <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                    <span class="payment-icon">UPI</span>
+                    <span class="payment-icon">VISA</span>
+                    <span class="payment-icon">MC</span>
+                    <span class="payment-icon">RUPAY</span>
+                    <span class="payment-icon">EMI</span>
+                    <span class="payment-icon">COD</span>
+                </div>
+                <p style="font-size:0.75rem;margin-top:12px;">Powered by Razorpay</p>
+            </div>
+        </div>
+        <div
+            style="max-width:1120px;margin:32px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:0.78rem;color:rgba(255,255,255,0.4);">
+            <span>© 2025 Shreeji Infotech. All rights reserved. GSTIN: 24XXXXXXXXXXXXX</span>
+            <span><a href="/privacy" style="color:rgba(255,255,255,0.4);">Privacy</a> · <a href="/terms"
+                    style="color:rgba(255,255,255,0.4);">Terms</a> · <a href="/refund-policy"
+                    style="color:rgba(255,255,255,0.4);">Refund Policy</a></span>
+        </div>
+    </footer>
 
-// ── State ─────────────────────────────────────────────────
-let currentCategory = 'all';
-let currentPage = 1;
-let currentView = 'grid';
-let lastVisible = null;
-let isLoading = false;
-let activeFilters = {};
-let allProducts = []; // client-side filtered set
-let compareList = JSON.parse(localStorage.getItem('si_compare') || '[]');
+    <script type="module">
+        import { auth, db, showToast, addToCart, toggleWishlist, toggleCompare, updateCompareBar, formatPrice, renderStars, openAuthModal, closeAuthModal, signInWithGoogle, signOutUser, getProducts } from './store.js';
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+        import { collection, query, where, orderBy, limit, getDocs, startAfter } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
-// ── Sample Products (replace with Firebase fetch) ─────────
-// These are demo products — in production, fetched from Firestore
-const DEMO_PRODUCTS = [
-    { id: 'hp-15s-ey4007au', name: 'HP 15s AMD Ryzen 5 7520U 15.6" Laptop', brand: 'HP', category: 'laptops', price: 42990, originalPrice: 55000, image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&q=80', rating: 4.5, reviews: 128, specs: { RAM: '8GB', Storage: '512GB SSD', Display: '15.6" FHD', OS: 'Windows 11' }, badge: 'sale', emi: '₹1,433/mo', inStock: true, featured: true, gstRate: 18 },
-    { id: 'dell-inspiron-15-3520', name: 'Dell Inspiron 15 Intel i5-12th Gen Laptop', brand: 'Dell', category: 'laptops', price: 56490, originalPrice: 70000, image: 'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=400&q=80', rating: 4.3, reviews: 95, specs: { RAM: '16GB', Storage: '512GB SSD', Display: '15.6" FHD', OS: 'Windows 11' }, badge: 'hot', emi: '₹1,883/mo', inStock: true, featured: true, gstRate: 18 },
-    { id: 'lenovo-ideapad-slim5', name: 'Lenovo IdeaPad Slim 5 Intel Core Ultra 5 Laptop', brand: 'Lenovo', category: 'laptops', price: 72990, originalPrice: 89000, image: 'https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=400&q=80', rating: 4.6, reviews: 214, specs: { RAM: '16GB', Storage: '1TB SSD', Display: '14" 2.8K OLED', OS: 'Windows 11' }, badge: 'new', emi: '₹2,433/mo', inStock: true, featured: true, gstRate: 18 },
-    { id: 'hikvision-4ch-dvr-kit', name: 'Hikvision 4 Channel HD CCTV Kit with 1TB HDD', brand: 'Hikvision', category: 'cctv', price: 14999, originalPrice: 20000, image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&q=80', rating: 4.4, reviews: 67, specs: { Cameras: '4x 2MP Dome', DVR: '4CH 1080P', Storage: '1TB', Night: 'Night Vision 30m' }, badge: 'sale', inStock: true, gstRate: 18 },
-    { id: 'hp-laser-mfp-135a', name: 'HP LaserJet MFP 135a Printer (Print+Scan+Copy)', brand: 'HP', category: 'printers', price: 11499, originalPrice: 15000, image: 'https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=400&q=80', rating: 4.2, reviews: 156, specs: { Type: 'Laser MFP', Speed: '20 ppm', Connectivity: 'USB', Resolution: '600 dpi' }, badge: 'featured', inStock: true, gstRate: 18 },
-    { id: 'tp-link-archer-ax73', name: 'TP-Link Archer AX73 AX5400 Wi-Fi 6 Router', brand: 'TP-Link', category: 'networking', price: 8999, originalPrice: 12000, image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80', rating: 4.7, reviews: 312, specs: { Standard: 'Wi-Fi 6', Speed: 'AX5400', Ports: '4x Gigabit LAN', Antennas: '6' }, badge: 'hot', inStock: true, gstRate: 18 },
-    { id: 'apple-macbook-air-m3', name: 'Apple MacBook Air M3 13-inch 8GB 256GB', brand: 'Apple', category: 'laptops', price: 114900, originalPrice: 120000, image: 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=400&q=80', rating: 4.9, reviews: 408, specs: { Chip: 'Apple M3', RAM: '8GB Unified', Storage: '256GB SSD', Display: '13.6" Liquid Retina' }, badge: 'featured', emi: '₹3,830/mo', inStock: true, gstRate: 18 },
-    { id: 'dahua-ip-ptz-camera', name: 'Dahua 4MP IP PTZ Network Dome Camera', brand: 'Dahua', category: 'cctv', price: 18500, originalPrice: 24000, image: 'https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=400&q=80', rating: 4.3, reviews: 42, specs: { Resolution: '4MP', PTZ: '360° Pan/Tilt', Night: 'IR 50m', Connectivity: 'PoE' }, badge: 'new', inStock: true, gstRate: 18 },
-    { id: 'asus-rog-strix-g16', name: 'ASUS ROG Strix G16 Intel i7 RTX 4060 Gaming', brand: 'ASUS', category: 'laptops', price: 134990, originalPrice: 155000, image: 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=400&q=80', rating: 4.8, reviews: 186, specs: { CPU: 'Intel i7-13650HX', GPU: 'RTX 4060', RAM: '16GB DDR5', Display: '16" FHD 165Hz' }, badge: 'hot', emi: '₹4,499/mo', inStock: true, gstRate: 18 },
-    { id: 'epson-l3250-ecotank', name: 'Epson L3250 EcoTank Wi-Fi All-in-One Printer', brand: 'Epson', category: 'printers', price: 16999, originalPrice: 22000, image: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&q=80', rating: 4.5, reviews: 289, specs: { Type: 'Inkjet EcoTank', Connectivity: 'Wi-Fi', Functions: 'Print/Scan/Copy', Ink: 'Bottle System' }, badge: 'sale', inStock: true, gstRate: 18 },
-    { id: 'samsung-ssd-870-evo-1tb', name: 'Samsung 870 EVO 1TB SATA SSD', brand: 'Samsung', category: 'storage', price: 7999, originalPrice: 10000, image: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&q=80', rating: 4.8, reviews: 524, specs: { Capacity: '1TB', Interface: 'SATA III', ReadSpeed: '560 MB/s', WriteSpeed: '530 MB/s' }, badge: 'sale', inStock: true, gstRate: 18 },
-    { id: 'logitech-mx-master-3', name: 'Logitech MX Master 3S Wireless Performance Mouse', brand: 'Logitech', category: 'accessories', price: 9995, originalPrice: 12000, image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&q=80', rating: 4.7, reviews: 631, specs: { DPI: '200-8000', Buttons: '7', Battery: 'USB-C', Connectivity: 'Bluetooth/USB' }, badge: 'featured', inStock: true, gstRate: 18 }
-];
+        // Make functions available globally
+        window.openAuthModal = openAuthModal;
+        window.closeAuthModal = closeAuthModal;
+        window.signInWithGoogle = signInWithGoogle;
+        window.signOutUser = signOutUser;
+        window.showToast = showToast;
 
-// ── Render Products ────────────────────────────────────────
-function renderProducts(products) {
-    const grid = document.getElementById('productsGrid');
-    document.getElementById('resultCount').textContent = products.length;
-    if (!products.length) {
-        grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">
+        // ── State ─────────────────────────────────────────────────
+        let currentCategory = 'all';
+        let currentPage = 1;
+        let currentView = 'grid';
+        let lastVisible = null;
+        let isLoading = false;
+        let activeFilters = {};
+        let allProducts = []; // client-side filtered set
+        let compareList = JSON.parse(localStorage.getItem('si_compare') || '[]');
+
+        // ── Sample Products (replace with Firebase fetch) ─────────
+        // These are demo products — in production, fetched from Firestore
+        const DEMO_PRODUCTS = [
+            { id: 'ram-crucial-8gb-ddr4', name: 'Crucial 8GB DDR4 3200MHz Laptop RAM (SODIMM)', brand: 'Crucial', category: 'ram', price: 1699, originalPrice: 2400, image: 'https://images.unsplash.com/photo-1562976540-1502c2145186?w=400&q=80', rating: 4.8, reviews: 142, specs: { Capacity: '8GB', Speed: '3200MHz', Type: 'DDR4 SODIMM', Form: 'Laptop' }, badge: 'hot', inStock: true, featured: true, gstRate: 18 },
+            { id: 'ram-crucial-16gb-ddr5', name: 'Crucial 16GB DDR5 4800MHz Desktop RAM (UDIMM)', brand: 'Crucial', category: 'ram', price: 3999, originalPrice: 5500, image: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=400&q=80', rating: 4.9, reviews: 88, specs: { Capacity: '16GB', Speed: '4800MHz', Type: 'DDR5 UDIMM', Form: 'Desktop' }, badge: 'sale', inStock: true, featured: true, gstRate: 18 },
+            { id: 'ram-corsair-vengeance-16gb', name: 'Corsair Vengeance LPX 16GB DDR4 3200MHz Desktop RAM', brand: 'Corsair', category: 'ram', price: 3499, originalPrice: 4800, image: 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=400&q=80', rating: 4.8, reviews: 215, specs: { Capacity: '16GB', Speed: '3200MHz', Type: 'DDR4 UDIMM', Heatspreader: 'Aluminum' }, badge: 'featured', inStock: true, featured: true, gstRate: 18 },
+            { id: 'ssd-samsung-980-pro-1tb', name: 'Samsung 980 PRO 1TB PCIe 4.0 NVMe M.2 SSD', brand: 'Samsung', category: 'ssd', price: 8999, originalPrice: 12000, image: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&q=80', rating: 4.9, reviews: 430, specs: { Capacity: '1TB', Interface: 'NVMe M.2', ReadSpeed: '7000 MB/s', WriteSpeed: '5000 MB/s' }, badge: 'hot', inStock: true, featured: true, gstRate: 18 },
+            { id: 'ssd-kingston-nv2-512gb', name: 'Kingston NV2 512GB PCIe 4.0 NVMe M.2 SSD', brand: 'Kingston', category: 'ssd', price: 2999, originalPrice: 4200, image: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&q=80', rating: 4.6, reviews: 178, specs: { Capacity: '512GB', Interface: 'NVMe M.2', ReadSpeed: '3500 MB/s', WriteSpeed: '2100 MB/s' }, badge: 'sale', inStock: true, gstRate: 18 },
+            { id: 'ssd-crucial-bx500-480gb', name: 'Crucial BX500 480GB 2.5-inch SATA SSD', brand: 'Crucial', category: 'ssd', price: 2399, originalPrice: 3500, image: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&q=80', rating: 4.7, reviews: 312, specs: { Capacity: '480GB', Interface: 'SATA III 6Gb/s', ReadSpeed: '540 MB/s', Form: '2.5 inch' }, badge: 'featured', inStock: true, gstRate: 18 },
+            { id: 'hdd-seagate-barracuda-2tb', name: 'Seagate BarraCuda 2TB 3.5" Internal Desktop Hard Drive', brand: 'Seagate', category: 'hdd', price: 4899, originalPrice: 6500, image: 'https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=400&q=80', rating: 4.5, reviews: 195, specs: { Capacity: '2TB', Interface: 'SATA 6Gb/s', Cache: '256MB', RPM: '7200 RPM' }, badge: 'sale', inStock: true, gstRate: 18 },
+            { id: 'hdd-wd-elements-1tb-ext', name: 'Western Digital Elements 1TB External Portable Hard Drive', brand: 'Western Digital', category: 'hdd', price: 4299, originalPrice: 5800, image: 'https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=400&q=80', rating: 4.7, reviews: 260, specs: { Capacity: '1TB', Interface: 'USB 3.0', Type: 'External Portable', Warranty: '3 Years' }, badge: 'featured', inStock: true, gstRate: 18 },
+            { id: 'periph-logitech-mx-master3s', name: 'Logitech MX Master 3S Wireless Performance Mouse', brand: 'Logitech', category: 'peripherals', price: 9995, originalPrice: 12000, image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&q=80', rating: 4.9, reviews: 631, specs: { Sensor: '8000 DPI Darkfield', Connectivity: 'Bluetooth/Logi Bolt', Battery: '70 Days', Switches: 'Quiet Clicks' }, badge: 'hot', inStock: true, featured: true, gstRate: 18 },
+            { id: 'periph-keychron-k2', name: 'Keychron K2 Wireless Mechanical Keyboard (RGB Backlit)', brand: 'Keychron', category: 'peripherals', price: 7499, originalPrice: 9500, image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&q=80', rating: 4.8, reviews: 184, specs: { Capacity: '75% Compact', Switches: 'Gateron Brown', Battery: '4000 mAh', Compatibility: 'Mac/Windows' }, badge: 'new', inStock: true, gstRate: 18 },
+            { id: 'periph-dell-24-monitor', name: 'Dell 24-inch FHD IPS Antiglare Monitor (SE2422H)', brand: 'Dell', category: 'peripherals', price: 8299, originalPrice: 11500, image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&q=80', rating: 4.6, reviews: 142, specs: { Screen: '23.8" FHD IPS', Refresh: '75Hz', Response: '5ms', Ports: 'HDMI / VGA' }, badge: 'sale', inStock: true, gstRate: 18 },
+            { id: 'periph-tplink-wifi-adapter', name: 'TP-Link Archer T3U Plus AC1300 High Gain USB Wi-Fi Adapter', brand: 'TP-Link', category: 'peripherals', price: 1299, originalPrice: 1999, image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80', rating: 4.7, reviews: 310, specs: { Speed: 'AC1300 Dual Band', Antenna: '5dBi High Gain', Interface: 'USB 3.0', OS: 'Win/Mac' }, badge: 'featured', inStock: true, gstRate: 18 }
+        ];
+
+        // ── Render Products ────────────────────────────────────────
+        function renderProducts(products) {
+            const grid = document.getElementById('productsGrid');
+            document.getElementById('resultCount').textContent = products.length;
+            if (!products.length) {
+                grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">
             <div class="empty-icon"><i class="ph ph-package"></i></div>
             <div class="empty-title">No Products Found</div>
             <div class="empty-sub">Try adjusting your filters or search terms to find what you're looking for.</div>
             <a href="#" onclick="resetAllFilters()" class="btn btn-primary">Clear All Filters</a>
         </div>`;
-        return;
-    }
-    grid.innerHTML = products.map(p => renderCard(p)).join('');
-}
+                return;
+            }
+            grid.innerHTML = products.map(p => renderCard(p)).join('');
+        }
 
-function renderCard(p) {
-    const discount = p.originalPrice > p.price ? Math.round((1 - p.price / p.originalPrice) * 100) : 0;
-    const specsHtml = Object.entries(p.specs || {}).slice(0, 3).map(([k, v]) => `<span class="spec-chip">${v}</span>`).join('');
-    const badgeHtml = p.badge ? `<span class="product-badge badge-${p.badge}">${p.badge === 'sale' ? 'Sale' : p.badge === 'new' ? 'New' : p.badge === 'hot' ? '🔥 Hot' : 'Featured'}</span>` : '';
-    const emiHtml = p.emi ? `<div class="product-emi">No Cost EMI from <span>${p.emi}</span></div>` : '';
-    const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '⯨' : '') + '☆'.repeat(5 - Math.ceil(p.rating));
+        function renderCard(p) {
+            const discount = p.originalPrice > p.price ? Math.round((1 - p.price / p.originalPrice) * 100) : 0;
+            const specsHtml = Object.entries(p.specs || {}).slice(0, 3).map(([k, v]) => `<span class="spec-chip">${v}</span>`).join('');
+            const badgeHtml = p.badge ? `<span class="product-badge badge-${p.badge}">${p.badge === 'sale' ? 'Sale' : p.badge === 'new' ? 'New' : p.badge === 'hot' ? '🔥 Hot' : 'Featured'}</span>` : '';
+            const emiHtml = p.emi ? `<div class="product-emi">No Cost EMI from <span>${p.emi}</span></div>` : '';
+            const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '⯨' : '') + '☆'.repeat(5 - Math.ceil(p.rating));
 
-    return `<div class="product-card" data-id="${p.id}" data-category="${p.category}">
+            return `<div class="product-card" data-id="${p.id}" data-category="${p.category}">
         <div class="product-card-img">
             <a href="/store/product.html?id=${p.id}">
                 <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/f5f5f7/86868b?text=Image'">
             </a>
             ${badgeHtml}
             <div class="card-actions">
-                <button class="card-action-btn" title="Add to Wishlist" onclick="handleWishlist(event,'${p.id}',this)" data-product='${JSON.stringify({id:p.id,name:p.name,price:p.price,image:p.image})}'>
+                <button class="card-action-btn" title="Add to Wishlist" onclick="handleWishlist(event,'${p.id}',this)" data-product='${JSON.stringify({ id: p.id, name: p.name, price: p.price, image: p.image })}'>
                     <i class="ph ph-heart"></i>
                 </button>
-                <button class="card-action-btn" title="Compare" onclick="handleCompare(event,'${p.id}',this)" data-product='${JSON.stringify({id:p.id,name:p.name,price:p.price,image:p.image})}'>
+                <button class="card-action-btn" title="Compare" onclick="handleCompare(event,'${p.id}',this)" data-product='${JSON.stringify({ id: p.id, name: p.name, price: p.price, image: p.image })}'>
                     <i class="ph ph-arrows-left-right"></i>
                 </button>
                 <a href="/store/product.html?id=${p.id}" class="card-action-btn" title="Quick View">
@@ -436,257 +529,258 @@ function renderCard(p) {
             </div>
         </div>
         <div class="card-btns">
-            <button class="btn-cart" onclick="handleAddToCart('${p.id}',this)" data-product='${JSON.stringify(p).replace(/'/g,"&#39;")}'>
+            <button class="btn-cart" onclick="handleAddToCart('${p.id}',this)" data-product='${JSON.stringify(p).replace(/'/g, "&#39;")}'>
                 <i class="ph ph-shopping-cart"></i> Add to Cart
             </button>
             <a href="/store/checkout.html?buyNow=${p.id}" class="btn-buy">Buy Now</a>
         </div>
     </div>`;
-}
+        }
 
-// ── Skeletons ────────────────────────────────────────────
-function renderSkeletons(n = 6) {
-    const grid = document.getElementById('productsGrid');
-    grid.innerHTML = Array(n).fill(`<div class="skeleton-card">
+        // ── Skeletons ────────────────────────────────────────────
+        function renderSkeletons(n = 6) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = Array(n).fill(`<div class="skeleton-card">
         <div class="skeleton sk-img"></div>
         <div class="skeleton sk-line medium"></div>
         <div class="skeleton sk-line short"></div>
         <div class="skeleton sk-btn"></div>
     </div>`).join('');
-}
-
-// ── Filter & Sort ─────────────────────────────────────────
-window.filterByCategory = (cat, el) => {
-    currentCategory = cat;
-    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
-    if (el) el.classList.add('active');
-    applyFilters();
-    // Show/hide laptop-specific filters
-    document.getElementById('laptopFilters').style.display = (cat === 'laptops' || cat === 'all') ? 'block' : 'none';
-};
-
-window.applyFilters = () => {
-    const brands = [...document.querySelectorAll('[name="brand"]:checked')].map(e => e.value);
-    const ratings = document.querySelector('[name="rating"]:checked')?.value;
-    const offers = [...document.querySelectorAll('[name="offer"]:checked')].map(e => e.value);
-    const rams = [...document.querySelectorAll('[name="ram"]:checked')].map(e => e.value);
-    const storages = [...document.querySelectorAll('[name="storage"]:checked')].map(e => e.value);
-    const minPrice = parseInt(document.getElementById('priceMin')?.value || 0);
-    const maxPrice = parseInt(document.getElementById('priceMax')?.value || 200000);
-
-    let filtered = DEMO_PRODUCTS;
-    if (currentCategory !== 'all') filtered = filtered.filter(p => p.category === currentCategory);
-    if (brands.length) filtered = filtered.filter(p => brands.includes(p.brand));
-    if (ratings && ratings !== 'any') filtered = filtered.filter(p => p.rating >= parseInt(ratings));
-    if (offers.includes('sale')) filtered = filtered.filter(p => p.badge === 'sale');
-    if (offers.includes('new')) filtered = filtered.filter(p => p.badge === 'new');
-    if (offers.includes('featured')) filtered = filtered.filter(p => p.featured);
-    if (offers.includes('instock')) filtered = filtered.filter(p => p.inStock);
-    filtered = filtered.filter(p => p.price >= minPrice && p.price <= maxPrice);
-
-    applySortTo(filtered);
-};
-
-window.applySorting = () => applyFilters();
-
-function applySortTo(products) {
-    const sort = document.getElementById('sortSelect')?.value || 'createdAt';
-    if (sort === 'price_asc') products.sort((a, b) => a.price - b.price);
-    else if (sort === 'price_desc') products.sort((a, b) => b.price - a.price);
-    else if (sort === 'rating') products.sort((a, b) => b.rating - a.rating);
-    else if (sort === 'popular') products.sort((a, b) => b.reviews - a.reviews);
-    renderProducts(products);
-}
-
-window.resetAllFilters = () => {
-    document.querySelectorAll('[name="brand"]:checked, [name="offer"]:checked, [name="ram"]:checked, [name="storage"]:checked').forEach(el => el.checked = false);
-    const ratingAny = document.querySelector('[name="rating"][value="any"]');
-    if (ratingAny) ratingAny.checked = true;
-    if (document.getElementById('priceMin')) document.getElementById('priceMin').value = 0;
-    if (document.getElementById('priceMax')) document.getElementById('priceMax').value = 200000;
-    updatePriceRange();
-    currentCategory = 'all';
-    document.querySelectorAll('.cat-pill').forEach((p, i) => { p.classList.toggle('active', i === 0); });
-    applyFilters();
-};
-
-window.clearFilter = (type) => {
-    document.querySelectorAll(`[name="${type}"]:checked`).forEach(el => el.checked = false);
-    applyFilters();
-};
-
-window.resetPriceFilter = () => {
-    document.getElementById('priceMin').value = 0;
-    document.getElementById('priceMax').value = 200000;
-    updatePriceRange();
-    applyFilters();
-};
-
-window.updatePriceRange = () => {
-    const min = parseInt(document.getElementById('priceMin').value);
-    const max = parseInt(document.getElementById('priceMax').value);
-    if (min > max) { document.getElementById('priceMin').value = max; return; }
-    document.getElementById('priceMinLabel').textContent = '₹' + min.toLocaleString('en-IN');
-    document.getElementById('priceMaxLabel').textContent = max >= 200000 ? '₹2,00,000+' : '₹' + max.toLocaleString('en-IN');
-    const pct1 = (min / 200000) * 100;
-    const pct2 = (max / 200000) * 100;
-    const fill = document.getElementById('priceFill');
-    if (fill) { fill.style.left = pct1 + '%'; fill.style.width = (pct2 - pct1) + '%'; }
-    applyFilters();
-};
-
-// ── Cart / Wishlist / Compare Actions ────────────────────
-window.handleAddToCart = async (productId, btn) => {
-    const product = DEMO_PRODUCTS.find(p => p.id === productId) || JSON.parse(btn.dataset.product);
-    await addToCart(product);
-    btn.classList.add('added');
-    btn.innerHTML = '<i class="ph-fill ph-check"></i> Added!';
-    setTimeout(() => {
-        btn.classList.remove('added');
-        btn.innerHTML = '<i class="ph ph-shopping-cart"></i> Add to Cart';
-    }, 2000);
-};
-
-window.handleWishlist = async (e, productId, btn) => {
-    e.preventDefault();
-    const product = DEMO_PRODUCTS.find(p => p.id === productId);
-    if (!product) return;
-    const added = await toggleWishlist(product);
-    btn.classList.toggle('active-wish', added);
-    btn.querySelector('i').className = added ? 'ph-fill ph-heart' : 'ph ph-heart';
-};
-
-window.handleCompare = (e, productId, btn) => {
-    e.preventDefault();
-    const product = DEMO_PRODUCTS.find(p => p.id === productId);
-    if (!product) return;
-    const added = toggleCompare(product);
-    btn.style.background = added ? 'var(--accent)' : '';
-    btn.style.color = added ? '#fff' : '';
-};
-
-window.clearCompare = () => {
-    localStorage.removeItem('si_compare');
-    updateCompareBar();
-};
-
-// ── View Toggle ───────────────────────────────────────────
-window.setView = (view) => {
-    currentView = view;
-    const grid = document.getElementById('productsGrid');
-    grid.classList.toggle('list-view', view === 'list');
-    document.getElementById('gridViewBtn').classList.toggle('active', view === 'grid');
-    document.getElementById('listViewBtn').classList.toggle('active', view === 'list');
-};
-
-// ── Search ─────────────────────────────────────────────
-let searchDebounce;
-window.handleSearch = (val) => {
-    clearTimeout(searchDebounce);
-    searchDebounce = setTimeout(() => {
-        const q = val.trim().toLowerCase();
-        if (!q) { applyFilters(); return; }
-        const results = DEMO_PRODUCTS.filter(p =>
-            p.name.toLowerCase().includes(q) ||
-            p.brand.toLowerCase().includes(q) ||
-            p.category.toLowerCase().includes(q) ||
-            Object.values(p.specs || {}).some(s => s.toLowerCase().includes(q))
-        );
-        renderProducts(results);
-    }, 300);
-};
-
-// ── Pagination ────────────────────────────────────────────
-window.changePage = (dir) => { goToPage(currentPage + dir); };
-window.goToPage = (page) => {
-    currentPage = page;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    applyFilters(); // re-render with page offset in production
-};
-
-// ── Mobile Filter Drawer ──────────────────────────────────
-window.openFilterDrawer = () => {
-    document.getElementById('filterDrawer').classList.add('open');
-    document.getElementById('filterDrawerOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-};
-window.closeFilterDrawer = () => {
-    document.getElementById('filterDrawer').classList.remove('open');
-    document.getElementById('filterDrawerOverlay').classList.remove('open');
-    document.body.style.overflow = '';
-};
-
-// ── Auth Modal Helpers ────────────────────────────────────
-window.handleModalOutsideClick = (e) => {
-    if (e.target.id === 'authModal') closeAuthModal();
-};
-window.toggleUserDropdown = () => {
-    const d = document.getElementById('userDropdown');
-    d.style.display = d.style.display === 'none' ? 'block' : 'none';
-};
-
-// OTP Flow
-let confirmationResult;
-window.sendOTP = async () => {
-    const phone = document.getElementById('phoneInput').value.trim();
-    if (phone.length !== 10 || !/^\d+$/.test(phone)) { showToast('Enter a valid 10-digit number', 'error'); return; }
-    try {
-        const { RecaptchaVerifier, signInWithPhoneNumber } = await import("https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js");
-        if (!window.recaptchaVerifier) {
-            window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', { size: 'invisible' });
         }
-        confirmationResult = await signInWithPhoneNumber(auth, '+91' + phone, window.recaptchaVerifier);
-        document.getElementById('phoneStep').style.display = 'none';
-        document.getElementById('otpStep').style.display = 'block';
-        document.getElementById('otpPhone').textContent = '+91 ' + phone;
-        document.getElementById('otp0').focus();
-        showToast('OTP sent!', 'success');
-    } catch (err) { showToast('Failed to send OTP: ' + err.message, 'error'); }
-};
 
-window.verifyOTP = async () => {
-    const otp = [0,1,2,3,4,5].map(i => document.getElementById('otp'+i).value).join('');
-    if (otp.length !== 6) { showToast('Enter the 6-digit OTP', 'error'); return; }
-    try {
-        await confirmationResult.confirm(otp);
-        closeAuthModal();
-        showToast('Signed in successfully!', 'success');
-    } catch { showToast('Invalid OTP. Try again.', 'error'); }
-};
+        // ── Filter & Sort ─────────────────────────────────────────
+        window.filterByCategory = (cat, el) => {
+            currentCategory = cat;
+            document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+            if (el) el.classList.add('active');
+            applyFilters();
+            // Show/hide laptop-specific filters
+            document.getElementById('laptopFilters').style.display = (cat === 'laptops' || cat === 'all') ? 'block' : 'none';
+        };
 
-window.moveToNext = (el, idx) => {
-    el.value = el.value.replace(/\D/g, '').slice(-1);
-    if (el.value && idx < 5) document.getElementById('otp'+(idx+1)).focus();
-};
-window.resendOTP = () => { document.getElementById('phoneStep').style.display = 'block'; document.getElementById('otpStep').style.display = 'none'; };
+        window.applyFilters = () => {
+            const brands = [...document.querySelectorAll('[name="brand"]:checked')].map(e => e.value);
+            const ratings = document.querySelector('[name="rating"]:checked')?.value;
+            const offers = [...document.querySelectorAll('[name="offer"]:checked')].map(e => e.value);
+            const rams = [...document.querySelectorAll('[name="ram"]:checked')].map(e => e.value);
+            const storages = [...document.querySelectorAll('[name="storage"]:checked')].map(e => e.value);
+            const minPrice = parseInt(document.getElementById('priceMin')?.value || 0);
+            const maxPrice = parseInt(document.getElementById('priceMax')?.value || 200000);
 
-// ── Navbar Scroll ──────────────────────────────────────────
-window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
-});
+            let filtered = DEMO_PRODUCTS;
+            if (currentCategory !== 'all') filtered = filtered.filter(p => p.category === currentCategory);
+            if (brands.length) filtered = filtered.filter(p => brands.includes(p.brand));
+            if (ratings && ratings !== 'any') filtered = filtered.filter(p => p.rating >= parseInt(ratings));
+            if (offers.includes('sale')) filtered = filtered.filter(p => p.badge === 'sale');
+            if (offers.includes('new')) filtered = filtered.filter(p => p.badge === 'new');
+            if (offers.includes('featured')) filtered = filtered.filter(p => p.featured);
+            if (offers.includes('instock')) filtered = filtered.filter(p => p.inStock);
+            filtered = filtered.filter(p => p.price >= minPrice && p.price <= maxPrice);
 
-// ── Hamburger ──────────────────────────────────────────────
-document.getElementById('hamburger')?.addEventListener('click', () => {
-    document.getElementById('mobileDrawer').classList.toggle('open');
-    document.getElementById('drawerOverlay').classList.toggle('open');
-});
-document.getElementById('drawerOverlay')?.addEventListener('click', () => {
-    document.getElementById('mobileDrawer').classList.remove('open');
-    document.getElementById('drawerOverlay').classList.remove('open');
-});
+            applySortTo(filtered);
+        };
 
-// ── Close user dropdown on outside click ─────────────────
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('#userMenuBtn') && !e.target.closest('#userDropdown')) {
-        const d = document.getElementById('userDropdown');
-        if (d) d.style.display = 'none';
-    }
-});
+        window.applySorting = () => applyFilters();
 
-// ── Init ──────────────────────────────────────────────────
-updateCompareBar();
-updatePriceRange();
-applyFilters(); // render demo products on load
-</script>
+        function applySortTo(products) {
+            const sort = document.getElementById('sortSelect')?.value || 'createdAt';
+            if (sort === 'price_asc') products.sort((a, b) => a.price - b.price);
+            else if (sort === 'price_desc') products.sort((a, b) => b.price - a.price);
+            else if (sort === 'rating') products.sort((a, b) => b.rating - a.rating);
+            else if (sort === 'popular') products.sort((a, b) => b.reviews - a.reviews);
+            renderProducts(products);
+        }
+
+        window.resetAllFilters = () => {
+            document.querySelectorAll('[name="brand"]:checked, [name="offer"]:checked, [name="ram"]:checked, [name="storage"]:checked').forEach(el => el.checked = false);
+            const ratingAny = document.querySelector('[name="rating"][value="any"]');
+            if (ratingAny) ratingAny.checked = true;
+            if (document.getElementById('priceMin')) document.getElementById('priceMin').value = 0;
+            if (document.getElementById('priceMax')) document.getElementById('priceMax').value = 200000;
+            updatePriceRange();
+            currentCategory = 'all';
+            document.querySelectorAll('.cat-pill').forEach((p, i) => { p.classList.toggle('active', i === 0); });
+            applyFilters();
+        };
+
+        window.clearFilter = (type) => {
+            document.querySelectorAll(`[name="${type}"]:checked`).forEach(el => el.checked = false);
+            applyFilters();
+        };
+
+        window.resetPriceFilter = () => {
+            document.getElementById('priceMin').value = 0;
+            document.getElementById('priceMax').value = 200000;
+            updatePriceRange();
+            applyFilters();
+        };
+
+        window.updatePriceRange = () => {
+            const min = parseInt(document.getElementById('priceMin').value);
+            const max = parseInt(document.getElementById('priceMax').value);
+            if (min > max) { document.getElementById('priceMin').value = max; return; }
+            document.getElementById('priceMinLabel').textContent = '₹' + min.toLocaleString('en-IN');
+            document.getElementById('priceMaxLabel').textContent = max >= 200000 ? '₹2,00,000+' : '₹' + max.toLocaleString('en-IN');
+            const pct1 = (min / 200000) * 100;
+            const pct2 = (max / 200000) * 100;
+            const fill = document.getElementById('priceFill');
+            if (fill) { fill.style.left = pct1 + '%'; fill.style.width = (pct2 - pct1) + '%'; }
+            applyFilters();
+        };
+
+        // ── Cart / Wishlist / Compare Actions ────────────────────
+        window.handleAddToCart = async (productId, btn) => {
+            const product = DEMO_PRODUCTS.find(p => p.id === productId) || JSON.parse(btn.dataset.product);
+            await addToCart(product);
+            btn.classList.add('added');
+            btn.innerHTML = '<i class="ph-fill ph-check"></i> Added!';
+            setTimeout(() => {
+                btn.classList.remove('added');
+                btn.innerHTML = '<i class="ph ph-shopping-cart"></i> Add to Cart';
+            }, 2000);
+        };
+
+        window.handleWishlist = async (e, productId, btn) => {
+            e.preventDefault();
+            const product = DEMO_PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+            const added = await toggleWishlist(product);
+            btn.classList.toggle('active-wish', added);
+            btn.querySelector('i').className = added ? 'ph-fill ph-heart' : 'ph ph-heart';
+        };
+
+        window.handleCompare = (e, productId, btn) => {
+            e.preventDefault();
+            const product = DEMO_PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+            const added = toggleCompare(product);
+            btn.style.background = added ? 'var(--accent)' : '';
+            btn.style.color = added ? '#fff' : '';
+        };
+
+        window.clearCompare = () => {
+            localStorage.removeItem('si_compare');
+            updateCompareBar();
+        };
+
+        // ── View Toggle ───────────────────────────────────────────
+        window.setView = (view) => {
+            currentView = view;
+            const grid = document.getElementById('productsGrid');
+            grid.classList.toggle('list-view', view === 'list');
+            document.getElementById('gridViewBtn').classList.toggle('active', view === 'grid');
+            document.getElementById('listViewBtn').classList.toggle('active', view === 'list');
+        };
+
+        // ── Search ─────────────────────────────────────────────
+        let searchDebounce;
+        window.handleSearch = (val) => {
+            clearTimeout(searchDebounce);
+            searchDebounce = setTimeout(() => {
+                const q = val.trim().toLowerCase();
+                if (!q) { applyFilters(); return; }
+                const results = DEMO_PRODUCTS.filter(p =>
+                    p.name.toLowerCase().includes(q) ||
+                    p.brand.toLowerCase().includes(q) ||
+                    p.category.toLowerCase().includes(q) ||
+                    Object.values(p.specs || {}).some(s => s.toLowerCase().includes(q))
+                );
+                renderProducts(results);
+            }, 300);
+        };
+
+        // ── Pagination ────────────────────────────────────────────
+        window.changePage = (dir) => { goToPage(currentPage + dir); };
+        window.goToPage = (page) => {
+            currentPage = page;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            applyFilters(); // re-render with page offset in production
+        };
+
+        // ── Mobile Filter Drawer ──────────────────────────────────
+        window.openFilterDrawer = () => {
+            document.getElementById('filterDrawer').classList.add('open');
+            document.getElementById('filterDrawerOverlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        };
+        window.closeFilterDrawer = () => {
+            document.getElementById('filterDrawer').classList.remove('open');
+            document.getElementById('filterDrawerOverlay').classList.remove('open');
+            document.body.style.overflow = '';
+        };
+
+        // ── Auth Modal Helpers ────────────────────────────────────
+        window.handleModalOutsideClick = (e) => {
+            if (e.target.id === 'authModal') closeAuthModal();
+        };
+        window.toggleUserDropdown = () => {
+            const d = document.getElementById('userDropdown');
+            d.style.display = d.style.display === 'none' ? 'block' : 'none';
+        };
+
+        // OTP Flow
+        let confirmationResult;
+        window.sendOTP = async () => {
+            const phone = document.getElementById('phoneInput').value.trim();
+            if (phone.length !== 10 || !/^\d+$/.test(phone)) { showToast('Enter a valid 10-digit number', 'error'); return; }
+            try {
+                const { RecaptchaVerifier, signInWithPhoneNumber } = await import("https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js");
+                if (!window.recaptchaVerifier) {
+                    window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', { size: 'invisible' });
+                }
+                confirmationResult = await signInWithPhoneNumber(auth, '+91' + phone, window.recaptchaVerifier);
+                document.getElementById('phoneStep').style.display = 'none';
+                document.getElementById('otpStep').style.display = 'block';
+                document.getElementById('otpPhone').textContent = '+91 ' + phone;
+                document.getElementById('otp0').focus();
+                showToast('OTP sent!', 'success');
+            } catch (err) { showToast('Failed to send OTP: ' + err.message, 'error'); }
+        };
+
+        window.verifyOTP = async () => {
+            const otp = [0, 1, 2, 3, 4, 5].map(i => document.getElementById('otp' + i).value).join('');
+            if (otp.length !== 6) { showToast('Enter the 6-digit OTP', 'error'); return; }
+            try {
+                await confirmationResult.confirm(otp);
+                closeAuthModal();
+                showToast('Signed in successfully!', 'success');
+            } catch { showToast('Invalid OTP. Try again.', 'error'); }
+        };
+
+        window.moveToNext = (el, idx) => {
+            el.value = el.value.replace(/\D/g, '').slice(-1);
+            if (el.value && idx < 5) document.getElementById('otp' + (idx + 1)).focus();
+        };
+        window.resendOTP = () => { document.getElementById('phoneStep').style.display = 'block'; document.getElementById('otpStep').style.display = 'none'; };
+
+        // ── Navbar Scroll ──────────────────────────────────────────
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        // ── Hamburger ──────────────────────────────────────────────
+        document.getElementById('hamburger')?.addEventListener('click', () => {
+            document.getElementById('mobileDrawer').classList.toggle('open');
+            document.getElementById('drawerOverlay').classList.toggle('open');
+        });
+        document.getElementById('drawerOverlay')?.addEventListener('click', () => {
+            document.getElementById('mobileDrawer').classList.remove('open');
+            document.getElementById('drawerOverlay').classList.remove('open');
+        });
+
+        // ── Close user dropdown on outside click ─────────────────
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#userMenuBtn') && !e.target.closest('#userDropdown')) {
+                const d = document.getElementById('userDropdown');
+                if (d) d.style.display = 'none';
+            }
+        });
+
+        // ── Init ──────────────────────────────────────────────────
+        updateCompareBar();
+        updatePriceRange();
+        applyFilters(); // render demo products on load
+    </script>
 </body>
+
 </html>

@@ -1,16 +1,49 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Leads collection rules
+    
+    // Leads collection (contact/enquiry forms)
     match /leads/{leadId} {
-      // Allow any public user to create a new lead
       allow create: if request.resource.data.name != null 
                     && request.resource.data.phone != null;
-      
-      // Allow read and update only. (Since the client uses client-side client JS without Firebase Auth,
-      // we'll keep read allowed for dashboard functionality, but block deletions entirely).
       allow read, update: if true;
       allow delete: if false; 
+    }
+
+    // Orders collection
+    match /orders/{orderId} {
+      allow create: if request.auth != null || request.resource.data.deliveryAddress.phone != null;
+      allow read: if request.auth != null && (resource.data.userId == request.auth.uid || request.auth.token.admin == true);
+      allow update: if request.auth != null;
+    }
+
+    // Carts & Wishlists
+    match /carts/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    match /wishlists/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Users profiles
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Public catalog & coupons
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    match /coupons/{couponId} {
+      allow read: if true;
+    }
+
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create: if request.auth != null;
     }
   }
 }

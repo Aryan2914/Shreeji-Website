@@ -195,12 +195,12 @@ function renderCart() {
                 ${item.variant ? `<div class="item-variant">Variant: ${item.variant}</div>` : ''}
                 <div class="cart-item-actions">
                     <div class="qty-selector" style="display:inline-flex;">
-                        <button class="qty-btn" style="padding:0 10px;height:32px;" onclick="updateQty('${item.productId}',${JSON.stringify(item.variant)},${item.qty - 1})"><i class="ph ph-minus"></i></button>
+                        <button class="qty-btn" style="padding:0 10px;height:32px;" onclick="updateItemQtyByIndex(${idx}, ${item.qty - 1})"><i class="ph ph-minus"></i></button>
                         <span style="padding:0 12px;display:flex;align-items:center;font-weight:700;font-size:0.9rem;border-top:1.5px solid var(--light-gray);border-bottom:1.5px solid var(--light-gray);">${item.qty}</span>
-                        <button class="qty-btn" style="padding:0 10px;height:32px;" onclick="updateQty('${item.productId}',${JSON.stringify(item.variant)},${item.qty + 1})"><i class="ph ph-plus"></i></button>
+                        <button class="qty-btn" style="padding:0 10px;height:32px;" onclick="updateItemQtyByIndex(${idx}, ${item.qty + 1})"><i class="ph ph-plus"></i></button>
                     </div>
-                    <button class="remove-btn" onclick="handleRemove('${item.productId}',${JSON.stringify(item.variant)})"><i class="ph ph-trash"></i> Remove</button>
-                    <button class="remove-btn" onclick="saveForLater('${item.productId}',${JSON.stringify(item.variant)})" style="color:var(--accent);">Save for Later</button>
+                    <button class="remove-btn" onclick="removeItemByIndex(${idx})"><i class="ph ph-trash"></i> Remove</button>
+                    <button class="remove-btn" onclick="saveForLaterByIndex(${idx})" style="color:var(--accent);">Save for Later</button>
                 </div>
             </div>
             <div class="cart-item-price">
@@ -262,6 +262,27 @@ function updateSummary() {
 }
 
 // ── Actions ─────────────────────────────────────────────
+window.updateItemQtyByIndex = async (idx, qty) => {
+    const item = cartItems[idx];
+    if (!item) return;
+    await updateCartQty(item.productId, item.variant || null, qty);
+    cartItems = await getCart();
+    renderCart();
+};
+
+window.removeItemByIndex = async (idx) => {
+    const item = cartItems[idx];
+    if (!item) return;
+    await removeFromCart(item.productId, item.variant || null);
+    cartItems = await getCart();
+    renderCart();
+};
+
+window.saveForLaterByIndex = async (idx) => {
+    await removeItemByIndex(idx);
+    showToast('Saved for later', 'info');
+};
+
 window.updateQty = async (productId, variant, qty) => {
     await updateCartQty(productId, variant, qty);
     cartItems = await getCart();

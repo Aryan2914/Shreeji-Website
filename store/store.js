@@ -189,13 +189,15 @@ export async function getCart() {
     return getLocalCart();
 }
 
-export async function updateCartQty(productId, variant, qty) {
+export async function updateCartQty(productId, variant = null, qty = 0) {
     const user = getCurrentUser();
+    const targetVariant = variant || null;
+
     if (user) {
         const cartRef = doc(db, 'carts', user.uid);
         const snap = await getDoc(cartRef);
         let items = snap.exists() ? (snap.data().items || []) : [];
-        const idx = items.findIndex(c => c.productId === productId && JSON.stringify(c.variant) === JSON.stringify(variant));
+        const idx = items.findIndex(c => c.productId === productId && (c.variant || null) === targetVariant);
         if (idx >= 0) {
             if (qty <= 0) items.splice(idx, 1);
             else items[idx].qty = qty;
@@ -204,7 +206,7 @@ export async function updateCartQty(productId, variant, qty) {
         }
     } else {
         const cart = getLocalCart();
-        const idx = cart.findIndex(c => c.productId === productId && JSON.stringify(c.variant) === JSON.stringify(variant));
+        const idx = cart.findIndex(c => c.productId === productId && (c.variant || null) === targetVariant);
         if (idx >= 0) {
             if (qty <= 0) cart.splice(idx, 1);
             else cart[idx].qty = qty;
@@ -213,7 +215,7 @@ export async function updateCartQty(productId, variant, qty) {
     }
 }
 
-export async function removeFromCart(productId, variant) {
+export async function removeFromCart(productId, variant = null) {
     await updateCartQty(productId, variant, 0);
 }
 

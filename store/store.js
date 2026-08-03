@@ -54,9 +54,8 @@ onAuthStateChanged(auth, (user) => {
         loadCartCount(user.uid);
         loadWishlistCount(user.uid);
     } else {
-        loadLocalCartCount();
-    }
-});
+// Initialize cart count immediately for local storage
+loadLocalCartCount();
 
 export function getCurrentUser() { return currentUser; }
 

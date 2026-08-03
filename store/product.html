@@ -317,21 +317,13 @@
 
 <script type="module">
 import { auth, db, showToast, addToCart, toggleWishlist, isInWishlist, toggleCompare, updateCompareBar, formatPrice, openAuthModal, closeAuthModal, signInWithGoogle, signOutUser, getProductById, getReviews, submitReview } from './store.js';
+import { STORE_PRODUCTS } from './products-data.js';
 import { collection, query, where, limit, getDocs, orderBy } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
 window.openAuthModal = openAuthModal;
 window.closeAuthModal = closeAuthModal;
 window.signInWithGoogle = signInWithGoogle;
 window.signOutUser = signOutUser;
-
-// ── Demo products (same as store/index.html) ──────────────
-const DEMO_PRODUCTS = [
-    { id: 'ram-crucial-8gb-ddr4', name: 'Crucial 8GB DDR4 3200MHz Laptop RAM (SODIMM)', brand: 'Crucial', category: 'ram', price: 1699, originalPrice: 2400, images: ['https://images.unsplash.com/photo-1562976540-1502c2145186?w=600&q=80'], rating: 4.8, reviews: 142, sku: 'CRU-8G-D4-SO', specs: { Capacity: '8GB', Speed: '3200MHz', Type: 'DDR4 SODIMM', Form: 'Laptop' }, description: 'Boost your laptop performance with Crucial 8GB DDR4 3200MHz memory. Easy installation and maximum speed.', badge: 'hot', inStock: true, featured: true, gstRate: 18, warranty: '10 Years Limited Warranty', variants: ['8GB Single Stick', '16GB (2x8GB) Kit'] },
-    { id: 'ram-crucial-16gb-ddr5', name: 'Crucial 16GB DDR5 4800MHz Desktop RAM (UDIMM)', brand: 'Crucial', category: 'ram', price: 3999, originalPrice: 5500, images: ['https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=600&q=80'], rating: 4.9, reviews: 88, sku: 'CRU-16G-D5-UD', specs: { Capacity: '16GB', Speed: '4800MHz', Type: 'DDR5 UDIMM', Form: 'Desktop' }, description: 'Next-generation DDR5 technology delivers ultra-fast data speeds for gaming, multi-tasking and high-end workstation performance.', badge: 'sale', inStock: true, featured: true, gstRate: 18, warranty: '10 Years Limited Warranty' },
-    { id: 'ssd-samsung-980-pro-1tb', name: 'Samsung 980 PRO 1TB PCIe 4.0 NVMe M.2 SSD', brand: 'Samsung', category: 'ssd', price: 8999, originalPrice: 12000, images: ['https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=600&q=80'], rating: 4.9, reviews: 430, sku: 'SAM-980PRO-1TB', specs: { Capacity: '1TB', Interface: 'NVMe M.2', ReadSpeed: '7000 MB/s', WriteSpeed: '5000 MB/s' }, description: 'Blazing read speeds up to 7000 MB/s. Thermal control and high bandwidth for heavy workloads and gaming PCs.', badge: 'hot', inStock: true, featured: true, gstRate: 18, warranty: '5 Years Manufacturer Warranty' },
-    { id: 'hdd-seagate-barracuda-2tb', name: 'Seagate BarraCuda 2TB 3.5" Internal Desktop Hard Drive', brand: 'Seagate', category: 'hdd', price: 4899, originalPrice: 6500, images: ['https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=600&q=80'], rating: 4.5, reviews: 195, sku: 'ST-2000DM008', specs: { Capacity: '2TB', Interface: 'SATA 6Gb/s', Cache: '256MB', RPM: '7200 RPM' }, description: 'Proven reliability and high capacity storage for all your desktop PCs, media libraries and backups.', badge: 'sale', inStock: true, gstRate: 18, warranty: '2 Years Seagate Warranty' },
-    { id: 'periph-logitech-mx-master3s', name: 'Logitech MX Master 3S Wireless Performance Mouse', brand: 'Logitech', category: 'peripherals', price: 9995, originalPrice: 12000, images: ['https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&q=80'], rating: 4.9, reviews: 631, sku: 'LOG-MX-3S', specs: { Sensor: '8000 DPI Darkfield', Connectivity: 'Bluetooth/Logi Bolt', Battery: '70 Days', Switches: 'Quiet Clicks' }, description: 'An iconic ergonomic mouse designed for precision and comfort. Quiet clicks and 8K DPI tracking on any glass or desk surface.', badge: 'hot', inStock: true, featured: true, gstRate: 18, warranty: '1 Year Logitech Warranty' }
-];
 
 let currentProduct = null;
 let selectedVariant = null;
@@ -343,9 +335,9 @@ async function loadProduct() {
     const productId = params.get('id');
     if (!productId) { window.location.href = '/store/'; return; }
 
-    // Try Firestore first, fallback to demo
+    // Try Firestore first, fallback to STORE_PRODUCTS
     let product = await getProductById(productId).catch(() => null);
-    if (!product) product = DEMO_PRODUCTS.find(p => p.id === productId);
+    if (!product) product = STORE_PRODUCTS.find(p => p.id === productId);
     if (!product) { window.location.href = '/store/'; return; }
 
     currentProduct = product;
@@ -541,7 +533,7 @@ window.handleWishlistToggle = async () => {
 };
 
 window.addToCartRelated = async (id, btn) => {
-    const product = DEMO_PRODUCTS.find(p => p.id === id);
+    const product = STORE_PRODUCTS.find(p => p.id === id);
     if (!product) return;
     await addToCart({ ...product, image: product.images?.[0] || product.image });
     btn.innerHTML = '<i class="ph-fill ph-check"></i> Added!';

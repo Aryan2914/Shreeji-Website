@@ -20,16 +20,6 @@
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-M3H3X5HZ4B"></script>
     <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-M3H3X5HZ4B');</script>
-    <!-- Product List Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": "Shreeji Infotech Hardware Store",
-        "description": "Shop RAM and SSD storage",
-        "url": "https://shreejiinfo.in/store/"
-    }
-    </script>
 </head>
 
 <body>
@@ -75,74 +65,13 @@
 
     <!-- ── Products Section ── -->
     <div style="max-width:1120px;margin:80px auto 0;padding:0 20px;">
-        <div style="text-align:center;margin-bottom:40px;">
+        <div style="text-align:center;margin-bottom:32px;">
             <h1 style="font-size:1.8rem;font-weight:800;color:var(--dark-gray);margin-bottom:8px;">Hardware Store</h1>
-            <p style="font-size:0.95rem;color:var(--mid-gray);">RAM & SSD — Genuine products with GST invoice</p>
+            <p style="font-size:0.95rem;color:var(--mid-gray);">Genuine RAM & SSD Storage — GST Invoices Available</p>
         </div>
 
-        <div class="products-grid" id="productsGrid">
+        <div class="products-grid" id="productsGrid" style="display:grid;grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));gap:24px;">
             <!-- Filled by JS -->
-        </div>
-    </div>
-
-    <!-- ── Auth Modal ── -->
-    <div class="auth-modal-overlay" id="authModal" onclick="handleModalOutsideClick(event)">
-        <div class="auth-modal">
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
-                <img src="../assets/images/logo.png" alt="Shreeji Infotech" style="height:40px;">
-                <button onclick="closeAuthModal()"
-                    style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--mid-gray);"><i
-                        class="ph ph-x"></i></button>
-            </div>
-            <h2 id="authTitle">Sign In</h2>
-            <p id="authSubtitle">Sign in to save your wishlist, track orders and get exclusive deals.</p>
-            <!-- Google Sign In -->
-            <a href="#" class="btn-google" onclick="signInWithGoogle();return false;">
-                <svg width="20" height="20" viewBox="0 0 48 48">
-                    <path fill="#EA4335"
-                        d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
-                    <path fill="#4285F4"
-                        d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
-                    <path fill="#FBBC05"
-                        d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
-                    <path fill="#34A853"
-                        d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.35-8.16 2.35-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
-                </svg>
-                Continue with Google
-            </a>
-            <div class="or-divider">or use OTP</div>
-            <div id="phoneStep">
-                <div class="form-group">
-                    <label class="form-label">Mobile Number</label>
-                    <div style="display:flex;gap:8px;">
-                        <span
-                            style="padding:11px 14px;border:1.5px solid var(--light-gray);border-radius:var(--r-sm);font-size:0.88rem;color:var(--mid-gray);background:var(--off-white);white-space:nowrap;">🇮🇳
-                            +91</span>
-                        <input type="tel" id="phoneInput" class="form-input" placeholder="Enter 10-digit number"
-                            maxlength="10" pattern="[0-9]{10}">
-                    </div>
-                </div>
-                <button class="btn btn-primary" style="width:100%;margin-top:14px;justify-content:center;"
-                    onclick="sendOTP()">Send OTP</button>
-            </div>
-            <div id="otpStep" style="display:none;">
-                <p style="font-size:0.85rem;color:var(--mid-gray);margin-bottom:12px;">OTP sent to <strong
-                        id="otpPhone"></strong></p>
-                <div class="otp-inputs">
-                    <input type="text" class="otp-input" maxlength="1" id="otp0" oninput="moveToNext(this,0)">
-                    <input type="text" class="otp-input" maxlength="1" id="otp1" oninput="moveToNext(this,1)">
-                    <input type="text" class="otp-input" maxlength="1" id="otp2" oninput="moveToNext(this,2)">
-                    <input type="text" class="otp-input" maxlength="1" id="otp3" oninput="moveToNext(this,3)">
-                    <input type="text" class="otp-input" maxlength="1" id="otp4" oninput="moveToNext(this,4)">
-                    <input type="text" class="otp-input" maxlength="1" id="otp5" oninput="moveToNext(this,5)">
-                </div>
-                <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="verifyOTP()">Verify
-                    OTP</button>
-                <button
-                    style="display:block;margin:12px auto 0;background:none;border:none;color:var(--accent);font-size:0.82rem;cursor:pointer;font-family:var(--font);"
-                    onclick="resendOTP()">Resend OTP</button>
-            </div>
-            <div id="recaptcha-container"></div>
         </div>
     </div>
 
@@ -150,7 +79,7 @@
     <div class="toast-container" id="toastContainer"></div>
 
     <!-- ── Footer ── -->
-    <footer style="background:var(--dark-gray);color:rgba(255,255,255,0.7);padding:40px 24px;margin-top:40px;">
+    <footer style="background:var(--dark-gray);color:rgba(255,255,255,0.7);padding:40px 24px;margin-top:60px;">
         <div
             style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;">
             <div>
@@ -175,142 +104,99 @@
     </footer>
 
     <script type="module">
-        import { auth, db, showToast, addToCart, toggleWishlist, updateCompareBar, formatPrice, renderStars, openAuthModal, closeAuthModal, signInWithGoogle, signOutUser } from './store.js';
-        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+        import { addToCart, showToast } from './store.js';
+        import { STORE_PRODUCTS } from './products-data.js';
 
-        // Make functions available globally
-        window.openAuthModal = openAuthModal;
-        window.closeAuthModal = closeAuthModal;
-        window.signInWithGoogle = signInWithGoogle;
-        window.signOutUser = signOutUser;
         window.showToast = showToast;
 
-        // ── Products ─────────────────────────────────────────────
-        const PRODUCTS = [
-            { id: 'ram-8gb-ddr4', name: '8GB RAM DDR4', brand: 'Generic', category: 'ram', price: 4500, image: 'https://images.unsplash.com/photo-1562976540-1502c2145186?w=400&q=80', rating: 4.7, reviews: 86, specs: { Capacity: '8GB', Type: 'DDR4' }, inStock: true, gstRate: 18 },
-            { id: 'ram-16gb-ddr4', name: '16GB RAM DDR4', brand: 'Generic', category: 'ram', price: 9500, image: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=400&q=80', rating: 4.8, reviews: 62, specs: { Capacity: '16GB', Type: 'DDR4' }, inStock: true, gstRate: 18 },
-            { id: 'ssd-128gb-sata', name: '128GB SSD SATA', brand: 'Generic', category: 'ssd', price: 3500, image: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&q=80', rating: 4.5, reviews: 124, specs: { Capacity: '128GB', Interface: 'SATA' }, inStock: true, gstRate: 18 },
-            { id: 'ssd-256gb-sata', name: '256GB SSD SATA', brand: 'Generic', category: 'ssd', price: 4500, image: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&q=80', rating: 4.6, reviews: 98, specs: { Capacity: '256GB', Interface: 'SATA' }, inStock: true, gstRate: 18 },
-            { id: 'ssd-512gb-sata', name: '512GB SSD SATA', brand: 'Generic', category: 'ssd', price: 7500, image: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&q=80', rating: 4.7, reviews: 73, specs: { Capacity: '512GB', Interface: 'SATA' }, inStock: true, gstRate: 18 },
-            { id: 'ssd-128gb-nvme', name: '128GB SSD NVME', brand: 'Generic', category: 'ssd', price: 3200, image: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&q=80', rating: 4.6, reviews: 110, specs: { Capacity: '128GB', Interface: 'NVMe M.2' }, inStock: true, gstRate: 18 },
-            { id: 'ssd-256gb-nvme', name: '256GB SSD NVME', brand: 'Generic', category: 'ssd', price: 5000, image: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&q=80', rating: 4.7, reviews: 89, specs: { Capacity: '256GB', Interface: 'NVMe M.2' }, inStock: true, gstRate: 18 },
-            { id: 'ssd-512gb-nvme', name: '512GB SSD NVME', brand: 'Generic', category: 'ssd', price: 8100, image: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&q=80', rating: 4.8, reviews: 67, specs: { Capacity: '512GB', Interface: 'NVMe M.2' }, inStock: true, gstRate: 18 }
-        ];
-
-        // ── Render Products ────────────────────────────────────────
-        function renderProducts(products) {
+        function renderProducts() {
             const grid = document.getElementById('productsGrid');
-            if (!products.length) {
-                grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">
-                    <div class="empty-icon"><i class="ph ph-package"></i></div>
-                    <div class="empty-title">No Products Found</div>
-                </div>`;
-                return;
-            }
-            grid.innerHTML = products.map(p => renderCard(p)).join('');
+            if (!grid) return;
+
+            grid.innerHTML = STORE_PRODUCTS.map(p => {
+                const discount = p.originalPrice > p.price ? Math.round((1 - p.price / p.originalPrice) * 100) : 0;
+                const specsHtml = Object.entries(p.specs || {}).map(([k, v]) => `<span class="spec-chip">${v}</span>`).join('');
+                const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '⯨' : '') + '☆'.repeat(5 - Math.ceil(p.rating));
+
+                return `
+                <div class="product-card" data-id="${p.id}" style="background:#fff;border:1px solid var(--light-gray);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;transition:transform 0.2s, box-shadow 0.2s;">
+                    <a href="product.html?id=${p.id}" style="display:block;background:var(--off-white);padding:20px;text-align:center;overflow:hidden;position:relative;">
+                        <img src="${p.image}" alt="${p.name}" loading="lazy" style="max-height:180px;width:auto;margin:0 auto;object-fit:contain;transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        ${discount ? `<span style="position:absolute;top:12px;left:12px;background:var(--badge-sale);color:#fff;font-size:0.75rem;font-weight:700;padding:3px 8px;border-radius:4px;">${discount}% OFF</span>` : ''}
+                    </a>
+                    <div style="padding:16px;flex:1;display:flex;flex-direction:column;">
+                        <div style="font-size:0.75rem;color:var(--mid-gray);font-weight:600;margin-bottom:4px;text-transform:uppercase;">${p.brand}</div>
+                        <a href="product.html?id=${p.id}" style="font-size:1rem;font-weight:700;color:var(--dark-gray);text-decoration:none;margin-bottom:8px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${p.name}</a>
+                        
+                        <div class="product-specs" style="margin-bottom:10px;display:flex;flex-wrap:wrap;gap:4px;">${specsHtml}</div>
+                        
+                        <div style="display:flex;align-items:center;gap:6px;font-size:0.8rem;margin-bottom:12px;">
+                            <span style="color:var(--star-color);">${stars}</span>
+                            <span style="color:var(--mid-gray);">(${p.reviews})</span>
+                        </div>
+                        
+                        <div style="margin-top:auto;padding-top:12px;border-top:1px solid var(--light-gray);">
+                            <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:14px;">
+                                <span style="font-size:1.25rem;font-weight:800;color:var(--dark-gray);">₹${p.price.toLocaleString('en-IN')}</span>
+                                ${discount ? `<span style="font-size:0.85rem;color:var(--mid-gray);text-decoration:line-through;">₹${p.originalPrice.toLocaleString('en-IN')}</span>` : ''}
+                            </div>
+                            
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                                <button class="btn-cart" onclick="handleAddToCart('${p.id}', this)" style="width:100%;padding:10px;background:var(--accent);color:#fff;border:none;border-radius:var(--r-sm);font-weight:600;font-size:0.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
+                                    <i class="ph ph-shopping-cart"></i> Cart
+                                </button>
+                                <button onclick="handleBuyNow('${p.id}')" style="width:100%;padding:10px;background:var(--dark-gray);color:#fff;border:none;border-radius:var(--r-sm);font-weight:600;font-size:0.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
+                                    Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
         }
 
-        function renderCard(p) {
-            const specsHtml = Object.entries(p.specs || {}).slice(0, 3).map(([k, v]) => `<span class="spec-chip">${v}</span>`).join('');
-            const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '⯨' : '') + '☆'.repeat(5 - Math.ceil(p.rating));
-
-            return `<div class="product-card" data-id="${p.id}" data-category="${p.category}">
-                <div class="product-card-img">
-                    <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/f5f5f7/86868b?text=Image'">
-                </div>
-                <div class="product-card-body">
-                    <a href="javascript:void(0)" class="product-name">${p.name}</a>
-                    <div class="product-specs">${specsHtml}</div>
-                    <div class="product-rating">
-                        <span class="stars">${stars}</span>
-                        <span class="rating-count">(${p.reviews})</span>
-                    </div>
-                    <div class="product-pricing">
-                        <span class="product-price">₹${p.price.toLocaleString('en-IN')}</span>
-                    </div>
-                </div>
-                <div class="card-btns">
-                    <button class="btn-cart" onclick="handleAddToCart('${p.id}', this)">
-                        <i class="ph ph-shopping-cart"></i> Add to Cart
-                    </button>
-                </div>
-            </div>`;
-        }
-
-        // ── Cart Actions ────────────────────────────────────────
         window.handleAddToCart = async (productId, btn) => {
-            const product = PRODUCTS.find(p => p.id === productId);
-            if (!product) { showToast('Product not found', 'error'); return; }
+            const product = STORE_PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
             try {
                 await addToCart(product);
-                btn.classList.add('added');
+                const originalText = btn.innerHTML;
                 btn.innerHTML = '<i class="ph-fill ph-check"></i> Added!';
+                btn.style.background = 'var(--badge-new)';
                 setTimeout(() => {
-                    btn.classList.remove('added');
-                    btn.innerHTML = '<i class="ph ph-shopping-cart"></i> Add to Cart';
+                    btn.innerHTML = originalText;
+                    btn.style.background = 'var(--accent)';
                 }, 2000);
             } catch (err) {
-                showToast('Could not add to cart. Please try again.', 'error');
+                showToast('Error adding to cart', 'error');
             }
         };
 
-        // ── Auth Modal Helpers ────────────────────────────────────
-        window.handleModalOutsideClick = (e) => {
-            if (e.target.id === 'authModal') closeAuthModal();
+        window.handleBuyNow = async (productId) => {
+            const product = STORE_PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+            await addToCart(product);
+            window.location.href = 'checkout.html';
         };
 
-        // OTP Flow
-        let confirmationResult;
-        window.sendOTP = async () => {
-            const phone = document.getElementById('phoneInput').value.trim();
-            if (phone.length !== 10 || !/^\d+$/.test(phone)) { showToast('Enter a valid 10-digit number', 'error'); return; }
-            try {
-                const { RecaptchaVerifier, signInWithPhoneNumber } = await import("https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js");
-                if (!window.recaptchaVerifier) {
-                    window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', { size: 'invisible' });
-                }
-                confirmationResult = await signInWithPhoneNumber(auth, '+91' + phone, window.recaptchaVerifier);
-                document.getElementById('phoneStep').style.display = 'none';
-                document.getElementById('otpStep').style.display = 'block';
-                document.getElementById('otpPhone').textContent = '+91 ' + phone;
-                document.getElementById('otp0').focus();
-                showToast('OTP sent!', 'success');
-            } catch (err) { showToast('Failed to send OTP: ' + err.message, 'error'); }
-        };
-
-        window.verifyOTP = async () => {
-            const otp = [0, 1, 2, 3, 4, 5].map(i => document.getElementById('otp' + i).value).join('');
-            if (otp.length !== 6) { showToast('Enter the 6-digit OTP', 'error'); return; }
-            try {
-                await confirmationResult.confirm(otp);
-                closeAuthModal();
-                showToast('Signed in successfully!', 'success');
-            } catch { showToast('Invalid OTP. Try again.', 'error'); }
-        };
-
-        window.moveToNext = (el, idx) => {
-            el.value = el.value.replace(/\D/g, '').slice(-1);
-            if (el.value && idx < 5) document.getElementById('otp' + (idx + 1)).focus();
-        };
-        window.resendOTP = () => { document.getElementById('phoneStep').style.display = 'block'; document.getElementById('otpStep').style.display = 'none'; };
-
-        // ── Navbar Scroll ──────────────────────────────────────────
+        // Navbar Scroll
         window.addEventListener('scroll', () => {
-            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+            document.getElementById('navbar')?.classList.toggle('scrolled', window.scrollY > 20);
         });
 
-        // ── Hamburger ──────────────────────────────────────────────
+        // Hamburger
         document.getElementById('hamburger')?.addEventListener('click', () => {
-            document.getElementById('mobileDrawer').classList.toggle('open');
-            document.getElementById('drawerOverlay').classList.toggle('open');
+            document.getElementById('mobileDrawer')?.classList.toggle('open');
+            document.getElementById('drawerOverlay')?.classList.toggle('open');
         });
         document.getElementById('drawerOverlay')?.addEventListener('click', () => {
-            document.getElementById('mobileDrawer').classList.remove('open');
-            document.getElementById('drawerOverlay').classList.remove('open');
+            document.getElementById('mobileDrawer')?.classList.remove('open');
+            document.getElementById('drawerOverlay')?.classList.remove('open');
         });
 
-        // ── Init ──────────────────────────────────────────────────
-        renderProducts(PRODUCTS);
+        // Init
+        renderProducts();
     </script>
 </body>
 

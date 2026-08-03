@@ -41,6 +41,15 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ══════════════════════════════════════════
        3. Smooth anchor scrolling
        ══════════════════════════════════════════ */
+    // Map of clean URL paths to section IDs
+    const pathToSection = {
+        '/services': 'services',
+        '/enterprise': 'enterprise',
+        '/contact': 'contact',
+        '/enquiry': 'enquiry'
+    };
+
+    // Handle hash anchors (e.g. #products)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', e => {
             const id = anchor.getAttribute('href');
@@ -56,11 +65,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Handle clean URL path links (e.g. /services, /enterprise)
+    Object.entries(pathToSection).forEach(([path, sectionId]) => {
+        document.querySelectorAll(`a[href="${path}"]`).forEach(anchor => {
+            anchor.addEventListener('click', e => {
+                const target = document.getElementById(sectionId);
+                if (target) {
+                    e.preventDefault();
+                    closeDrawer();
+                    const offset = navbar.offsetHeight + 8;
+                    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                    history.pushState(null, '', path);
+                }
+            });
+        });
+    });
+
+    // Auto-scroll on page load if URL matches a section
+    const currentPath = window.location.pathname;
+    if (pathToSection[currentPath]) {
+        const target = document.getElementById(pathToSection[currentPath]);
+        if (target) {
+            setTimeout(() => {
+                const offset = navbar.offsetHeight + 8;
+                const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({ top, behavior: 'smooth' });
+            }, 300);
+        }
+    }
+
     /* ══════════════════════════════════════════
        4. Active nav link highlight
        ══════════════════════════════════════════ */
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
+
+    // Reverse map: section ID → path
+    const sectionToPath = {};
+    Object.entries(pathToSection).forEach(([path, id]) => { sectionToPath[id] = path; });
 
     const highlightNav = () => {
         let current = '';
@@ -68,7 +111,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
         });
         navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+            const href = link.getAttribute('href');
+            const isActive = href === `#${current}` || href === sectionToPath[current];
+            link.classList.toggle('active', isActive);
         });
     };
     window.addEventListener('scroll', highlightNav, { passive: true });

@@ -35,6 +35,12 @@
           }
         ]
       }
+    ],
+    "rewrites": [
+      { "source": "/services", "destination": "/index.html" },
+      { "source": "/enterprise", "destination": "/index.html" },
+      { "source": "/contact", "destination": "/index.html" },
+      { "source": "/enquiry", "destination": "/index.html" }
     ]
   }
 }

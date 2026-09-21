@@ -1,0 +1,16 @@
+/vendor
+/.env
+/.env.backup
+/.env.production
+/storage/*.key
+/storage/app/**/*.pdf
+/storage/app/public/invoices/*.pdf
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*
+!/storage/framework/.gitignore
+!/storage/logs/.gitignore
+/database/*.sqlite
+/database/*.sqlite-journal
+.phpunit.result.cache

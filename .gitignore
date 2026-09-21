@@ -67,3 +67,9 @@ node_modules/
 
 # dataconnect generated files
 .dataconnect
+
+# PHP / Composer
+vendor/
+.phpunit.result.cache
+*.sqlite
+
